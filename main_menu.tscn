@@ -1,0 +1,220 @@
+[gd_scene load_steps=16 format=3 uid="uid://by0lgjqfjp8af"]
+
+[ext_resource type="Texture2D" uid="uid://b1c284wfrigrf" path="res://PRIMORDIA.png" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://bka7nrspkkik7" path="res://MainMenu.cs" id="1_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://cnq4nd5i3enik" path="res://Assets/BACK BUTTON.png" id="3_8qtwp"]
+[ext_resource type="Texture2D" uid="uid://cc721q5pl4m47" path="res://Assets/PRIMORDIA.png" id="3_dy7ct"]
+[ext_resource type="Texture2D" uid="uid://cnqo2kmto5onx" path="res://Assets/SETTINGS.png" id="3_nlkkf"]
+[ext_resource type="Texture2D" uid="uid://cx85ul5ejwdjb" path="res://Assets/HOW TO PLAY BUTTON.png" id="4_glbon"]
+[ext_resource type="Texture2D" uid="uid://bvfex7pwhtcu0" path="res://Assets/question_mark.png" id="4_qe12f"]
+[ext_resource type="Texture2D" uid="uid://bj0wq5isnghid" path="res://Assets/SETTINGS_TEXT.png" id="5_0k4wn"]
+[ext_resource type="Texture2D" uid="uid://c3dnqaeik23uv" path="res://Assets/CREDITS_TEXT.png" id="5_j5v2v"]
+[ext_resource type="Texture2D" uid="uid://d21x4vc8td16h" path="res://Assets/QUIT BUTTON.png" id="5_nlkkf"]
+[ext_resource type="Texture2D" uid="uid://ckfo1543iwwhx" path="res://Assets/START BUTTON.png" id="6_8qtwp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_06t4h"]
+texture = ExtResource("1_06t4h")
+modulate_color = Color(0.6551711, 0.65898365, 0.63257563, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0o4t1"]
+texture = ExtResource("3_dy7ct")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iotk1"]
+texture = ExtResource("5_j5v2v")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j5v2v"]
+texture = ExtResource("5_0k4wn")
+
+[node name="MainMenu" type="Control"]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7vrkn")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_06t4h")
+
+[node name="Logo" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -614.0
+offset_top = 116.0
+offset_right = 596.0
+offset_bottom = 413.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0o4t1")
+
+[node name="CreditsPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -875.0
+offset_top = -465.0
+offset_right = 867.75
+offset_bottom = 475.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CreditsBackButton" type="TextureButton" parent="CreditsPanel"]
+layout_mode = 0
+offset_left = 43.75
+offset_top = 731.25
+offset_right = 193.75
+offset_bottom = 831.25
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+action_mode = 0
+texture_normal = ExtResource("3_8qtwp")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CreditsText" type="Panel" parent="CreditsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -348.5
+offset_top = -50.0
+offset_right = 348.5
+offset_bottom = 51.25
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_iotk1")
+
+[node name="OptionsPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -875.0
+offset_top = -465.0
+offset_right = 867.75
+offset_bottom = 475.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsBackButton" type="TextureButton" parent="OptionsPanel"]
+layout_mode = 0
+offset_left = 43.75
+offset_top = 731.25
+offset_right = 193.75
+offset_bottom = 831.25
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+action_mode = 0
+texture_normal = ExtResource("3_8qtwp")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SettingsText" type="Panel" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -348.5
+offset_top = -50.0
+offset_right = 348.5
+offset_bottom = 51.25
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_j5v2v")
+
+[node name="TopButtons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -248.0
+offset_top = 17.0
+offset_right = -30.0
+offset_bottom = 152.0
+grow_horizontal = 0
+theme_override_constants/separation = 24
+
+[node name="SettingsButton" type="TextureButton" parent="TopButtons"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+action_mode = 0
+texture_normal = ExtResource("3_nlkkf")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CreditsButton" type="TextureButton" parent="TopButtons"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+action_mode = 0
+texture_normal = ExtResource("4_qe12f")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="MainButtons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_right = 175.0
+offset_bottom = 423.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="StartButton" type="TextureButton" parent="MainButtons"]
+custom_minimum_size = Vector2(200, 130)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+action_mode = 0
+texture_normal = ExtResource("6_8qtwp")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="HowToPlayButton" type="TextureButton" parent="MainButtons"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+action_mode = 0
+texture_normal = ExtResource("4_glbon")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="QuitButton" type="TextureButton" parent="MainButtons"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+action_mode = 0
+texture_normal = ExtResource("5_nlkkf")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="CreditsPanel/CreditsBackButton" to="." method="OnCreditsBackPressed"]
+[connection signal="pressed" from="OptionsPanel/OptionsBackButton" to="." method="OnOptionsBackPressed"]
+[connection signal="pressed" from="TopButtons/SettingsButton" to="." method="OnSettingsPressed"]
+[connection signal="pressed" from="TopButtons/CreditsButton" to="." method="OnCreditsPressed"]
+[connection signal="pressed" from="MainButtons/StartButton" to="." method="OnStartPressed"]
+[connection signal="pressed" from="MainButtons/HowToPlayButton" to="." method="OnHowToPlayPressed"]
+[connection signal="pressed" from="MainButtons/QuitButton" to="." method="OnQuitPressed"]
