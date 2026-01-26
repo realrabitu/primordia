@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1c284wfrigrf"
-path="res://.godot/imported/PRIMORDIA.png-5b12047dd041bbd6e286b65789285286.ctex"
+uid="uid://i1q3abeaw47p"
+path="res://.godot/imported/HOW TO PLAY BUTTON.png-e2ff0c413b8985f216033031d0960bf3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PRIMORDIA.png"
-dest_files=["res://.godot/imported/PRIMORDIA.png-5b12047dd041bbd6e286b65789285286.ctex"]
+source_file="res://Assets/Buttons/HOW TO PLAY BUTTON.png"
+dest_files=["res://.godot/imported/HOW TO PLAY BUTTON.png-e2ff0c413b8985f216033031d0960bf3.ctex"]
 
 [params]
 

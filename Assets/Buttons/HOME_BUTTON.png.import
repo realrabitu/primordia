@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvfex7pwhtcu0"
-path="res://.godot/imported/question_mark.png-00f69992fc3910540c7ef630504aece8.ctex"
+uid="uid://cl5ig58rrvvw3"
+path="res://.godot/imported/HOME_BUTTON.png-e5991453d895aae474e7d17f759a870b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/question_mark.png"
-dest_files=["res://.godot/imported/question_mark.png-00f69992fc3910540c7ef630504aece8.ctex"]
+source_file="res://Assets/Buttons/HOME_BUTTON.png"
+dest_files=["res://.godot/imported/HOME_BUTTON.png-e5991453d895aae474e7d17f759a870b.ctex"]
 
 [params]
 

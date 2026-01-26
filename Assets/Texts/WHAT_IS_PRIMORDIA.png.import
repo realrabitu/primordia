@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc721q5pl4m47"
-path="res://.godot/imported/PRIMORDIA.png-10491e3e10524c4e6a7c2ebf8c8c39af.ctex"
+uid="uid://cecwyl51eem7e"
+path="res://.godot/imported/WHAT_IS_PRIMORDIA.png-a2a775d702a18d3090e508acb646a253.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PRIMORDIA.png"
-dest_files=["res://.godot/imported/PRIMORDIA.png-10491e3e10524c4e6a7c2ebf8c8c39af.ctex"]
+source_file="res://Assets/Texts/WHAT_IS_PRIMORDIA.png"
+dest_files=["res://.godot/imported/WHAT_IS_PRIMORDIA.png-a2a775d702a18d3090e508acb646a253.ctex"]
 
 [params]
 

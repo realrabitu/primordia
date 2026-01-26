@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckfo1543iwwhx"
-path="res://.godot/imported/START BUTTON.png-e4c225b72724e2435af095d0ad6fa144.ctex"
+uid="uid://cpk4ljjc1qbhd"
+path="res://.godot/imported/PRIMORDIA.png-bd8b9042b8565c9c4fb6b113e8bf31e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/START BUTTON.png"
-dest_files=["res://.godot/imported/START BUTTON.png-e4c225b72724e2435af095d0ad6fa144.ctex"]
+source_file="res://Assets/Menu Images/PRIMORDIA.png"
+dest_files=["res://.godot/imported/PRIMORDIA.png-bd8b9042b8565c9c4fb6b113e8bf31e3.ctex"]
 
 [params]
 
