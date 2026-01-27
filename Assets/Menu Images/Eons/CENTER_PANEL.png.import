@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bndfrs88cwv52"
-path="res://.godot/imported/SETTINGS_TEXT.png-45fe8fef93e875b6091a3c4451ffe9d3.ctex"
+uid="uid://dkinr7qg413gi"
+path="res://.godot/imported/CENTER_PANEL.png-f8cecbfc0ea5b4a9e7a7c240be2f0136.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Texts/SETTINGS_TEXT.png"
-dest_files=["res://.godot/imported/SETTINGS_TEXT.png-45fe8fef93e875b6091a3c4451ffe9d3.ctex"]
+source_file="res://Assets/Menu Images/Eons/CENTER_PANEL.png"
+dest_files=["res://.godot/imported/CENTER_PANEL.png-f8cecbfc0ea5b4a9e7a7c240be2f0136.ctex"]
 
 [params]
 

@@ -1,0 +1,349 @@
+[gd_scene load_steps=39 format=3 uid="uid://dtwvvu6e7gtrm"]
+
+[ext_resource type="Texture2D" path="res://Assets/Menu Images/PRECAMBRIAN_L-PANEL.png" id="1_8ye46"]
+[ext_resource type="Texture2D" path="res://Assets/Menu Images/PRECAMBRIAN_R-PANEL.png" id="2_q227p"]
+[ext_resource type="Texture2D" path="res://Assets/Menu Images/CENTER_PANEL.png" id="3_1gd1k"]
+[ext_resource type="Texture2D" path="res://Assets/Menu Images/PRECAMBRIAN_CENTER_IMAGE1.png" id="4_fqubo"]
+[ext_resource type="Texture2D" path="res://Assets/Menu Images/PRECAMBRIAN_CENTER_IMAGE2.png" id="5_ej7oj"]
+[ext_resource type="Texture2D" path="res://Assets/Menu Images/PRECAMBRIAN_CENTER_IMAGE3.png" id="6_bslhh"]
+[ext_resource type="Texture2D" path="res://Assets/Buttons/PLAY_BUTTON.png" id="7_if5hy"]
+[ext_resource type="Texture2D" path="res://Assets/Texts/PRECAMBRIAN_TEXT.png" id="8_50dtu"]
+[ext_resource type="Texture2D" path="res://Assets/Texts/PRECAMBRIAN_TEXT2.png" id="9_8smfk"]
+[ext_resource type="Texture2D" uid="uid://cl5ig58rrvvw3" path="res://Assets/Buttons/HOME_BUTTON.png" id="10_7hac0"]
+[ext_resource type="Texture2D" uid="uid://byf7oi27dlm0x" path="res://Assets/Buttons/ARROW_BUTTON.png" id="11_wc2fn"]
+[ext_resource type="Texture2D" path="res://Assets/Menu Images/EON_SELECTION_SCREEN_BG.png" id="12_nnvws"]
+[ext_resource type="Texture2D" path="res://Assets/Menu Images/PHANEROZOIC_LPANEL.png" id="13_du87m"]
+[ext_resource type="Texture2D" path="res://Assets/Menu Images/PHANEROZOIC_RPANEL.png" id="14_4ue3n"]
+[ext_resource type="Texture2D" path="res://Assets/Menu Images/PHANEROZOIC_CENTER_TOP.png" id="15_j4gnu"]
+[ext_resource type="Texture2D" path="res://Assets/Menu Images/PHANEROZOIC_CENTER_MID.png" id="16_gjmkr"]
+[ext_resource type="Texture2D" path="res://Assets/Menu Images/PHANEROZOIC_CENTER_BOTTOM.png" id="17_hiaog"]
+[ext_resource type="Texture2D" uid="uid://cder4pit1lmbn" path="res://Assets/Buttons/PHANEROZOIC_PLAY-BUTTON.png" id="18_hsntw"]
+[ext_resource type="Texture2D" path="res://Assets/Texts/PRIMORDIA_ASSET_PHANEROZOIC.png" id="19_gcw2y"]
+[ext_resource type="Texture2D" path="res://Assets/Texts/PHANEROZOIC_EON-TEXT.png" id="20_coodg"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ol2ft"]
+load_path = "res://.godot/imported/EON_SELECTION_SCREEN_BG.png-6faae8573e1e7f9112b52d6a57acf4e1.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_maelt"]
+texture = SubResource("CompressedTexture2D_ol2ft")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q2lj3"]
+texture = ExtResource("1_8ye46")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_up8mm"]
+texture = ExtResource("2_q227p")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6kuya"]
+texture = ExtResource("3_1gd1k")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ag07e"]
+texture = ExtResource("4_fqubo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oie1v"]
+texture = ExtResource("5_ej7oj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n6qw7"]
+texture = ExtResource("6_bslhh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tnyeu"]
+texture = ExtResource("8_50dtu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ghsdq"]
+texture = ExtResource("9_8smfk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s7fkk"]
+texture = ExtResource("12_nnvws")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h4jes"]
+texture = ExtResource("13_du87m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2pnf2"]
+texture = ExtResource("14_4ue3n")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mhlyg"]
+texture = ExtResource("15_j4gnu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ra833"]
+texture = ExtResource("16_gjmkr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hdej7"]
+texture = ExtResource("17_hiaog")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_inir2"]
+texture = ExtResource("19_gcw2y")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6xql1"]
+texture = ExtResource("20_coodg")
+
+[node name="EraSelectionScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScreensContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 3840.0
+offset_bottom = 1080.0
+
+[node name="PrecambrianPanel" type="Panel" parent="ScreensContainer"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_maelt")
+
+[node name="LPanel" type="Panel" parent="ScreensContainer/PrecambrianPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 94.0
+offset_top = -467.0
+offset_right = 707.0
+offset_bottom = 493.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_q2lj3")
+
+[node name="RPanel" type="Panel" parent="ScreensContainer/PrecambrianPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 239.0
+offset_top = -467.0
+offset_right = 864.0
+offset_bottom = 493.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_up8mm")
+
+[node name="CenterPanel" type="Panel" parent="ScreensContainer/PrecambrianPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 700.0
+offset_top = -480.0
+offset_right = 1200.0
+offset_bottom = 520.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6kuya")
+
+[node name="CenterContentsContainer" type="VBoxContainer" parent="ScreensContainer/PrecambrianPanel/CenterPanel"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 129.0
+offset_right = 466.0
+offset_bottom = 741.0
+theme_override_constants/separation = 0
+
+[node name="Top" type="Panel" parent="ScreensContainer/PrecambrianPanel/CenterPanel/CenterContentsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_ag07e")
+
+[node name="Mid" type="Panel" parent="ScreensContainer/PrecambrianPanel/CenterPanel/CenterContentsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_oie1v")
+
+[node name="Bottom" type="Panel" parent="ScreensContainer/PrecambrianPanel/CenterPanel/CenterContentsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_n6qw7")
+
+[node name="PlayButton" type="TextureButton" parent="ScreensContainer/PrecambrianPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -165.0
+offset_top = -222.0
+offset_right = 165.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("7_if5hy")
+
+[node name="TopLogoPanel" type="Panel" parent="ScreensContainer/PrecambrianPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -392.5
+offset_top = 30.0
+offset_right = 392.5
+offset_bottom = 117.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_tnyeu")
+
+[node name="TopEonPanel" type="Panel" parent="ScreensContainer/PrecambrianPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -292.25
+offset_top = 110.0
+offset_right = 292.25
+offset_bottom = 180.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ghsdq")
+
+[node name="HomeButton" type="TextureButton" parent="ScreensContainer/PrecambrianPanel"]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 171.0
+offset_bottom = 131.0
+texture_normal = ExtResource("10_7hac0")
+
+[node name="SwitchToPhanerozoic" type="TextureButton" parent="ScreensContainer/PrecambrianPanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -43.5
+offset_right = -53.0
+offset_bottom = 49.5
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("11_wc2fn")
+
+[node name="PhanerozoicPanel" type="Panel" parent="ScreensContainer"]
+layout_mode = 0
+offset_left = 1920.0
+offset_right = 3840.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_s7fkk")
+
+[node name="LPanel" type="Panel" parent="ScreensContainer/PhanerozoicPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 94.0
+offset_top = -467.0
+offset_right = 707.0
+offset_bottom = 493.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_h4jes")
+
+[node name="RPanel" type="Panel" parent="ScreensContainer/PhanerozoicPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 239.0
+offset_top = -467.0
+offset_right = 864.0
+offset_bottom = 493.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_2pnf2")
+
+[node name="CenterPanel" type="Panel" parent="ScreensContainer/PhanerozoicPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 700.0
+offset_top = -480.0
+offset_right = 1200.0
+offset_bottom = 520.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6kuya")
+
+[node name="CenterContentsContainer" type="VBoxContainer" parent="ScreensContainer/PhanerozoicPanel/CenterPanel"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 129.0
+offset_right = 466.0
+offset_bottom = 741.0
+theme_override_constants/separation = 0
+
+[node name="Top" type="Panel" parent="ScreensContainer/PhanerozoicPanel/CenterPanel/CenterContentsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_mhlyg")
+
+[node name="Middle" type="Panel" parent="ScreensContainer/PhanerozoicPanel/CenterPanel/CenterContentsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_ra833")
+
+[node name="Bottom" type="Panel" parent="ScreensContainer/PhanerozoicPanel/CenterPanel/CenterContentsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_hdej7")
+
+[node name="PlayButton" type="TextureButton" parent="ScreensContainer/PhanerozoicPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -165.0
+offset_top = -222.0
+offset_right = 165.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("18_hsntw")
+
+[node name="TopLogoPanel" type="Panel" parent="ScreensContainer/PhanerozoicPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -392.5
+offset_top = 30.0
+offset_right = 392.5
+offset_bottom = 117.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_inir2")
+
+[node name="TopEonPanel" type="Panel" parent="ScreensContainer/PhanerozoicPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -292.25
+offset_top = 110.0
+offset_right = 292.25
+offset_bottom = 180.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6xql1")
+
+[node name="HomeButton" type="TextureButton" parent="ScreensContainer/PhanerozoicPanel"]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 171.0
+offset_bottom = 131.0
+texture_normal = ExtResource("10_7hac0")
+
+[node name="SwitchToPrecambrian" type="TextureButton" parent="ScreensContainer/PhanerozoicPanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1870.0
+offset_top = -43.5
+offset_right = -1723.0
+offset_bottom = 49.5
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("11_wc2fn")
+flip_h = true

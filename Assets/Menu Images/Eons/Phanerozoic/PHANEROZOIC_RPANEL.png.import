@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cecwyl51eem7e"
-path="res://.godot/imported/WHAT_IS_PRIMORDIA.png-a2a775d702a18d3090e508acb646a253.ctex"
+uid="uid://cvp0dnr7bmu4r"
+path="res://.godot/imported/PHANEROZOIC_RPANEL.png-982ff80682ddf3502070f1a2001c728e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Texts/WHAT_IS_PRIMORDIA.png"
-dest_files=["res://.godot/imported/WHAT_IS_PRIMORDIA.png-a2a775d702a18d3090e508acb646a253.ctex"]
+source_file="res://Assets/Menu Images/Eons/Phanerozoic/PHANEROZOIC_RPANEL.png"
+dest_files=["res://.godot/imported/PHANEROZOIC_RPANEL.png-982ff80682ddf3502070f1a2001c728e.ctex"]
 
 [params]
 

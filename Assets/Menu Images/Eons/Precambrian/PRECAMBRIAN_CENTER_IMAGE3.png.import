@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buracibqfux0w"
-path="res://.godot/imported/PRECAMBRIAN_TEXT2.png-74baf6ee52ce4168b70a0c40989b9021.ctex"
+uid="uid://dahnbqx3367cb"
+path="res://.godot/imported/PRECAMBRIAN_CENTER_IMAGE3.png-6a421269d9022097b0323caa4cb5376b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Texts/PRECAMBRIAN_TEXT2.png"
-dest_files=["res://.godot/imported/PRECAMBRIAN_TEXT2.png-74baf6ee52ce4168b70a0c40989b9021.ctex"]
+source_file="res://Assets/Menu Images/Eons/Precambrian/PRECAMBRIAN_CENTER_IMAGE3.png"
+dest_files=["res://.godot/imported/PRECAMBRIAN_CENTER_IMAGE3.png-6a421269d9022097b0323caa4cb5376b.ctex"]
 
 [params]
 
