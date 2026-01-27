@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://bkev2r0r3km6v"]
+
+[ext_resource type="Texture2D" uid="uid://c5k8eujq6p17i" path="res://Assets/Menu Images/PRECAMBRIAN.png" id="1_iuhc1"]
+[ext_resource type="Script" uid="uid://bsp72wwdy6r2u" path="res://Scripts/EonSelectionScreen.cs" id="2_nhgj5"]
+[ext_resource type="Texture2D" uid="uid://cl5ig58rrvvw3" path="res://Assets/Buttons/HOME_BUTTON.png" id="3_tos0h"]
+[ext_resource type="Texture2D" uid="uid://buracibqfux0w" path="res://Assets/Texts/PRECAMBRIAN_TEXT2.png" id="4_6nv5f"]
+[ext_resource type="Texture2D" uid="uid://cemxy8ij1vsks" path="res://Assets/Texts/PRECAMBRIAN_TEXT.png" id="5_kuli8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nhgj5"]
+texture = ExtResource("1_iuhc1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kuli8"]
+texture = ExtResource("4_6nv5f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4x45x"]
+texture = ExtResource("5_kuli8")
+
+[node name="EonSelectionScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PreCambrianBackground" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_nhgj5")
+script = ExtResource("2_nhgj5")
+
+[node name="HomeButton" type="TextureButton" parent="."]
+layout_mode = 1
+offset_left = 30.0
+offset_right = 161.0
+offset_bottom = 131.0
+texture_normal = ExtResource("3_tos0h")
+
+[node name="PrecambrianTextPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -258.5
+offset_top = 120.0
+offset_right = 258.5
+offset_bottom = 189.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_kuli8")
+
+[node name="PrimordiaTextPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -395.0
+offset_top = -7.0
+offset_right = 345.0
+offset_bottom = 106.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_4x45x")
+
+[connection signal="pressed" from="HomeButton" to="PreCambrianBackground" method="OnHomeButtonPressed"]

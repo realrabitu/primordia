@@ -1,24 +1,24 @@
-[gd_scene load_steps=18 format=3 uid="uid://dvsf1u67kmg6q"]
+[gd_scene load_steps=20 format=3 uid="uid://br5upw1m868tj"]
 
-[ext_resource type="Texture2D" path="res://PRIMORDIA.png" id="1_06t4h"]
-[ext_resource type="Script" uid="uid://mnwd1t18nf6r" path="res://Scripts/MainMenu.cs" id="1_j5v2v"]
-[ext_resource type="Texture2D" path="res://Assets/BACK BUTTON.png" id="3_8qtwp"]
-[ext_resource type="Texture2D" path="res://Assets/PRIMORDIA.png" id="3_dy7ct"]
-[ext_resource type="Texture2D" path="res://Assets/SETTINGS.png" id="3_nlkkf"]
-[ext_resource type="Texture2D" path="res://Assets/HOW TO PLAY BUTTON.png" id="4_glbon"]
-[ext_resource type="Texture2D" path="res://Assets/question_mark.png" id="4_qe12f"]
-[ext_resource type="Texture2D" path="res://Assets/SETTINGS_TEXT.png" id="5_0k4wn"]
-[ext_resource type="Texture2D" path="res://Assets/CREDITS_TEXT.png" id="5_j5v2v"]
-[ext_resource type="Texture2D" path="res://Assets/QUIT BUTTON.png" id="5_nlkkf"]
-[ext_resource type="Texture2D" path="res://Assets/START BUTTON.png" id="6_8qtwp"]
-[ext_resource type="Texture2D" path="res://Assets/WHAT_IS_PRIMORDIA.png" id="6_j5v2v"]
+[ext_resource type="Script" uid="uid://mnwd1t18nf6r" path="res://Scripts/MainMenu.cs" id="1_t1dhk"]
+[ext_resource type="Texture2D" uid="uid://dtl0nin05c1b7" path="res://Assets/Buttons/BACK BUTTON.png" id="3_8qtwp"]
+[ext_resource type="Texture2D" uid="uid://cpk4ljjc1qbhd" path="res://Assets/Menu Images/PRIMORDIA.png" id="3_dy7ct"]
+[ext_resource type="Texture2D" uid="uid://cbja7of8vl8fy" path="res://Assets/Buttons/SETTINGS.png" id="3_nlkkf"]
+[ext_resource type="Texture2D" uid="uid://deirmdec3ovj0" path="res://Assets/Menu Images/PRIMORDIA_TEXT.png" id="3_t1dhk"]
+[ext_resource type="Texture2D" uid="uid://i1q3abeaw47p" path="res://Assets/Buttons/HOW TO PLAY BUTTON.png" id="4_glbon"]
+[ext_resource type="Texture2D" uid="uid://cs2itj3k2lnuk" path="res://Assets/Buttons/question_mark.png" id="4_qe12f"]
+[ext_resource type="Texture2D" uid="uid://bndfrs88cwv52" path="res://Assets/Texts/SETTINGS_TEXT.png" id="5_0k4wn"]
+[ext_resource type="Texture2D" uid="uid://d2pw8eilrj1lb" path="res://Assets/Texts/CREDITS_TEXT.png" id="5_j5v2v"]
+[ext_resource type="Texture2D" uid="uid://cfp6w0em3a4kq" path="res://Assets/Buttons/QUIT BUTTON.png" id="5_nlkkf"]
+[ext_resource type="Texture2D" uid="uid://c0qatoyqlthfw" path="res://Assets/Buttons/START BUTTON.png" id="6_8qtwp"]
+[ext_resource type="Texture2D" uid="uid://cecwyl51eem7e" path="res://Assets/Texts/WHAT_IS_PRIMORDIA.png" id="6_j5v2v"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_06t4h"]
-texture = ExtResource("1_06t4h")
+texture = ExtResource("3_dy7ct")
 modulate_color = Color(0.6551711, 0.65898365, 0.63257563, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0o4t1"]
-texture = ExtResource("3_dy7ct")
+texture = ExtResource("3_t1dhk")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iotk1"]
 texture = ExtResource("5_j5v2v")
@@ -28,6 +28,13 @@ texture = ExtResource("6_j5v2v")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j5v2v"]
 texture = ExtResource("5_0k4wn")
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_t1dhk"]
+color = Color(1, 1, 1, 1)
+thickness = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1dhk"]
+bg_color = Color(0.23817936, 0.6089453, 0.99999994, 1)
 
 [node name="MainMenu" type="Control"]
 custom_minimum_size = Vector2(1920, 1080)
@@ -39,7 +46,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_j5v2v")
+script = ExtResource("1_t1dhk")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
@@ -63,7 +70,6 @@ grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0o4t1")
 
 [node name="CreditsPanel" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -104,6 +110,7 @@ grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_iotk1")
 
 [node name="HowToPlayPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -180,15 +187,25 @@ offset_bottom = 51.25
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_j5v2v")
 
+[node name="HSlider" type="HSlider" parent="OptionsPanel"]
+layout_mode = 0
+offset_left = 351.0
+offset_top = 362.0
+offset_right = 1340.0
+offset_bottom = 518.0
+theme_override_styles/slider = SubResource("StyleBoxLine_t1dhk")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_t1dhk")
+value = 50.0
+
 [node name="TopButtons" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -248.0
+offset_left = -254.0
 offset_top = 17.0
 offset_right = -30.0
-offset_bottom = 152.0
+offset_bottom = 117.0
 grow_horizontal = 0
 theme_override_constants/separation = 24
 

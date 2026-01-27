@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj0wq5isnghid"
-path="res://.godot/imported/SETTINGS_TEXT.png-4424bf2f09929011f9df0253f57a1245.ctex"
+uid="uid://c5k8eujq6p17i"
+path="res://.godot/imported/PRECAMBRIAN.png-bc27fbafcc5088d11fd15d16e3469f32.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/SETTINGS_TEXT.png"
-dest_files=["res://.godot/imported/SETTINGS_TEXT.png-4424bf2f09929011f9df0253f57a1245.ctex"]
+source_file="res://Assets/Menu Images/PRECAMBRIAN.png"
+dest_files=["res://.godot/imported/PRECAMBRIAN.png-bc27fbafcc5088d11fd15d16e3469f32.ctex"]
 
 [params]
 

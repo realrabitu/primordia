@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx85ul5ejwdjb"
-path="res://.godot/imported/HOW TO PLAY BUTTON.png-ea4e1e456e602df5a388cb1beb508a36.ctex"
+uid="uid://cfp6w0em3a4kq"
+path="res://.godot/imported/QUIT BUTTON.png-7fdebb542a9374424f1844cb68402eca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/HOW TO PLAY BUTTON.png"
-dest_files=["res://.godot/imported/HOW TO PLAY BUTTON.png-ea4e1e456e602df5a388cb1beb508a36.ctex"]
+source_file="res://Assets/Buttons/QUIT BUTTON.png"
+dest_files=["res://.godot/imported/QUIT BUTTON.png-7fdebb542a9374424f1844cb68402eca.ctex"]
 
 [params]
 
