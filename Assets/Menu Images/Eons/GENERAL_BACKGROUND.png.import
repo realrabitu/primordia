@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://80upcd3gbp3r"
-path="res://.godot/imported/ARROW_BUTTON.png-d7307121a109a7b812984e9b6c09b0fd.ctex"
+uid="uid://dh5j201klpbuq"
+path="res://.godot/imported/GENERAL_BACKGROUND.png-44db47d5fa146497cefef34acd5d2b02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Buttons/ARROW_BUTTON.png"
-dest_files=["res://.godot/imported/ARROW_BUTTON.png-d7307121a109a7b812984e9b6c09b0fd.ctex"]
+source_file="res://Assets/Menu Images/Eons/GENERAL_BACKGROUND.png"
+dest_files=["res://.godot/imported/GENERAL_BACKGROUND.png-44db47d5fa146497cefef34acd5d2b02.ctex"]
 
 [params]
 

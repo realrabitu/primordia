@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://80upcd3gbp3r"
-path="res://.godot/imported/ARROW_BUTTON.png-d7307121a109a7b812984e9b6c09b0fd.ctex"
+uid="uid://dxei2lc74mu2v"
+path="res://.godot/imported/PALEOZOIC_PRIMORDIA.png-0f0f27088236699803b30985a5b967f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Buttons/ARROW_BUTTON.png"
-dest_files=["res://.godot/imported/ARROW_BUTTON.png-d7307121a109a7b812984e9b6c09b0fd.ctex"]
+source_file="res://Assets/Texts/Phanerozoic/PALEOZOIC_PRIMORDIA.png"
+dest_files=["res://.godot/imported/PALEOZOIC_PRIMORDIA.png-0f0f27088236699803b30985a5b967f0.ctex"]
 
 [params]
 

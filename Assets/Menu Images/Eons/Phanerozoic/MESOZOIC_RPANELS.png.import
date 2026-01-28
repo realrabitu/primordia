@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://80upcd3gbp3r"
-path="res://.godot/imported/ARROW_BUTTON.png-d7307121a109a7b812984e9b6c09b0fd.ctex"
+uid="uid://uol53i7sgffm"
+path="res://.godot/imported/MESOZOIC_RPANELS.png-bee9df2c0a782023e31a86179efc9a40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Buttons/ARROW_BUTTON.png"
-dest_files=["res://.godot/imported/ARROW_BUTTON.png-d7307121a109a7b812984e9b6c09b0fd.ctex"]
+source_file="res://Assets/Menu Images/Eons/Phanerozoic/MESOZOIC_RPANELS.png"
+dest_files=["res://.godot/imported/MESOZOIC_RPANELS.png-bee9df2c0a782023e31a86179efc9a40.ctex"]
 
 [params]
 

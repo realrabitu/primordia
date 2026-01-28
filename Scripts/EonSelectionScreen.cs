@@ -12,10 +12,10 @@ public partial class EonSelectionScreen : Control
 	public override void _Ready()
 	{
 		HomeButton = GetNode<TextureButton>("HomeButton");
-		PanelsContainer = GetNode<Control>("PanelsContainer");
-		LeftPanel = PanelsContainer.GetNode<Panel>("LeftPanel");
+		PanelsContainer = GetNode<Control>("ScreensContainer");
+		LeftPanel = PanelsContainer.GetNode<Panel>("LPanel");
 		CenterPanel = PanelsContainer.GetNode<Panel>("CenterPanel");
-		RightPanel = PanelsContainer.GetNode<Panel>("RightPanel");
+		RightPanel = PanelsContainer.GetNode<Panel>("RPanel");
 		// Set up panels side by side inside the container
 		LeftPanel.Size = new Vector2(480, 1080);
 		CenterPanel.Size = new Vector2(960, 1080);
@@ -38,7 +38,7 @@ public partial class EonSelectionScreen : Control
 	{
 		var tween = CreateTween();
 		// Animate PanelsContainer to slide left (example: 1920px for a full screen slide)
-		tween.TweenProperty(PanelsContainer, "position", new Vector2(-1920, 0), 0.5f)
+		tween.TweenProperty(LeftPanel, "position", new Vector2(-1920, 0), 0.5f)
 			.SetTrans(Tween.TransitionType.Sine)
 			.SetEase(Tween.EaseType.InOut);
 	}
@@ -55,5 +55,9 @@ public partial class EonSelectionScreen : Control
 	void OnHomeButtonPressed()
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/main_menu.tscn");
+	}
+	void OnPhanerozoicPlayPressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/EraSelectionScreen.tscn");
 	}
 }
