@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dvsf1u67kmg6q"]
+[gd_scene format=3 uid="uid://dvsf1u67kmg6q"]
 
 [ext_resource type="Texture2D" path="res://PRIMORDIA.png" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://mnwd1t18nf6r" path="res://Scripts/MainMenu.cs" id="1_j5v2v"]
