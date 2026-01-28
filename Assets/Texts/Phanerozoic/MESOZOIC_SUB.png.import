@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cemxy8ij1vsks"
-path="res://.godot/imported/PRECAMBRIAN_TEXT.png-d8cb6b4baaf6ce2754bdcdd4f8222f50.ctex"
+uid="uid://b3murf6qorki5"
+path="res://.godot/imported/MESOZOIC_SUB.png-afa25501c9bf55b7f0b4b3c24c5066e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Texts/PRECAMBRIAN_TEXT.png"
-dest_files=["res://.godot/imported/PRECAMBRIAN_TEXT.png-d8cb6b4baaf6ce2754bdcdd4f8222f50.ctex"]
+source_file="res://Assets/Texts/Phanerozoic/MESOZOIC_SUB.png"
+dest_files=["res://.godot/imported/MESOZOIC_SUB.png-afa25501c9bf55b7f0b4b3c24c5066e2.ctex"]
 
 [params]
 

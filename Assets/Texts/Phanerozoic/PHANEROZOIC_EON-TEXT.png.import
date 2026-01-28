@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bndfrs88cwv52"
-path="res://.godot/imported/SETTINGS_TEXT.png-45fe8fef93e875b6091a3c4451ffe9d3.ctex"
+uid="uid://cgxfk1xewexos"
+path="res://.godot/imported/PHANEROZOIC_EON-TEXT.png-2baafcee0c89d64357c9faef9b761573.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Texts/SETTINGS_TEXT.png"
-dest_files=["res://.godot/imported/SETTINGS_TEXT.png-45fe8fef93e875b6091a3c4451ffe9d3.ctex"]
+source_file="res://Assets/Texts/Phanerozoic/PHANEROZOIC_EON-TEXT.png"
+dest_files=["res://.godot/imported/PHANEROZOIC_EON-TEXT.png-2baafcee0c89d64357c9faef9b761573.ctex"]
 
 [params]
 

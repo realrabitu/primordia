@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buracibqfux0w"
-path="res://.godot/imported/PRECAMBRIAN_TEXT2.png-74baf6ee52ce4168b70a0c40989b9021.ctex"
+uid="uid://cnwaj08b4e0xf"
+path="res://.godot/imported/PALEOZOIC_RPANELS.png-f43fd6024c51bc92427814e0c9f17f79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Texts/PRECAMBRIAN_TEXT2.png"
-dest_files=["res://.godot/imported/PRECAMBRIAN_TEXT2.png-74baf6ee52ce4168b70a0c40989b9021.ctex"]
+source_file="res://Assets/Menu Images/Eons/Phanerozoic/PALEOZOIC_RPANELS.png"
+dest_files=["res://.godot/imported/PALEOZOIC_RPANELS.png-f43fd6024c51bc92427814e0c9f17f79.ctex"]
 
 [params]
 
