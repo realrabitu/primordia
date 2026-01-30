@@ -1,7 +1,6 @@
-<Project Sdk="Godot.NET.Sdk/4.5.1">
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net9.0</TargetFramework>
-    <EnableDynamicLoading>true</EnableDynamicLoading>
-  </PropertyGroup>
-</Project>
+<!--
+  Obsolete backup file: Primordia.csproj.old
+  This file should not be used by the build or opened as a project.
+  Remove it from version control and add an ignore rule such as
+  'Primordia.csproj.old*' to prevent it from being re-added.
+-->
