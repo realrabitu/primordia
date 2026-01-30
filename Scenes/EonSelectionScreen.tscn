@@ -1,11 +1,11 @@
-[gd_scene load_steps=37 format=3 uid="uid://bkev2r0r3km6v"]
+[gd_scene format=3 uid="uid://bkev2r0r3km6v"]
 
 [ext_resource type="Texture2D" uid="uid://dh5j201klpbuq" path="res://Assets/Menu Images/Eons/GENERAL_BACKGROUND.png" id="2_a17nf"]
 [ext_resource type="Script" uid="uid://bsp72wwdy6r2u" path="res://Scripts/EonSelectionScreen.cs" id="2_nhgj5"]
-[ext_resource type="Script" uid="uid://baw42cmk4tqow" path="res://Scripts/PanelScroller.cs" id="3_bgpsw"]
+[ext_resource type="Script" uid="uid://dt34w6vg8odgq" path="res://Scripts/EonPanelScroller.cs" id="3_ov6a8"]
 [ext_resource type="Texture2D" uid="uid://25dqtbrx8b5u" path="res://Assets/Menu Images/Eons/Precambrian/PRECAMBRIAN_R-PANEL.png" id="3_tos0h"]
 [ext_resource type="Texture2D" uid="uid://dlq8gdcdeoujf" path="res://Assets/Texts/Precambrian/PRECAMBRIAN_TEXT2.png" id="4_6nv5f"]
-[ext_resource type="Texture2D" uid="uid://cer2ovuyoykmt" path="res://Assets/Menu Images/Eons/Precambrian/PRECAMBRIAN_L-PANEL.png" id="4_rwc35"]
+[ext_resource type="Texture2D" uid="uid://bl7npsjrbq2v0" path="res://Assets/Menu Images/Eons/Phanerozoic/PALEOZOIC_LPANELS.png" id="4_a17nf"]
 [ext_resource type="Texture2D" uid="uid://b7do67syvsit5" path="res://Assets/Texts/Phanerozoic/PRIMORDIA_ASSET_PHANEROZOIC.png" id="5_3iuiq"]
 [ext_resource type="Texture2D" uid="uid://ca72bktxphfgw" path="res://Assets/Buttons/PRECAMBRIAN_PLAY-BUTTON.png" id="6_4x45x"]
 [ext_resource type="Texture2D" uid="uid://j0ueaql8m352" path="res://Assets/Menu Images/Eons/Phanerozoic/PHANEROZOIC_CENTER_TOP.png" id="6_358ru"]
@@ -16,17 +16,16 @@
 [ext_resource type="Texture2D" uid="uid://80upcd3gbp3r" path="res://Assets/Buttons/ARROW_BUTTON.png" id="7_w4nj0"]
 [ext_resource type="Texture2D" uid="uid://dn0i8pat0i42q" path="res://Assets/Menu Images/Eons/Precambrian/PRECAMBRIAN_CENTER_IMAGE3.png" id="8_3iuiq"]
 [ext_resource type="Texture2D" uid="uid://g8axhtcordqc" path="res://Assets/Menu Images/Eons/Phanerozoic/PHANEROZOIC_CENTER_BOTTOM.png" id="8_358ru"]
+[ext_resource type="Texture2D" uid="uid://cs35tt2qr8tgm" path="res://Assets/Menu Images/Eons/Phanerozoic/CENOZOIC_LPANELS.png" id="9_bgpsw"]
 [ext_resource type="Texture2D" uid="uid://dk3uagwlyfhux" path="res://Assets/Texts/Precambrian/PRECAMBRIAN_TEXT.png" id="10_3iuiq"]
+[ext_resource type="Texture2D" uid="uid://dgd71ny81xa5" path="res://Assets/Menu Images/Eons/Phanerozoic/PHANEROZOIC_RPANEL.png" id="10_ov6a8"]
 [ext_resource type="Texture2D" uid="uid://cl5ig58rrvvw3" path="res://Assets/Buttons/HOME_BUTTON.png" id="12_n6xgu"]
-[ext_resource type="Texture2D" uid="uid://ivyh4cao30e7" path="res://Assets/Buttons/PHANEROZOIC_PLAY-BUTTON.png" id="14_358ru"]
-[ext_resource type="Texture2D" uid="uid://dccklh46l4k3a" path="res://Assets/Menu Images/Eons/Phanerozoic/PHANEROZOIC_LPANEL.png" id="14_a17nf"]
-[ext_resource type="Texture2D" uid="uid://dgd71ny81xa5" path="res://Assets/Menu Images/Eons/Phanerozoic/PHANEROZOIC_RPANEL.png" id="15_bgpsw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bgpsw"]
 texture = ExtResource("2_a17nf")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kuli8"]
-texture = ExtResource("4_rwc35")
+texture = ExtResource("4_a17nf")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6nv5f"]
 texture = ExtResource("3_tos0h")
@@ -40,11 +39,13 @@ texture = ExtResource("7_oqhr1")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a17nf"]
 texture = ExtResource("8_3iuiq")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ov6a8"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_abd80"]
-texture = ExtResource("14_a17nf")
+texture = ExtResource("9_bgpsw")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pp8ly"]
-texture = ExtResource("15_bgpsw")
+texture = ExtResource("10_ov6a8")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rwc35"]
 texture = ExtResource("6_358ru")
@@ -55,19 +56,22 @@ texture = ExtResource("7_358ru")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n6xgu"]
 texture = ExtResource("8_358ru")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eiw72"]
+texture = ExtResource("10_3iuiq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wrnuk"]
+texture = ExtResource("4_6nv5f")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ov6a8"]
+load_path = "res://.godot/imported/PHANEROZOIC_PLAY-BUTTON.png-137b85a1fd8af414699b2ea9fc02bd21.ctex"
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n3gx8"]
 texture = ExtResource("5_3iuiq")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o4tvj"]
 texture = ExtResource("6_rwc35")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eiw72"]
-texture = ExtResource("10_3iuiq")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_124q5"]
-texture = ExtResource("4_6nv5f")
-
-[node name="EonSelectionScreen" type="Control"]
+[node name="EonSelectionScreen" type="Control" unique_id=1834946977]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,50 +80,57 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_nhgj5")
 
-[node name="PrecambrianPanel" type="Panel" parent="."]
+[node name="MainPanel" type="Panel" parent="." unique_id=2075044139]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_bgpsw")
 
-[node name="ScreensContainer" type="Control" parent="."]
+[node name="ScreensContainer" type="Control" parent="." unique_id=1050498499]
 anchors_preset = 0
 offset_right = 3840.0
 offset_bottom = 1080.0
 
-[node name="PanelScroller" type="Control" parent="ScreensContainer"]
+[node name="EonScroller" type="Control" parent="ScreensContainer" unique_id=1847597906]
 layout_mode = 1
 anchors_preset = 0
-script = ExtResource("3_bgpsw")
+offset_right = 3840.0
+offset_bottom = 1080.0
+script = ExtResource("3_ov6a8")
 
-[node name="LPanel" type="Panel" parent="ScreensContainer/PanelScroller"]
+[node name="PrecambrianPanel" type="Panel" parent="ScreensContainer/EonScroller" unique_id=112842240]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LPanel" type="Panel" parent="ScreensContainer/EonScroller/PrecambrianPanel" unique_id=1379199149]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 94.0
-offset_top = 53.0
+offset_top = 33.0
 offset_right = 707.0
-offset_bottom = 1013.0
+offset_bottom = 993.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_kuli8")
 
-[node name="RPanel" type="Panel" parent="ScreensContainer/PanelScroller"]
+[node name="RPanel" type="Panel" parent="ScreensContainer/EonScroller/PrecambrianPanel" unique_id=1822698319]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 1209.0
-offset_top = 53.0
-offset_right = 1804.0
-offset_bottom = 1013.0
+offset_left = 1189.0
+offset_top = 33.0
+offset_right = 1784.0
+offset_bottom = 993.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6nv5f")
 
-[node name="CenterContentsContainer" type="VBoxContainer" parent="ScreensContainer/PanelScroller"]
+[node name="CenterContentsContainer" type="VBoxContainer" parent="ScreensContainer/EonScroller/PrecambrianPanel" unique_id=1445582023]
 layout_mode = 0
 offset_left = 746.0
 offset_top = 169.0
@@ -127,28 +138,29 @@ offset_right = 1183.0
 offset_bottom = 821.0
 theme_override_constants/separation = 0
 
-[node name="Top" type="Panel" parent="ScreensContainer/PanelScroller/CenterContentsContainer"]
+[node name="Top" type="Panel" parent="ScreensContainer/EonScroller/PrecambrianPanel/CenterContentsContainer" unique_id=1274454716]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_aigkk")
 
-[node name="Mid" type="Panel" parent="ScreensContainer/PanelScroller/CenterContentsContainer"]
+[node name="Mid" type="Panel" parent="ScreensContainer/EonScroller/PrecambrianPanel/CenterContentsContainer" unique_id=701206238]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_ov6a8")
 
-[node name="Bottom" type="Panel" parent="ScreensContainer/PanelScroller/CenterContentsContainer"]
+[node name="Bottom" type="Panel" parent="ScreensContainer/EonScroller/PrecambrianPanel/CenterContentsContainer" unique_id=1428078322]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_a17nf")
 
-[node name="PhanerozoicPanel" type="Panel" parent="ScreensContainer/PanelScroller"]
+[node name="PhanerozoicPanel" type="Panel" parent="ScreensContainer/EonScroller" unique_id=1381023442]
 layout_mode = 0
 offset_left = 1920.0
 offset_right = 3840.0
 offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ov6a8")
 
-[node name="LPanel" type="Panel" parent="ScreensContainer/PanelScroller/PhanerozoicPanel"]
+[node name="LPanel" type="Panel" parent="ScreensContainer/EonScroller/PhanerozoicPanel" unique_id=2032238033]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -160,7 +172,7 @@ offset_bottom = 493.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_abd80")
 
-[node name="RPanel" type="Panel" parent="ScreensContainer/PanelScroller/PhanerozoicPanel"]
+[node name="RPanel" type="Panel" parent="ScreensContainer/EonScroller/PhanerozoicPanel" unique_id=1820213309]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -175,7 +187,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_pp8ly")
 
-[node name="CenterContentsContainer" type="VBoxContainer" parent="ScreensContainer/PanelScroller/PhanerozoicPanel"]
+[node name="CenterContentsContainer" type="VBoxContainer" parent="ScreensContainer/EonScroller/PhanerozoicPanel" unique_id=491493471]
 layout_mode = 0
 offset_left = 746.0
 offset_top = 189.0
@@ -183,22 +195,22 @@ offset_right = 1166.0
 offset_bottom = 801.0
 theme_override_constants/separation = 0
 
-[node name="Top" type="Panel" parent="ScreensContainer/PanelScroller/PhanerozoicPanel/CenterContentsContainer"]
+[node name="Top" type="Panel" parent="ScreensContainer/EonScroller/PhanerozoicPanel/CenterContentsContainer" unique_id=45627903]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_rwc35")
 
-[node name="Middle" type="Panel" parent="ScreensContainer/PanelScroller/PhanerozoicPanel/CenterContentsContainer"]
+[node name="Middle" type="Panel" parent="ScreensContainer/EonScroller/PhanerozoicPanel/CenterContentsContainer" unique_id=355240590]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_gkj7y")
 
-[node name="Bottom" type="Panel" parent="ScreensContainer/PanelScroller/PhanerozoicPanel/CenterContentsContainer"]
+[node name="Bottom" type="Panel" parent="ScreensContainer/EonScroller/PhanerozoicPanel/CenterContentsContainer" unique_id=891052947]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_n6xgu")
 
-[node name="PhanerozoicUI" type="Control" parent="."]
+[node name="PrecambrianUI" type="Control" parent="." unique_id=1586486012]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -206,149 +218,142 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="UIContents" type="Control" parent="PhanerozoicUI"]
-layout_mode = 1
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="PlayButton" type="TextureButton" parent="PhanerozoicUI/UIContents"]
+[node name="PlayButton" type="TextureButton" parent="PrecambrianUI" unique_id=1687864912]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 775.0
-offset_top = 818.0
-offset_right = 1105.0
-offset_bottom = 940.0
+offset_left = -165.0
+offset_top = -222.0
+offset_right = 165.0
+offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 0
-texture_normal = ExtResource("14_358ru")
+texture_normal = ExtResource("6_4x45x")
 
-[node name="TopLogoPanel" type="Panel" parent="PhanerozoicUI/UIContents"]
+[node name="TopLogoPanel" type="Panel" parent="PrecambrianUI" unique_id=1104575831]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 547.5
+offset_left = -392.5
 offset_top = 30.0
-offset_right = 1332.5
+offset_right = 392.5
 offset_bottom = 117.0
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_n3gx8")
+theme_override_styles/panel = SubResource("StyleBoxTexture_eiw72")
 
-[node name="TopEonPanel" type="Panel" parent="PhanerozoicUI/UIContents"]
+[node name="TopEonPanel" type="Panel" parent="PrecambrianUI" unique_id=1079277166]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 647.75
+offset_left = -292.25
 offset_top = 110.0
-offset_right = 1232.25
+offset_right = 292.25
 offset_bottom = 180.0
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_o4tvj")
+theme_override_styles/panel = SubResource("StyleBoxTexture_wrnuk")
 
-[node name="HomeButton" type="TextureButton" parent="PhanerozoicUI/UIContents"]
+[node name="HomeButton" type="TextureButton" parent="PrecambrianUI" unique_id=1870056002]
 layout_mode = 0
 offset_left = 40.0
 offset_right = 171.0
 offset_bottom = 131.0
 texture_normal = ExtResource("12_n6xgu")
 
-[node name="SwitchToPhanerozoic" type="TextureButton" parent="PhanerozoicUI/UIContents"]
+[node name="SwitchToPhanerozoic" type="TextureButton" parent="PrecambrianUI" unique_id=1962484051]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 10.0
-offset_top = 476.5
-offset_right = 157.0
-offset_bottom = 569.5
+offset_left = -200.0
+offset_top = -43.5
+offset_right = -53.0
+offset_bottom = 49.5
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("7_w4nj0")
+
+[node name="PhanerozoicUI" type="Control" parent="." unique_id=1307406534]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="TextureButton" parent="PhanerozoicUI" unique_id=362729021]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -166.0
+offset_top = -222.0
+offset_right = 166.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = SubResource("CompressedTexture2D_ov6a8")
+
+[node name="TopLogoPanel" type="Panel" parent="PhanerozoicUI" unique_id=331016992]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -392.5
+offset_top = 30.0
+offset_right = 392.5
+offset_bottom = 117.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_n3gx8")
+
+[node name="TopEonPanel" type="Panel" parent="PhanerozoicUI" unique_id=1979986932]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -292.25
+offset_top = 110.0
+offset_right = 292.25
+offset_bottom = 180.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_o4tvj")
+
+[node name="HomeButton" type="TextureButton" parent="PhanerozoicUI" unique_id=1888259599]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 171.0
+offset_bottom = 131.0
+texture_normal = ExtResource("12_n6xgu")
+
+[node name="SwitchTopPrecambrian" type="TextureButton" parent="PhanerozoicUI" unique_id=1651750345]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1870.0
+offset_top = -43.5
+offset_right = -1723.0
+offset_bottom = 49.5
 grow_horizontal = 0
 grow_vertical = 2
 texture_normal = ExtResource("7_w4nj0")
 flip_h = true
 
-[node name="PrecambrianUI" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=994024097]
 
-[node name="UIContents" type="Control" parent="PrecambrianUI"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="PlayButton" type="TextureButton" parent="PrecambrianUI/UIContents"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 775.0
-offset_top = 818.0
-offset_right = 1105.0
-offset_bottom = 940.0
-grow_horizontal = 2
-grow_vertical = 0
-texture_normal = ExtResource("6_4x45x")
-
-[node name="TopLogoPanel" type="Panel" parent="PrecambrianUI/UIContents"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 547.5
-offset_top = 30.0
-offset_right = 1332.5
-offset_bottom = 117.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_eiw72")
-
-[node name="TopEonPanel" type="Panel" parent="PrecambrianUI/UIContents"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 647.75
-offset_top = 110.0
-offset_right = 1232.25
-offset_bottom = 180.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_124q5")
-
-[node name="HomeButton" type="TextureButton" parent="PrecambrianUI/UIContents"]
-layout_mode = 0
-offset_left = 40.0
-offset_right = 171.0
-offset_bottom = 131.0
-texture_normal = ExtResource("12_n6xgu")
-
-[node name="SwitchToPhanerozoic" type="TextureButton" parent="PrecambrianUI/UIContents"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 1680.0
-offset_top = 476.5
-offset_right = 1827.0
-offset_bottom = 569.5
-grow_horizontal = 0
-grow_vertical = 2
-texture_normal = ExtResource("7_w4nj0")
-
-[connection signal="pressed" from="PhanerozoicUI/UIContents/HomeButton" to="." method="OnHomeButtonPressed"]
-[connection signal="pressed" from="PhanerozoicUI/UIContents/SwitchToPhanerozoic" to="ScreensContainer/PanelScroller" method="ScrollLeft"]
-[connection signal="pressed" from="PrecambrianUI/UIContents/HomeButton" to="." method="OnHomeButtonPressed"]
-[connection signal="pressed" from="PrecambrianUI/UIContents/SwitchToPhanerozoic" to="ScreensContainer/PanelScroller" method="ScrollLeft"]
+[connection signal="pressed" from="PrecambrianUI/PlayButton" to="." method="OnPrecambrianPlayPressed"]
+[connection signal="pressed" from="PrecambrianUI/HomeButton" to="." method="OnHomeButtonPressed"]
+[connection signal="pressed" from="PrecambrianUI/SwitchToPhanerozoic" to="ScreensContainer/EonScroller" method="ScrollLeft"]
+[connection signal="pressed" from="PhanerozoicUI/PlayButton" to="." method="OnPhanerozoicPlayPressed"]
+[connection signal="pressed" from="PhanerozoicUI/HomeButton" to="." method="OnHomeButtonPressed"]
+[connection signal="pressed" from="PhanerozoicUI/SwitchTopPrecambrian" to="ScreensContainer/EonScroller" method="ScrollRight"]
