@@ -24,4 +24,9 @@ public partial class EraSelectionScreen : Control
 	public override void _Process(double delta)
 	{
 	}
+
+	private void OnHomeButtonPressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/MainMenu.tscn");
+	}
 }
