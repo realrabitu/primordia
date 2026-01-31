@@ -28,7 +28,7 @@ public partial class EonSelectionScreen : Control
 	}
 	private void OnPhanerozoicPlayPressed()
 	{
-		GetTree().ChangeSceneToFile("res://Scenes/EraSelectionScreen.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/PrecambrianEonSelectionScreen.tscn");
 	}
 	private void OnPrecambrianPlayPressed()
 	{
