@@ -10,13 +10,8 @@ public partial class AudioControl : HSlider
 	public override void _Ready()
 	{
 		AudioBusID = AudioServer.GetBusIndex(BusName);
-
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-		OnAudioControlValueChanged(Value);
+		// Connect to the slider's value_changed signal
+		ValueChanged += OnAudioControlValueChanged;
 	}
 	
 	// Method that handles the volume change
