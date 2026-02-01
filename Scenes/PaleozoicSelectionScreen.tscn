@@ -1,0 +1,325 @@
+[gd_scene format=3 uid="uid://ynqpu61qin34"]
+
+[ext_resource type="Script" uid="uid://6yby1555cgqk" path="res://Scripts/PaleozoicSelectionScreen.cs" id="1_0cqa2"]
+[ext_resource type="Texture2D" uid="uid://d1jn0kjmrob1o" path="res://Assets/Menu Images/Eons/EON_SELECTION_SCREEN_BG.png" id="2_7kbx4"]
+[ext_resource type="Texture2D" uid="uid://euni50l434s" path="res://Assets/Menu Images/Eons/Phanerozoic/Paleozoic/CAMBRIAN.png" id="3_00tpb"]
+[ext_resource type="Texture2D" uid="uid://bh634ilg1f3si" path="res://Assets/Buttons/PLAY_BUTTONS_CENO.png" id="4_4ccd7"]
+[ext_resource type="Texture2D" uid="uid://d03qp6c0nhvgk" path="res://Assets/Menu Images/Eons/Phanerozoic/Paleozoic/CAMBRIAN_TEXT.png" id="5_avlph"]
+[ext_resource type="Texture2D" uid="uid://bjry0hqmvhjvx" path="res://Assets/Menu Images/Eons/Phanerozoic/Paleozoic/ORDOVICIAN.png" id="6_lqnv5"]
+[ext_resource type="Texture2D" uid="uid://c1weh3hifmsjv" path="res://Assets/Menu Images/Eons/Phanerozoic/Paleozoic/ORDOVICIAN_TEXT.png" id="7_em4mr"]
+[ext_resource type="Texture2D" uid="uid://dog2wwwdmpqod" path="res://Assets/Menu Images/Eons/Phanerozoic/Paleozoic/SILURIAN.png" id="8_m4grm"]
+[ext_resource type="Texture2D" uid="uid://wtrd60rsibj6" path="res://Assets/Menu Images/Eons/Phanerozoic/Paleozoic/SILURIAN_TEXT.png" id="9_58egu"]
+[ext_resource type="Texture2D" uid="uid://d3031v67o204v" path="res://Assets/Menu Images/Eons/Phanerozoic/Paleozoic/COMING_SOON.png" id="10_ssa3n"]
+[ext_resource type="Texture2D" uid="uid://w4bw6gviopdm" path="res://Assets/Menu Images/Eons/Phanerozoic/Paleozoic/DEVONIAN.png" id="11_sxv77"]
+[ext_resource type="Texture2D" uid="uid://c6784pog8qojn" path="res://Assets/Menu Images/Eons/Phanerozoic/Paleozoic/DEVONIAN_TEXT.png" id="12_rkyva"]
+[ext_resource type="Texture2D" uid="uid://c25ucec44rnjp" path="res://Assets/Menu Images/Eons/Phanerozoic/Paleozoic/CARBONIFEROUS.png" id="13_2jgqa"]
+[ext_resource type="Texture2D" uid="uid://qq7ote3tsbjm" path="res://Assets/Menu Images/Eons/Phanerozoic/Paleozoic/CARBONIFEROUS_TEXT.png" id="14_tdtk4"]
+[ext_resource type="Texture2D" uid="uid://bd2x0qa2pv52n" path="res://Assets/Menu Images/Eons/Phanerozoic/Paleozoic/PERMIAN.png" id="15_ffnr6"]
+[ext_resource type="Texture2D" uid="uid://csvwwr0rw143r" path="res://Assets/Menu Images/Eons/Phanerozoic/Paleozoic/PERMIAN_TEXT.png" id="16_5mn7m"]
+[ext_resource type="Texture2D" uid="uid://dxei2lc74mu2v" path="res://Assets/Texts/Phanerozoic/PALEOZOIC_PRIMORDIA.png" id="17_wyqfn"]
+[ext_resource type="Texture2D" uid="uid://bu64k6agdfa7" path="res://Assets/Texts/Phanerozoic/PALEOZOIC_SUB.png" id="18_m50qm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s2n4n"]
+texture = ExtResource("2_7kbx4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ojxa"]
+texture = ExtResource("3_00tpb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cu5f7"]
+texture = ExtResource("5_avlph")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xt441"]
+texture = ExtResource("6_lqnv5")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lamlb"]
+texture = ExtResource("7_em4mr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vtu0l"]
+texture = ExtResource("8_m4grm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qif30"]
+texture = ExtResource("9_58egu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lrslc"]
+texture = ExtResource("10_ssa3n")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uv175"]
+texture = ExtResource("11_sxv77")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qy1ym"]
+texture = ExtResource("12_rkyva")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ewwud"]
+texture = ExtResource("13_2jgqa")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vxjhh"]
+texture = ExtResource("14_tdtk4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_332ey"]
+texture = ExtResource("15_ffnr6")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1m881"]
+texture = ExtResource("16_5mn7m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vi7de"]
+texture = ExtResource("17_wyqfn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h3ydv"]
+texture = ExtResource("18_m50qm")
+
+[node name="PaleozoicSelectionScreen" type="Control" unique_id=200841099]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0cqa2")
+
+[node name="MainPanel" type="Panel" parent="." unique_id=1952099320]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_s2n4n")
+
+[node name="TopContainer" type="HBoxContainer" parent="MainPanel" unique_id=1063085906]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 80.0
+offset_right = 1793.0
+offset_bottom = 567.0
+theme_override_constants/separation = 244
+
+[node name="Cambrian" type="Panel" parent="MainPanel/TopContainer" unique_id=507219150]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.61
+theme_override_styles/panel = SubResource("StyleBoxTexture_4ojxa")
+
+[node name="CambrianPlayButton" type="TextureButton" parent="MainPanel/TopContainer/Cambrian" unique_id=164447054]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 401.99997
+offset_right = 410.0
+offset_bottom = 517.0
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("4_4ccd7")
+
+[node name="Period" type="Panel" parent="MainPanel/TopContainer/Cambrian" unique_id=710017240]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 352.0
+offset_right = 266.0
+offset_bottom = 382.0
+scale = Vector2(1.3, 1.3)
+theme_override_styles/panel = SubResource("StyleBoxTexture_cu5f7")
+
+[node name="Ordovician" type="Panel" parent="MainPanel/TopContainer" unique_id=1203747217]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.61
+theme_override_styles/panel = SubResource("StyleBoxTexture_xt441")
+
+[node name="OrdovicianPlayButton" type="TextureButton" parent="MainPanel/TopContainer/Ordovician" unique_id=489157456]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 401.99997
+offset_right = 410.0
+offset_bottom = 517.0
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("4_4ccd7")
+
+[node name="Period" type="Panel" parent="MainPanel/TopContainer/Ordovician" unique_id=384996557]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 356.00003
+offset_right = 298.0
+offset_bottom = 387.00003
+scale = Vector2(1.2, 1.2)
+theme_override_styles/panel = SubResource("StyleBoxTexture_lamlb")
+
+[node name="Silurian" type="Panel" parent="MainPanel/TopContainer" unique_id=1226286656]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.61
+theme_override_styles/panel = SubResource("StyleBoxTexture_vtu0l")
+
+[node name="SilurianPlayButton" type="TextureButton" parent="MainPanel/TopContainer/Silurian" unique_id=1184325617]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 402.0
+offset_right = 410.0
+offset_bottom = 517.0
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("4_4ccd7")
+
+[node name="Period" type="Panel" parent="MainPanel/TopContainer/Silurian" unique_id=2045772590]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 351.00003
+offset_right = 285.0
+offset_bottom = 385.00003
+scale = Vector2(1.2, 1.2)
+theme_override_styles/panel = SubResource("StyleBoxTexture_qif30")
+
+[node name="Barrier" type="Panel" parent="MainPanel/TopContainer/Silurian" unique_id=1684832643]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 370.0
+offset_bottom = 487.0
+
+[node name="ComingSoon" type="Panel" parent="MainPanel/TopContainer/Silurian" unique_id=1492921955]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 152.00002
+offset_right = 191.0
+offset_bottom = 206.00002
+scale = Vector2(2, 2)
+theme_override_styles/panel = SubResource("StyleBoxTexture_lrslc")
+
+[node name="BottomContainer" type="HBoxContainer" parent="MainPanel" unique_id=687798087]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 568.0
+offset_right = 1793.0
+offset_bottom = 1055.0
+theme_override_constants/separation = 244
+
+[node name="Devonian" type="Panel" parent="MainPanel/BottomContainer" unique_id=1472522595]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.61
+theme_override_styles/panel = SubResource("StyleBoxTexture_uv175")
+
+[node name="DevonianPlayButton" type="TextureButton" parent="MainPanel/BottomContainer/Devonian" unique_id=1383671370]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 402.0
+offset_right = 410.0
+offset_bottom = 517.0
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("4_4ccd7")
+
+[node name="Period" type="Panel" parent="MainPanel/BottomContainer/Devonian" unique_id=740513243]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 352.0
+offset_right = 285.0
+offset_bottom = 386.0
+scale = Vector2(1.2, 1.2)
+theme_override_styles/panel = SubResource("StyleBoxTexture_qy1ym")
+
+[node name="Barrier" type="Panel" parent="MainPanel/BottomContainer/Devonian" unique_id=2073356637]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 370.0
+offset_bottom = 487.0
+
+[node name="ComingSoon" type="Panel" parent="MainPanel/BottomContainer/Devonian" unique_id=9347133]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 152.00002
+offset_right = 191.0
+offset_bottom = 206.00002
+scale = Vector2(2, 2)
+theme_override_styles/panel = SubResource("StyleBoxTexture_lrslc")
+
+[node name="Carboniferous" type="Panel" parent="MainPanel/BottomContainer" unique_id=1010394557]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.61
+theme_override_styles/panel = SubResource("StyleBoxTexture_ewwud")
+
+[node name="CarboniferousPlayButton" type="TextureButton" parent="MainPanel/BottomContainer/Carboniferous" unique_id=204068935]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 402.0
+offset_right = 410.0
+offset_bottom = 517.0
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("4_4ccd7")
+
+[node name="Period" type="Panel" parent="MainPanel/BottomContainer/Carboniferous" unique_id=1732084868]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 352.0
+offset_right = 275.0
+offset_bottom = 386.0
+scale = Vector2(1.3, 1.3)
+theme_override_styles/panel = SubResource("StyleBoxTexture_vxjhh")
+
+[node name="Barrier" type="Panel" parent="MainPanel/BottomContainer/Carboniferous" unique_id=704991060]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 370.0
+offset_bottom = 487.0
+
+[node name="ComingSoon" type="Panel" parent="MainPanel/BottomContainer/Carboniferous" unique_id=1278091113]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 152.00002
+offset_right = 191.0
+offset_bottom = 206.00002
+scale = Vector2(2, 2)
+theme_override_styles/panel = SubResource("StyleBoxTexture_lrslc")
+
+[node name="Permian" type="Panel" parent="MainPanel/BottomContainer" unique_id=1862241431]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.61
+theme_override_styles/panel = SubResource("StyleBoxTexture_332ey")
+
+[node name="PermianPlayButton" type="TextureButton" parent="MainPanel/BottomContainer/Permian" unique_id=61902032]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 402.0
+offset_right = 410.0
+offset_bottom = 517.0
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("4_4ccd7")
+
+[node name="Period" type="Panel" parent="MainPanel/BottomContainer/Permian" unique_id=1674935547]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 353.0
+offset_right = 288.0
+offset_bottom = 387.0
+scale = Vector2(1.2, 1.2)
+theme_override_styles/panel = SubResource("StyleBoxTexture_1m881")
+
+[node name="Barrier" type="Panel" parent="MainPanel/BottomContainer/Permian" unique_id=1498257118]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 370.0
+offset_bottom = 487.0
+
+[node name="ComingSoon" type="Panel" parent="MainPanel/BottomContainer/Permian" unique_id=98210423]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 152.00002
+offset_right = 191.0
+offset_bottom = 206.00002
+scale = Vector2(2, 2)
+theme_override_styles/panel = SubResource("StyleBoxTexture_lrslc")
+
+[node name="TopLogoPanel" type="Panel" parent="." unique_id=1835999431]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 19.0
+offset_right = 1375.0
+offset_bottom = 125.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_vi7de")
+
+[node name="TopEonPanel" type="Panel" parent="." unique_id=423078726]
+layout_mode = 0
+offset_left = 648.0
+offset_top = 126.0
+offset_right = 1278.0
+offset_bottom = 174.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_h3ydv")
+
+[connection signal="pressed" from="MainPanel/TopContainer/Cambrian/CambrianPlayButton" to="." method="OnCambrianPlayPressed"]
+[connection signal="pressed" from="MainPanel/TopContainer/Ordovician/OrdovicianPlayButton" to="." method="OnOrdovicianPlayPressed"]

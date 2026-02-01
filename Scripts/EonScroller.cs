@@ -1,13 +1,12 @@
 using Godot;
 using System;
 
-public partial class PanelScroller : Control
+public partial class EonScroller : Control
 {
-	[Export] public float ScrollSpeed = 2100f; // Pixels per second
+	[Export] public float ScrollSpeed = 3800f; // Pixels per second
 	[Export] public float MinX = -1920f; // Minimum X position
 	[Export] public float MaxX = 0f;    // Maximum X position
 	private int _direction = 0;
-	private const float Threshold = 1f; // Tolerance for float comparison
 
 	private Control PrecambrianUI;
 	private Control PhanerozoicUI;
@@ -19,12 +18,14 @@ public partial class PanelScroller : Control
 	}
 	private Eon _currentEon = Eon.Precambrian;
 
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		PrecambrianUI = GetNode<Control>("../../PrecambrianUI");
 		PhanerozoicUI = GetNode<Control>("../../PhanerozoicUI");
 		ShowUIForCurrentEon();
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -65,8 +66,6 @@ public partial class PanelScroller : Control
 	}
 	private void ShowUIForCurrentEon()
 	{
-		// Use the center of the screen to determine which eon is visible
-		//float midpoint = (MinX + MaxX) / 2;
 		PrecambrianUI.Visible = _currentEon == Eon.Precambrian;
 		PhanerozoicUI.Visible = _currentEon == Eon.Phanerozoic;
 	}

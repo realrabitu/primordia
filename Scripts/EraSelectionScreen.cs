@@ -11,13 +11,13 @@ public partial class EraSelectionScreen : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
+
 		PanelsContainer = GetNode<Control>("ScreensContainer");
 		LeftPanel = PanelsContainer.GetNode<Panel>("LPanel");
 		CenterPanel = PanelsContainer.GetNode<Panel>("CenterPanel");
 		RightPanel = PanelsContainer.GetNode<Panel>("RPanel");
 
-		
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,5 +28,17 @@ public partial class EraSelectionScreen : Control
 	private void OnHomeButtonPressed()
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/MainMenu.tscn");
+	}
+	private void OnPaleozoicPlayPressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/PaleozoicSelectionScreen.tscn");
+	}
+	private void OnMesozoicPlayPressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/MesozoicSelectionScreen.tscn");
+	}
+	private void OnCenozoicPlayPressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/CenozoicSelectionScreen.tscn");
 	}
 }
