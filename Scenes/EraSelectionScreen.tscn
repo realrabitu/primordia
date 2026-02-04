@@ -132,7 +132,11 @@ offset_bottom = 1080.0
 
 [node name="EraScroller" type="Control" parent="ScreensContainer" unique_id=1847597906]
 layout_mode = 1
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("3_q227p")
 
 [node name="PaleozoicPanel" type="Panel" parent="ScreensContainer/EraScroller" unique_id=1058624955]
@@ -374,6 +378,7 @@ grow_vertical = 2
 texture_normal = SubResource("CompressedTexture2D_bslhh")
 
 [node name="MesozoicUI" type="Control" parent="." unique_id=1586486012]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -459,6 +464,7 @@ texture_normal = SubResource("CompressedTexture2D_wc2fn")
 flip_h = true
 
 [node name="CenozoicUI" type="Control" parent="." unique_id=922993410]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -534,6 +540,6 @@ flip_h = true
 [connection signal="pressed" from="MesozoicUI/PlayButton" to="." method="OnMesozoicPlayPressed"]
 [connection signal="pressed" from="MesozoicUI/HomeButton" to="." method="OnHomeButtonPressed"]
 [connection signal="pressed" from="MesozoicUI/SwitchtoCenozoic" to="ScreensContainer/EraScroller" method="ScrollLeft"]
-[connection signal="pressed" from="MesozoicUI/SwitchtoPaleozoic" to="ScreensContainer/EraScroller" method="ScrollLeft"]
+[connection signal="pressed" from="MesozoicUI/SwitchtoPaleozoic" to="ScreensContainer/EraScroller" method="SwitchToPaleozoic"]
 [connection signal="pressed" from="CenozoicUI/HomeButton" to="." method="OnHomeButtonPressed"]
 [connection signal="pressed" from="CenozoicUI/SwitchToMesozoic" to="ScreensContainer/EraScroller" method="ScrollRight"]
