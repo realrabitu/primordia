@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://7hxfan62fckh"]
+
+[sub_resource type="TileSet" id="TileSet_cg2ps"]
+
+[node name="Level" type="Node2D" unique_id=118753381]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1750224359]
+tile_set = SubResource("TileSet_cg2ps")
