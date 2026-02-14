@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dh5j201klpbuq" path="res://Assets/Menu Images/Eons/GENERAL_BACKGROUND.png" id="2_1gd1k"]
 [ext_resource type="Texture2D" uid="uid://bl7npsjrbq2v0" path="res://Assets/Menu Images/Eons/Phanerozoic/PALEOZOIC_LPANELS.png" id="2_8ye46"]
 [ext_resource type="Texture2D" uid="uid://cnwaj08b4e0xf" path="res://Assets/Menu Images/Eons/Phanerozoic/PALEOZOIC_RPANELS.png" id="3_8ye46"]
+[ext_resource type="Script" uid="uid://bkv2p5pbhukwe" path="res://Scripts/EraScroller.cs" id="3_q227p"]
 [ext_resource type="Texture2D" uid="uid://cr0awvy0lx8sp" path="res://Assets/Menu Images/Eons/Precambrian/PRECAMBRIAN_CENTER_IMAGE1.png" id="4_fqubo"]
 [ext_resource type="Texture2D" uid="uid://lc55slldgr3v" path="res://Assets/Menu Images/Eons/Precambrian/PRECAMBRIAN_CENTER_IMAGE2.png" id="5_ej7oj"]
 [ext_resource type="Texture2D" uid="uid://dn0i8pat0i42q" path="res://Assets/Menu Images/Eons/Precambrian/PRECAMBRIAN_CENTER_IMAGE3.png" id="6_bslhh"]
@@ -39,6 +40,8 @@ texture = ExtResource("5_ej7oj")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a17nf"]
 texture = ExtResource("6_bslhh")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q227p"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fqubo"]
 texture = ExtResource("13_8ye46")
 
@@ -53,6 +56,8 @@ texture = ExtResource("16_gjmkr")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n6xgu"]
 texture = ExtResource("17_hiaog")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1gd1k"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_abd80"]
 texture = ExtResource("14_1gd1k")
@@ -125,38 +130,48 @@ anchors_preset = 0
 offset_right = 5760.0
 offset_bottom = 1080.0
 
-[node name="PanelScroller" type="Control" parent="ScreensContainer" unique_id=1847597906]
+[node name="EraScroller" type="Control" parent="ScreensContainer" unique_id=1847597906]
 layout_mode = 1
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_q227p")
 
-[node name="LPanel" type="Panel" parent="ScreensContainer/PanelScroller" unique_id=1379199149]
+[node name="PaleozoicPanel" type="Panel" parent="ScreensContainer/EraScroller" unique_id=1058624955]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LPanel" type="Panel" parent="ScreensContainer/EraScroller/PaleozoicPanel" unique_id=1379199149]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 94.0
-offset_top = 53.0
+offset_top = 33.0
 offset_right = 707.0
-offset_bottom = 1013.0
+offset_bottom = 993.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_kuli8")
 
-[node name="RPanel" type="Panel" parent="ScreensContainer/PanelScroller" unique_id=1822698319]
+[node name="RPanel" type="Panel" parent="ScreensContainer/EraScroller/PaleozoicPanel" unique_id=1822698319]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 1209.0
-offset_top = 53.0
-offset_right = 1804.0
-offset_bottom = 1013.0
+offset_left = 1189.0
+offset_top = 33.0
+offset_right = 1784.0
+offset_bottom = 993.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_1gd1k")
 
-[node name="CenterContentsContainer" type="VBoxContainer" parent="ScreensContainer/PanelScroller" unique_id=1445582023]
+[node name="CenterContentsContainer" type="VBoxContainer" parent="ScreensContainer/EraScroller/PaleozoicPanel" unique_id=1445582023]
 layout_mode = 0
 offset_left = 746.0
 offset_top = 169.0
@@ -164,28 +179,29 @@ offset_right = 1183.0
 offset_bottom = 821.0
 theme_override_constants/separation = 0
 
-[node name="Top" type="Panel" parent="ScreensContainer/PanelScroller/CenterContentsContainer" unique_id=1274454716]
+[node name="Top" type="Panel" parent="ScreensContainer/EraScroller/PaleozoicPanel/CenterContentsContainer" unique_id=1274454716]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_aigkk")
 
-[node name="Mid" type="Panel" parent="ScreensContainer/PanelScroller/CenterContentsContainer" unique_id=701206238]
+[node name="Mid" type="Panel" parent="ScreensContainer/EraScroller/PaleozoicPanel/CenterContentsContainer" unique_id=701206238]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_ov6a8")
 
-[node name="Bottom" type="Panel" parent="ScreensContainer/PanelScroller/CenterContentsContainer" unique_id=1428078322]
+[node name="Bottom" type="Panel" parent="ScreensContainer/EraScroller/PaleozoicPanel/CenterContentsContainer" unique_id=1428078322]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_a17nf")
 
-[node name="MesozoicPanel" type="Panel" parent="ScreensContainer/PanelScroller" unique_id=1381023442]
+[node name="MesozoicPanel" type="Panel" parent="ScreensContainer/EraScroller" unique_id=1381023442]
 layout_mode = 0
 offset_left = 1920.0
 offset_right = 3840.0
 offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_q227p")
 
-[node name="LPanel" type="Panel" parent="ScreensContainer/PanelScroller/MesozoicPanel" unique_id=2032238033]
+[node name="LPanel" type="Panel" parent="ScreensContainer/EraScroller/MesozoicPanel" unique_id=2032238033]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -197,7 +213,7 @@ offset_bottom = 493.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_fqubo")
 
-[node name="RPanel" type="Panel" parent="ScreensContainer/PanelScroller/MesozoicPanel" unique_id=1820213309]
+[node name="RPanel" type="Panel" parent="ScreensContainer/EraScroller/MesozoicPanel" unique_id=1820213309]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -212,7 +228,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ej7oj")
 
-[node name="CenterContentsContainer" type="VBoxContainer" parent="ScreensContainer/PanelScroller/MesozoicPanel" unique_id=491493471]
+[node name="CenterContentsContainer" type="VBoxContainer" parent="ScreensContainer/EraScroller/MesozoicPanel" unique_id=491493471]
 layout_mode = 0
 offset_left = 746.0
 offset_top = 189.0
@@ -220,28 +236,29 @@ offset_right = 1166.0
 offset_bottom = 801.0
 theme_override_constants/separation = 0
 
-[node name="Top" type="Panel" parent="ScreensContainer/PanelScroller/MesozoicPanel/CenterContentsContainer" unique_id=45627903]
+[node name="Top" type="Panel" parent="ScreensContainer/EraScroller/MesozoicPanel/CenterContentsContainer" unique_id=45627903]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_rwc35")
 
-[node name="Middle" type="Panel" parent="ScreensContainer/PanelScroller/MesozoicPanel/CenterContentsContainer" unique_id=355240590]
+[node name="Middle" type="Panel" parent="ScreensContainer/EraScroller/MesozoicPanel/CenterContentsContainer" unique_id=355240590]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_gkj7y")
 
-[node name="Bottom" type="Panel" parent="ScreensContainer/PanelScroller/MesozoicPanel/CenterContentsContainer" unique_id=891052947]
+[node name="Bottom" type="Panel" parent="ScreensContainer/EraScroller/MesozoicPanel/CenterContentsContainer" unique_id=891052947]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_n6xgu")
 
-[node name="CenozoicPanel" type="Panel" parent="ScreensContainer/PanelScroller" unique_id=918189447]
+[node name="CenozoicPanel" type="Panel" parent="ScreensContainer/EraScroller" unique_id=918189447]
 layout_mode = 0
 offset_left = 3840.0
 offset_right = 5760.0
 offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1gd1k")
 
-[node name="LPanel" type="Panel" parent="ScreensContainer/PanelScroller/CenozoicPanel" unique_id=551772645]
+[node name="LPanel" type="Panel" parent="ScreensContainer/EraScroller/CenozoicPanel" unique_id=551772645]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -253,7 +270,7 @@ offset_bottom = 493.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_abd80")
 
-[node name="RPanel" type="Panel" parent="ScreensContainer/PanelScroller/CenozoicPanel" unique_id=731385079]
+[node name="RPanel" type="Panel" parent="ScreensContainer/EraScroller/CenozoicPanel" unique_id=731385079]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -268,7 +285,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_pp8ly")
 
-[node name="CenterContentsContainer" type="VBoxContainer" parent="ScreensContainer/PanelScroller/CenozoicPanel" unique_id=1188506003]
+[node name="CenterContentsContainer" type="VBoxContainer" parent="ScreensContainer/EraScroller/CenozoicPanel" unique_id=1188506003]
 layout_mode = 0
 offset_left = 746.0
 offset_top = 189.0
@@ -276,17 +293,17 @@ offset_right = 1166.0
 offset_bottom = 801.0
 theme_override_constants/separation = 0
 
-[node name="Top" type="Panel" parent="ScreensContainer/PanelScroller/CenozoicPanel/CenterContentsContainer" unique_id=1034248627]
+[node name="Top" type="Panel" parent="ScreensContainer/EraScroller/CenozoicPanel/CenterContentsContainer" unique_id=1034248627]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_rwc35")
 
-[node name="Middle" type="Panel" parent="ScreensContainer/PanelScroller/CenozoicPanel/CenterContentsContainer" unique_id=1683227515]
+[node name="Middle" type="Panel" parent="ScreensContainer/EraScroller/CenozoicPanel/CenterContentsContainer" unique_id=1683227515]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_gkj7y")
 
-[node name="Bottom" type="Panel" parent="ScreensContainer/PanelScroller/CenozoicPanel/CenterContentsContainer" unique_id=1491760682]
+[node name="Bottom" type="Panel" parent="ScreensContainer/EraScroller/CenozoicPanel/CenterContentsContainer" unique_id=1491760682]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_n6xgu")
@@ -299,7 +316,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PlayButton" type="TextureButton" parent="PaleozoicUI" unique_id=362729021]
+[node name="PaleozoicPlay" type="TextureButton" parent="PaleozoicUI" unique_id=362729021]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -361,6 +378,7 @@ grow_vertical = 2
 texture_normal = SubResource("CompressedTexture2D_bslhh")
 
 [node name="MesozoicUI" type="Control" parent="." unique_id=1586486012]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -446,6 +464,7 @@ texture_normal = SubResource("CompressedTexture2D_wc2fn")
 flip_h = true
 
 [node name="CenozoicUI" type="Control" parent="." unique_id=922993410]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -515,10 +534,12 @@ grow_vertical = 2
 texture_normal = ExtResource("11_wc2fn")
 flip_h = true
 
+[connection signal="pressed" from="PaleozoicUI/PaleozoicPlay" to="." method="OnPaleozoicPlayPressed"]
 [connection signal="pressed" from="PaleozoicUI/HomeButton" to="." method="OnHomeButtonPressed"]
-[connection signal="pressed" from="PaleozoicUI/SwitchToMesozoic" to="ScreensContainer/PanelScroller" method="ScrollLeft"]
+[connection signal="pressed" from="PaleozoicUI/SwitchToMesozoic" to="ScreensContainer/EraScroller" method="ScrollLeft"]
+[connection signal="pressed" from="MesozoicUI/PlayButton" to="." method="OnMesozoicPlayPressed"]
 [connection signal="pressed" from="MesozoicUI/HomeButton" to="." method="OnHomeButtonPressed"]
-[connection signal="pressed" from="MesozoicUI/SwitchtoCenozoic" to="ScreensContainer/PanelScroller" method="ScrollLeft"]
-[connection signal="pressed" from="MesozoicUI/SwitchtoPaleozoic" to="ScreensContainer/PanelScroller" method="ScrollLeft"]
+[connection signal="pressed" from="MesozoicUI/SwitchtoCenozoic" to="ScreensContainer/EraScroller" method="ScrollLeft"]
+[connection signal="pressed" from="MesozoicUI/SwitchtoPaleozoic" to="ScreensContainer/EraScroller" method="SwitchToPaleozoic"]
 [connection signal="pressed" from="CenozoicUI/HomeButton" to="." method="OnHomeButtonPressed"]
-[connection signal="pressed" from="CenozoicUI/SwitchToMesozoic" to="ScreensContainer/PanelScroller" method="ScrollLeft"]
+[connection signal="pressed" from="CenozoicUI/SwitchToMesozoic" to="ScreensContainer/EraScroller" method="ScrollRight"]
