@@ -14,6 +14,8 @@ public partial class EonSelectionScreen : Control
 		HomeButton = GetNode<TextureButton>("HomeButton");
 		// Sliding is now handled by EonPanelScroller.cs via signals from the arrow buttons. 
 	}
+	/* Called when the node enters the scene tree for the first time.
+	   Sliding is now handled by EonPanelScroller.cs via signals from the arrow buttons. */
 
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
