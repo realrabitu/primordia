@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://uqtmcd0hcecp"]
+
+[ext_resource type="Script" uid="uid://bdn085p2aabqq" path="res://Scripts/MesozoicSelectionScreen.cs" id="1_8rn2y"]
+[ext_resource type="Texture2D" uid="uid://d1jn0kjmrob1o" path="res://Assets/Menu Images/Eons/EON_SELECTION_SCREEN_BG.png" id="2_3qyb3"]
+[ext_resource type="Texture2D" uid="uid://bh634ilg1f3si" path="res://Assets/Buttons/PLAY_BUTTONS_CENO.png" id="4_ond02"]
+[ext_resource type="Texture2D" uid="uid://dk3uagwlyfhux" path="res://Assets/Texts/Precambrian/PRECAMBRIAN_TEXT.png" id="5_8rn2y"]
+[ext_resource type="Texture2D" uid="uid://dlq8gdcdeoujf" path="res://Assets/Texts/Precambrian/PRECAMBRIAN_TEXT2.png" id="6_3qyb3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y776o"]
+texture = ExtResource("2_3qyb3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2fph7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qlve8"]
+texture = ExtResource("5_8rn2y")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ond02"]
+texture = ExtResource("6_3qyb3")
+
+[node name="PrecambrianSelectionScreen" type="Control" unique_id=2098257394]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8rn2y")
+
+[node name="ScreenPanel" type="Panel" parent="." unique_id=1331687332]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_y776o")
+
+[node name="Container" type="HBoxContainer" parent="." unique_id=1833488947]
+layout_mode = 0
+offset_left = 708.0
+offset_top = 52.0
+offset_right = 1210.0
+offset_bottom = 1052.0
+theme_override_constants/separation = 64
+
+[node name="Panel" type="Panel" parent="Container" unique_id=228794759]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_2fph7")
+
+[node name="ProterozoicPlayButton" type="TextureButton" parent="Container/Panel" unique_id=1765121027]
+layout_mode = 0
+offset_left = -389.0
+offset_right = -64.0
+offset_bottom = 1000.0
+texture_normal = ExtResource("4_ond02")
+
+[node name="TopLogoPanel" type="Panel" parent="." unique_id=339141384]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -392.5
+offset_top = 30.0
+offset_right = 392.5
+offset_bottom = 117.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qlve8")
+
+[node name="TopEonPanel" type="Panel" parent="." unique_id=1184357455]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -292.25
+offset_top = 110.0
+offset_right = 292.25
+offset_bottom = 180.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ond02")

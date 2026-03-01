@@ -1,0 +1,393 @@
+class_name Enemy extends CharacterBody2D
+
+signal health_changed(current: int, max_health: int)
+signal slain(killer: Node, xp_reward: int)
+
+
+enum State {
+	WALKING,
+	CHASING,
+	ATTACKING,
+	DEAD,
+}
+
+@export_range(1.0, 500.0, 1.0) var walk_speed := 22.0
+@export_range(1.0, 800.0, 1.0) var chase_speed := 36.0
+@export_range(-2000.0, -50.0, 1.0) var jump_velocity := -360.0
+@export_range(0.0, 3.0, 0.05) var jump_cooldown := 0.8
+@export_range(0.0, 1.0, 0.01) var turn_cooldown := 0.2
+@export_range(0.0, 1200.0, 1.0) var detection_radius := 240.0
+@export_range(0.0, 1600.0, 1.0) var disengage_radius := 320.0
+@export_range(0.0, 10.0, 0.05) var forget_delay := 1.2
+@export_range(1, 50, 1) var max_health := 1
+@export_range(1, 10, 1) var contact_damage := 1
+@export_range(0.0, 500.0, 1.0) var attack_radius := 10.0
+@export_range(0.0, 800.0, 1.0) var attack_vertical_tolerance := 24.0
+@export_range(0.0, 5.0, 0.05) var attack_cooldown := 0.8
+@export_range(0.0, 1500.0, 1.0) var attack_knockback_x := 320.0
+@export_range(-1500.0, 0.0, 1.0) var attack_knockback_y := -260.0
+@export_range(0, 1000, 1) var xp_reward := 10
+
+const PLAYER_GROUP: StringName = &"players"
+
+var _state := State.WALKING
+var _health := 1
+var _target: Player
+var _last_damage_source: Node
+var _forget_time_left := 0.0
+var _attack_cooldown_left := 0.0
+var _jump_cooldown_left := 0.0
+var _turn_cooldown_left := 0.0
+var _patrol_direction := 1.0
+
+@onready var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
+@onready var platform_detector := $PlatformDetector as RayCast2D
+@onready var floor_detector_left := $FloorDetectorLeft as RayCast2D
+@onready var floor_detector_right := $FloorDetectorRight as RayCast2D
+@onready var sprite := $AnimatedSprite2D as AnimatedSprite2D
+@onready var collision_shape := $CollisionShape2D as CollisionShape2D
+@onready var explosion := $Explosion as CPUParticles2D
+@onready var hit_sound := $Hit as AudioStreamPlayer2D
+@onready var explode_sound := $Explode as AudioStreamPlayer2D
+
+
+func _ready() -> void:
+	add_to_group(&"enemies")
+	_health = max_health
+	_patrol_direction = -1.0 if walk_speed < 0.0 else 1.0
+	health_changed.emit(_health, max_health)
+
+
+func _physics_process(delta: float) -> void:
+	var move_direction := 0.0
+
+	if _attack_cooldown_left > 0.0:
+		_attack_cooldown_left = maxf(0.0, _attack_cooldown_left - delta)
+	if _jump_cooldown_left > 0.0:
+		_jump_cooldown_left = maxf(0.0, _jump_cooldown_left - delta)
+	if _turn_cooldown_left > 0.0:
+		_turn_cooldown_left = maxf(0.0, _turn_cooldown_left - delta)
+
+	if _state != State.DEAD:
+		_update_target(delta)
+		if _state == State.CHASING and _target != null:
+			var direction := signf((_target as Node2D).global_position.x - global_position.x)
+			if is_zero_approx(direction):
+				direction = signf(velocity.x)
+				if is_zero_approx(direction):
+					direction = 1.0
+			move_direction = direction
+			if is_on_floor() and _is_edge_ahead(move_direction):
+				velocity.x = 0.0
+				move_direction = 0.0
+			else:
+				velocity.x = direction * chase_speed
+		elif _state == State.WALKING:
+			move_direction = _patrol_direction
+			if is_on_floor() and _can_turn() and _is_edge_ahead(move_direction):
+				_flip_patrol_direction()
+				move_direction = _patrol_direction
+
+			velocity.x = move_direction * absf(walk_speed)
+		elif _state == State.ATTACKING:
+			velocity.x = 0.0
+			_try_attack_target()
+	else:
+		velocity.x = 0.0
+
+	velocity.y += gravity * delta
+
+	move_and_slide()
+
+	if (_state == State.CHASING or _state == State.WALKING) and _is_blocked_by_wall(move_direction):
+		if not _try_jump(move_direction) and _state == State.WALKING:
+			if _can_turn():
+				_flip_patrol_direction()
+				velocity.x = _patrol_direction * absf(walk_speed)
+
+	if velocity.x > 0.0:
+		sprite.flip_h = false
+	elif velocity.x < 0.0:
+		sprite.flip_h = true
+
+	var animation := get_new_animation()
+	if not animation.is_empty() and sprite.sprite_frames and sprite.sprite_frames.has_animation(animation):
+		if sprite.animation != animation or not sprite.is_playing():
+			sprite.play(animation)
+
+
+func destroy() -> void:
+	take_damage(_health)
+
+
+func take_damage(amount := 1, source: Node = null) -> void:
+	if _state == State.DEAD:
+		return
+	if source != null:
+		_last_damage_source = source
+	_health -= amount
+	health_changed.emit(maxi(_health, 0), max_health)
+	if _health > 0:
+		hit_sound.play()
+		return
+	_state = State.DEAD
+	velocity = Vector2.ZERO
+	slain.emit(_last_damage_source, xp_reward)
+	_start_death_sequence()
+
+
+func is_alive() -> bool:
+	return _state != State.DEAD
+
+
+func get_contact_damage() -> int:
+	return contact_damage
+
+
+func can_attack() -> bool:
+	return _state != State.DEAD and _attack_cooldown_left <= 0.0
+
+
+func try_attack_player(player: Player, impulse := Vector2.ZERO) -> bool:
+	if player == null or not player.is_inside_tree():
+		return false
+	if not can_attack():
+		return false
+	player.take_damage(contact_damage, impulse)
+	_attack_cooldown_left = attack_cooldown
+	return true
+
+
+func get_new_animation() -> StringName:
+	var animation_new: StringName
+	if _state == State.ATTACKING:
+		if sprite.sprite_frames and sprite.sprite_frames.has_animation(&"attack"):
+			animation_new = &"attack"
+		else:
+			animation_new = &"idle"
+	elif _state == State.WALKING or _state == State.CHASING:
+		if velocity.x == 0:
+			animation_new = &"idle"
+		else:
+			animation_new = &"walk"
+	else:
+		if sprite.sprite_frames and sprite.sprite_frames.has_animation(&"death"):
+			animation_new = &"death"
+		elif sprite.sprite_frames and sprite.sprite_frames.has_animation(&"destroy"):
+			animation_new = &"destroy"
+		else:
+			animation_new = StringName()
+	return animation_new
+
+
+func _start_death_sequence() -> void:
+	set_physics_process(false)
+	collision_layer = 0
+	collision_mask = 0
+	collision_shape.set_deferred("disabled", true)
+	platform_detector.enabled = false
+	floor_detector_left.enabled = false
+	floor_detector_right.enabled = false
+
+	explode_sound.play()
+	explosion.restart()
+	explosion.emitting = true
+
+	if sprite.sprite_frames and sprite.sprite_frames.has_animation(&"death"):
+		sprite.play(&"death")
+		if not sprite.animation_finished.is_connected(_on_destroy_animation_finished):
+			sprite.animation_finished.connect(_on_destroy_animation_finished, CONNECT_ONE_SHOT)
+		return
+
+	if sprite.sprite_frames and sprite.sprite_frames.has_animation(&"destroy"):
+		sprite.play(&"destroy")
+		if not sprite.animation_finished.is_connected(_on_destroy_animation_finished):
+			sprite.animation_finished.connect(_on_destroy_animation_finished, CONNECT_ONE_SHOT)
+		return
+
+	sprite.visible = false
+	var timer := get_tree().create_timer(explosion.lifetime)
+	timer.timeout.connect(_on_death_timeout, CONNECT_ONE_SHOT)
+
+
+func _on_destroy_animation_finished() -> void:
+	queue_free()
+
+
+func _on_death_timeout() -> void:
+	queue_free()
+
+
+func _update_target(delta: float) -> void:
+	var contact_target := _find_contact_player()
+	if contact_target != null:
+		_target = contact_target
+		_state = State.ATTACKING
+		_forget_time_left = forget_delay
+		return
+
+	if _target != null and _target.is_inside_tree():
+		if _is_target_in_attack_range(_target):
+			_state = State.ATTACKING
+			_forget_time_left = forget_delay
+			return
+		var distance_to_target := global_position.distance_to((_target as Node2D).global_position)
+		if distance_to_target <= disengage_radius:
+			_state = State.CHASING
+			_forget_time_left = forget_delay
+			return
+		_forget_time_left = maxf(0.0, _forget_time_left - delta)
+		if _forget_time_left > 0.0:
+			_state = State.CHASING
+			return
+
+	_target = _find_nearest_player(detection_radius)
+	if _target != null:
+		if _is_target_in_attack_range(_target):
+			_state = State.ATTACKING
+		else:
+			_state = State.CHASING
+		_forget_time_left = forget_delay
+	else:
+		_state = State.WALKING
+
+
+func _try_attack_target() -> void:
+	if _target == null or not _target.is_inside_tree():
+		return
+	if not _is_target_in_attack_range(_target):
+		return
+
+	var push_direction := signf((_target as Node2D).global_position.x - global_position.x)
+	if is_zero_approx(push_direction):
+		push_direction = -1.0 if sprite.flip_h else 1.0
+	try_attack_player(_target, Vector2(push_direction * attack_knockback_x, attack_knockback_y))
+
+
+func _is_target_in_attack_range(target: Player) -> bool:
+	if target == null or not target.is_inside_tree():
+		return false
+	if attack_radius <= 0.0:
+		return false
+	var enemy_body_position := collision_shape.global_position if collision_shape != null else global_position
+	var target_shape := target.get_node_or_null(^"CollisionShape2D") as CollisionShape2D
+	var target_body_position := target_shape.global_position if target_shape != null else (target as Node2D).global_position
+	var delta := target_body_position - enemy_body_position
+	var enemy_extents := _get_collision_half_extents(collision_shape)
+	var target_extents := _get_collision_half_extents(target_shape)
+	var combined_half_width := enemy_extents.x + target_extents.x
+	var combined_half_height := enemy_extents.y + target_extents.y
+	var horizontal_gap := absf(delta.x) - combined_half_width
+	var vertical_gap := absf(delta.y) - combined_half_height
+	return horizontal_gap <= attack_radius and vertical_gap <= attack_vertical_tolerance
+
+
+func _get_collision_half_extents(shape_node: CollisionShape2D) -> Vector2:
+	if shape_node == null or shape_node.shape == null:
+		return Vector2.ZERO
+	var shape := shape_node.shape
+	var local_half_extents := Vector2.ZERO
+	if shape is CircleShape2D:
+		var radius := (shape as CircleShape2D).radius
+		local_half_extents = Vector2(radius, radius)
+	elif shape is CapsuleShape2D:
+		var capsule := shape as CapsuleShape2D
+		local_half_extents = Vector2(capsule.radius, maxf(capsule.radius, capsule.height * 0.5))
+	elif shape is RectangleShape2D:
+		var rectangle := shape as RectangleShape2D
+		local_half_extents = rectangle.size * 0.5
+	else:
+		return Vector2.ZERO
+
+	var scale_value := shape_node.global_scale
+	local_half_extents.x *= absf(scale_value.x)
+	local_half_extents.y *= absf(scale_value.y)
+
+	var angle := shape_node.global_rotation
+	var cos_theta := absf(cos(angle))
+	var sin_theta := absf(sin(angle))
+	return Vector2(
+		cos_theta * local_half_extents.x + sin_theta * local_half_extents.y,
+		sin_theta * local_half_extents.x + cos_theta * local_half_extents.y
+	)
+
+
+func _find_nearest_player(max_distance: float) -> Player:
+	if max_distance <= 0.0:
+		return null
+	var tree := get_tree()
+	if tree == null:
+		return null
+
+	var nearest_player: Player
+	var max_distance_squared := max_distance * max_distance
+	for node in tree.get_nodes_in_group(PLAYER_GROUP):
+		if node is not Player:
+			continue
+		var player := node as Player
+		if not player.is_inside_tree():
+			continue
+		var distance_squared := global_position.distance_squared_to((player as Node2D).global_position)
+		if distance_squared <= max_distance_squared:
+			max_distance_squared = distance_squared
+			nearest_player = player
+
+	return nearest_player
+
+
+func _find_contact_player() -> Player:
+	for index in range(get_slide_collision_count()):
+		var collision := get_slide_collision(index)
+		var collider := collision.get_collider()
+		if collider is Player:
+			var player := collider as Player
+			if player.is_inside_tree():
+				return player
+	return null
+
+
+func _try_jump(move_direction: float) -> bool:
+	if jump_velocity >= 0.0:
+		return false
+	if _jump_cooldown_left > 0.0:
+		return false
+	if not is_on_floor():
+		return false
+	if is_zero_approx(signf(move_direction)):
+		return false
+
+	velocity.y = jump_velocity
+	_jump_cooldown_left = jump_cooldown
+	return true
+
+
+func _is_blocked_by_wall(move_direction: float) -> bool:
+	var direction := signf(move_direction)
+	if is_zero_approx(direction):
+		return false
+	for index in range(get_slide_collision_count()):
+		var collision := get_slide_collision(index)
+		var normal := collision.get_normal()
+		if signf(normal.x) == -direction and absf(normal.x) > 0.3:
+			return true
+	return false
+
+
+func _is_edge_ahead(move_direction: float) -> bool:
+	if not is_on_floor():
+		return false
+	var direction := signf(move_direction)
+	if is_zero_approx(direction):
+		return false
+	if direction > 0.0:
+		return not floor_detector_right.is_colliding()
+	return not floor_detector_left.is_colliding()
+
+
+func _can_turn() -> bool:
+	return _turn_cooldown_left <= 0.0
+
+
+func _flip_patrol_direction() -> void:
+	_patrol_direction = -_patrol_direction
+	_turn_cooldown_left = turn_cooldown

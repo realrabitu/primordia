@@ -1,0 +1,437 @@
+[gd_scene format=3 uid="uid://cw6nldo3rjyyq"]
+
+[ext_resource type="Texture2D" uid="uid://cvknem5bj24sc" path="res://level/background/distant_platforms_2.webp" id="1"]
+[ext_resource type="Texture2D" uid="uid://osu4k0jdk3wa" path="res://level/background/sky.webp" id="2"]
+[ext_resource type="Texture2D" uid="uid://clgmygv16nurq" path="res://Assets/JURASSIC/SKY.png" id="2_j4wdc"]
+[ext_resource type="Texture2D" uid="uid://twy8cs78gqbv" path="res://level/background/cloud_3.webp" id="3"]
+[ext_resource type="Texture2D" uid="uid://dud80ds6rq6vr" path="res://level/background/cloud_2.webp" id="5"]
+[ext_resource type="Texture2D" uid="uid://eeitd2vus25o" path="res://level/background/distant_platforms_1.webp" id="6"]
+[ext_resource type="Texture2D" uid="uid://t8otskslwopy" path="res://level/background/cloud_1.webp" id="7"]
+[ext_resource type="Texture2D" uid="uid://ne7j70up25r3" path="res://Assets/JURASSIC/F HILLS.png" id="7_ldf4p"]
+[ext_resource type="Texture2D" uid="uid://cq04yn6br3bd2" path="res://Assets/JURASSIC/END HILL.png" id="8_7c3eu"]
+[ext_resource type="Texture2D" uid="uid://b883busjlgw7f" path="res://Assets/JURASSIC/CLOUDDSSSSSSSSS.png" id="10_7cysy"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7c3eu"]
+load_path = "res://.godot/imported/F HILLS.png-5e328aebdae1f854219c3c38a5ddd04d.ctex"
+
+[sub_resource type="ImageTexture" id="ImageTexture_7cysy"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" unique_id=1978688350]
+scroll_base_scale = Vector2(0.1, 0)
+
+[node name="Sky" type="ParallaxLayer" parent="." unique_id=1023547744]
+motion_scale = Vector2(0.2, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky" unique_id=127637717]
+position = Vector2(-809, 58)
+scale = Vector2(1.9804689, 1.9804689)
+texture = ExtResource("2")
+centered = false
+
+[node name="Sprite2" type="Sprite2D" parent="Sky" unique_id=1312510899]
+position = Vector2(-809, 0)
+scale = Vector2(1.2617188, 0.49722227)
+texture = ExtResource("2_j4wdc")
+centered = false
+
+[node name="Sprite3" type="Sprite2D" parent="Sky" unique_id=1329219939]
+position = Vector2(1905, 0)
+scale = Vector2(0.9231772, 0.49722224)
+texture = ExtResource("2_j4wdc")
+centered = false
+
+[node name="Clouds" type="ParallaxLayer" parent="." unique_id=1439228090]
+motion_scale = Vector2(0.1, 1)
+motion_offset = Vector2(-550, 0)
+
+[node name="CloudGroup1" type="Node2D" parent="Clouds" unique_id=407839118]
+position = Vector2(-780, 0)
+
+[node name="Sprite2" type="Sprite2D" parent="Clouds/CloudGroup1" unique_id=16704516]
+position = Vector2(447, 4)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite3" type="Sprite2D" parent="Clouds/CloudGroup1" unique_id=1604962724]
+position = Vector2(726, 91)
+texture = ExtResource("3")
+centered = false
+
+[node name="Sprite4" type="Sprite2D" parent="Clouds/CloudGroup1" unique_id=1058289471]
+position = Vector2(1133, 113)
+texture = ExtResource("3")
+centered = false
+
+[node name="Sprite5" type="Sprite2D" parent="Clouds/CloudGroup1" unique_id=301740596]
+position = Vector2(1513, 165)
+texture = ExtResource("3")
+centered = false
+
+[node name="Sprite6" type="Sprite2D" parent="Clouds/CloudGroup1" unique_id=1843336263]
+position = Vector2(396, 109)
+texture = ExtResource("7")
+centered = false
+
+[node name="CloudGroup5" type="Node2D" parent="Clouds" unique_id=1199563431]
+position = Vector2(1420, 0)
+
+[node name="Sprite2" type="Sprite2D" parent="Clouds/CloudGroup5" unique_id=1557258265]
+position = Vector2(447, 4)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite3" type="Sprite2D" parent="Clouds/CloudGroup5" unique_id=1069235042]
+position = Vector2(726, 91)
+texture = ExtResource("3")
+centered = false
+
+[node name="Sprite4" type="Sprite2D" parent="Clouds/CloudGroup5" unique_id=1084513904]
+position = Vector2(1133, 113)
+texture = ExtResource("3")
+centered = false
+
+[node name="Sprite5" type="Sprite2D" parent="Clouds/CloudGroup5" unique_id=863059021]
+position = Vector2(1513, 165)
+texture = ExtResource("3")
+centered = false
+
+[node name="Sprite6" type="Sprite2D" parent="Clouds/CloudGroup5" unique_id=1599665901]
+position = Vector2(396, 109)
+texture = ExtResource("7")
+centered = false
+
+[node name="CloudGroup2" type="Node2D" parent="Clouds" unique_id=1966856256]
+
+[node name="Sprite1" type="Sprite2D" parent="Clouds/CloudGroup2" unique_id=1890340688]
+position = Vector2(-135, 213)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite5" type="Sprite2D" parent="Clouds/CloudGroup2" unique_id=83085778]
+position = Vector2(19, 77)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7")
+centered = false
+
+[node name="Sprite7" type="Sprite2D" parent="Clouds/CloudGroup2" unique_id=968342505]
+position = Vector2(140, 261)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3")
+centered = false
+
+[node name="CloudGroup6" type="Node2D" parent="Clouds" unique_id=981322125]
+position = Vector2(1816, 0)
+
+[node name="Sprite1" type="Sprite2D" parent="Clouds/CloudGroup6" unique_id=779411742]
+position = Vector2(-135, 213)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite5" type="Sprite2D" parent="Clouds/CloudGroup6" unique_id=1812748376]
+position = Vector2(19, 77)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7")
+centered = false
+
+[node name="Sprite7" type="Sprite2D" parent="Clouds/CloudGroup6" unique_id=1670370947]
+position = Vector2(140, 261)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3")
+centered = false
+
+[node name="CloudGroup3" type="Node2D" parent="Clouds" unique_id=2009360881]
+position = Vector2(390, 0)
+
+[node name="Sprite1" type="Sprite2D" parent="Clouds/CloudGroup3" unique_id=58104766]
+position = Vector2(1034, -60)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite7" type="Sprite2D" parent="Clouds/CloudGroup3" unique_id=458468607]
+position = Vector2(491, 251)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite2" type="Sprite2D" parent="Clouds/CloudGroup3" unique_id=1219977534]
+position = Vector2(545, 108)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite3" type="Sprite2D" parent="Clouds/CloudGroup3" unique_id=1902824500]
+position = Vector2(-164, 212)
+texture = ExtResource("7")
+centered = false
+
+[node name="Sprite8" type="Sprite2D" parent="Clouds/CloudGroup3" unique_id=476628832]
+position = Vector2(287, 220)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7")
+centered = false
+
+[node name="CloudGroup7" type="Node2D" parent="Clouds" unique_id=82437048]
+position = Vector2(1558, 0)
+
+[node name="Sprite1" type="Sprite2D" parent="Clouds/CloudGroup7" unique_id=594228920]
+position = Vector2(1034, -60)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite7" type="Sprite2D" parent="Clouds/CloudGroup7" unique_id=407286641]
+position = Vector2(491, 251)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite2" type="Sprite2D" parent="Clouds/CloudGroup7" unique_id=1825637009]
+position = Vector2(545, 108)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite3" type="Sprite2D" parent="Clouds/CloudGroup7" unique_id=430103308]
+position = Vector2(-164, 212)
+texture = ExtResource("7")
+centered = false
+
+[node name="Sprite8" type="Sprite2D" parent="Clouds/CloudGroup7" unique_id=79181513]
+position = Vector2(287, 220)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7")
+centered = false
+
+[node name="CloudGroup4" type="Node2D" parent="Clouds" unique_id=188216323]
+position = Vector2(780, 0)
+
+[node name="Sprite1" type="Sprite2D" parent="Clouds/CloudGroup4" unique_id=1223690154]
+position = Vector2(-293, 64)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite2" type="Sprite2D" parent="Clouds/CloudGroup4" unique_id=1680279518]
+position = Vector2(-229, 199)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite5" type="Sprite2D" parent="Clouds/CloudGroup4" unique_id=51944730]
+position = Vector2(83, 115)
+texture = ExtResource("7")
+centered = false
+
+[node name="Sprite7" type="Sprite2D" parent="Clouds/CloudGroup4" unique_id=1665837120]
+position = Vector2(7, 177)
+texture = ExtResource("7")
+centered = false
+
+[node name="Sprite6" type="Sprite2D" parent="Clouds/CloudGroup4" unique_id=1055457143]
+position = Vector2(226, 14)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7")
+centered = false
+
+[node name="CloudGroup8" type="Node2D" parent="Clouds" unique_id=261466285]
+position = Vector2(3044, 0)
+
+[node name="Sprite1" type="Sprite2D" parent="Clouds/CloudGroup8" unique_id=345307877]
+position = Vector2(-293, 64)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite2" type="Sprite2D" parent="Clouds/CloudGroup8" unique_id=43184308]
+position = Vector2(-229, 199)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite5" type="Sprite2D" parent="Clouds/CloudGroup8" unique_id=1561329818]
+position = Vector2(83, 115)
+texture = ExtResource("7")
+centered = false
+
+[node name="Sprite7" type="Sprite2D" parent="Clouds/CloudGroup8" unique_id=1650198903]
+position = Vector2(7, 177)
+texture = ExtResource("7")
+centered = false
+
+[node name="Sprite6" type="Sprite2D" parent="Clouds/CloudGroup8" unique_id=149930104]
+position = Vector2(226, 14)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7")
+centered = false
+
+[node name="Clouddsssssssss" type="Sprite2D" parent="Clouds" unique_id=992646454]
+position = Vector2(-86.888824, 407.0624)
+scale = Vector2(0.3759838, 0.3759838)
+texture = ExtResource("10_7cysy")
+
+[node name="Clouddsssssssss2" type="Sprite2D" parent="Clouds" unique_id=99145261]
+position = Vector2(1361.1111, 383.0624)
+scale = Vector2(0.3759838, 0.3759838)
+texture = ExtResource("10_7cysy")
+
+[node name="BGMountains" type="ParallaxLayer" parent="." unique_id=1795101414]
+position = Vector2(0, 243)
+motion_scale = Vector2(0.2, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="BGMountains" unique_id=918289390]
+position = Vector2(567, 413.2)
+texture = ExtResource("1")
+region_enabled = true
+region_rect = Rect2(0, 0, 2048, 251.104)
+
+[node name="Sprite2D2" type="Sprite2D" parent="BGMountains" unique_id=1390078711]
+position = Vector2(1639, 421.2)
+texture = ExtResource("1")
+region_enabled = true
+region_rect = Rect2(0, 0, 2048, 251.104)
+
+[node name="Sprite2D3" type="Sprite2D" parent="BGMountains" unique_id=417289088]
+position = Vector2(2383, 429.2)
+texture = ExtResource("1")
+region_enabled = true
+region_rect = Rect2(0, 0, 2048, 251.104)
+
+[node name="Sprite2D4" type="Sprite2D" parent="BGMountains" unique_id=2029865550]
+position = Vector2(3167, 429.2)
+texture = ExtResource("1")
+region_enabled = true
+region_rect = Rect2(0, 0, 2048, 251.104)
+
+[node name="Sprite2D5" type="Sprite2D" parent="BGMountains" unique_id=1784806036]
+position = Vector2(4111, 429.2)
+texture = ExtResource("1")
+region_enabled = true
+region_rect = Rect2(0, 0, 2048, 251.104)
+
+[node name="FGMountains" type="ParallaxLayer" parent="." unique_id=1284915363]
+position = Vector2(0, 246)
+motion_scale = Vector2(0.4, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="FGMountains" unique_id=469390682]
+position = Vector2(437, 390.19998)
+scale = Vector2(1.2, 1.2)
+texture = SubResource("CompressedTexture2D_7c3eu")
+region_enabled = true
+region_rect = Rect2(0, 0, 2048, 251.104)
+
+[node name="Sprite2D2" type="Sprite2D" parent="FGMountains" unique_id=2086580354]
+position = Vector2(1437, 390.19998)
+scale = Vector2(1.2, 1.2)
+texture = SubResource("ImageTexture_7cysy")
+region_enabled = true
+region_rect = Rect2(0, 0, 2048, 251.104)
+
+[node name="Sprite2D3" type="Sprite2D" parent="FGMountains" unique_id=230174858]
+position = Vector2(2975, 398.2)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6")
+region_enabled = true
+region_rect = Rect2(0, 0, 2048, 251.104)
+
+[node name="Sprite2D4" type="Sprite2D" parent="FGMountains" unique_id=1898715479]
+position = Vector2(4303, 398.20004)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6")
+region_enabled = true
+region_rect = Rect2(0, 0, 2048, 251.104)
+
+[node name="EndHill" type="Sprite2D" parent="FGMountains" unique_id=2016416676]
+position = Vector2(-2.9911807, 165.62009)
+scale = Vector2(0.36053708, 0.36053708)
+texture = ExtResource("8_7c3eu")
+
+[node name="EndHill2" type="Sprite2D" parent="FGMountains" unique_id=32381792]
+position = Vector2(917.0087, 181.62009)
+scale = Vector2(0.36053708, 0.36053708)
+texture = ExtResource("8_7c3eu")
+
+[node name="FHills" type="Sprite2D" parent="FGMountains" unique_id=1104397631]
+position = Vector2(-122.55551, 189.375)
+scale = Vector2(0.3570602, 0.3570602)
+texture = ExtResource("7_ldf4p")
+
+[node name="FHills2" type="Sprite2D" parent="FGMountains" unique_id=1936227487]
+position = Vector2(1239.6666, 188.12)
+scale = Vector2(0.35920137, 0.35822222)
+texture = ExtResource("7_ldf4p")
+
+[node name="CloudGroup9" type="Node2D" parent="FGMountains" unique_id=1050352636]
+position = Vector2(-1228, 26)
+
+[node name="Sprite2" type="Sprite2D" parent="FGMountains/CloudGroup9" unique_id=418525867]
+position = Vector2(447, 4)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite3" type="Sprite2D" parent="FGMountains/CloudGroup9" unique_id=841809758]
+position = Vector2(726, 91)
+texture = ExtResource("3")
+centered = false
+
+[node name="Sprite4" type="Sprite2D" parent="FGMountains/CloudGroup9" unique_id=1522452633]
+position = Vector2(1133, 113)
+texture = ExtResource("3")
+centered = false
+
+[node name="Sprite5" type="Sprite2D" parent="FGMountains/CloudGroup9" unique_id=861241346]
+position = Vector2(1513, 165)
+texture = ExtResource("3")
+centered = false
+
+[node name="Sprite6" type="Sprite2D" parent="FGMountains/CloudGroup9" unique_id=1233369132]
+position = Vector2(396, 109)
+texture = ExtResource("7")
+centered = false
+
+[node name="CloudGroup10" type="Node2D" parent="FGMountains" unique_id=2135596193]
+position = Vector2(100, 26)
+
+[node name="Sprite2" type="Sprite2D" parent="FGMountains/CloudGroup10" unique_id=2096623753]
+position = Vector2(447, 4)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite3" type="Sprite2D" parent="FGMountains/CloudGroup10" unique_id=892104909]
+position = Vector2(726, 91)
+texture = ExtResource("3")
+centered = false
+
+[node name="Sprite4" type="Sprite2D" parent="FGMountains/CloudGroup10" unique_id=426413556]
+position = Vector2(1133, 113)
+texture = ExtResource("3")
+centered = false
+
+[node name="Sprite5" type="Sprite2D" parent="FGMountains/CloudGroup10" unique_id=863425243]
+position = Vector2(1513, 165)
+texture = ExtResource("3")
+centered = false
+
+[node name="Sprite6" type="Sprite2D" parent="FGMountains/CloudGroup10" unique_id=1322180789]
+position = Vector2(396, 109)
+texture = ExtResource("7")
+centered = false
+
+[node name="CloudGroup11" type="Node2D" parent="FGMountains" unique_id=747627854]
+position = Vector2(1230, -22)
+
+[node name="Sprite1" type="Sprite2D" parent="FGMountains/CloudGroup11" unique_id=1674725458]
+position = Vector2(1034, -60)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite7" type="Sprite2D" parent="FGMountains/CloudGroup11" unique_id=994219209]
+position = Vector2(491, 251)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite2" type="Sprite2D" parent="FGMountains/CloudGroup11" unique_id=1644659101]
+position = Vector2(545, 108)
+texture = ExtResource("5")
+centered = false
+
+[node name="Sprite3" type="Sprite2D" parent="FGMountains/CloudGroup11" unique_id=2018533192]
+position = Vector2(-164, 212)
+texture = ExtResource("7")
+centered = false
+
+[node name="Sprite8" type="Sprite2D" parent="FGMountains/CloudGroup11" unique_id=1541063657]
+position = Vector2(287, 220)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7")
+centered = false
