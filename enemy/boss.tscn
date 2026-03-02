@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bgymjydbjsjmu"]
+
+[ext_resource type="PackedScene" uid="uid://6mtip3ruyn" path="res://enemy/enemy.tscn" id="1"]
+[ext_resource type="Script" uid="uid://f5bbfkagqqlj" path="res://enemy/boss.gd" id="2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cd6w7"]
+size = Vector2(34.81482, 92.59258)
+
+[node name="Boss" unique_id=74299289 instance=ExtResource("1")]
+scale = Vector2(1.35, 1.35)
+script = ExtResource("2")
+jump_interval = 2.0
+jump_impulse = -420.0
+walk_speed = 40.0
+max_health = 12
+contact_damage = 2
+
+[node name="CollisionShape2D" parent="." index="4" unique_id=26390868]
+position = Vector2(-6.296296, -2.5925953)
+shape = SubResource("RectangleShape2D_cd6w7")
