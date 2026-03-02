@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://clgmygv16nurq" path="res://Assets/JURASSIC/SKY.png" id="2_j4wdc"]
 [ext_resource type="Texture2D" uid="uid://twy8cs78gqbv" path="res://level/background/cloud_3.webp" id="3"]
 [ext_resource type="Texture2D" uid="uid://dud80ds6rq6vr" path="res://level/background/cloud_2.webp" id="5"]
-[ext_resource type="Texture2D" uid="uid://eeitd2vus25o" path="res://level/background/distant_platforms_1.webp" id="6"]
 [ext_resource type="Texture2D" uid="uid://t8otskslwopy" path="res://level/background/cloud_1.webp" id="7"]
 [ext_resource type="Texture2D" uid="uid://ne7j70up25r3" path="res://Assets/JURASSIC/F HILLS.png" id="7_ldf4p"]
 [ext_resource type="Texture2D" uid="uid://cq04yn6br3bd2" path="res://Assets/JURASSIC/END HILL.png" id="8_7c3eu"]
@@ -282,13 +281,13 @@ region_enabled = true
 region_rect = Rect2(0, 0, 2048, 251.104)
 
 [node name="Sprite2D3" type="Sprite2D" parent="BGMountains" unique_id=417289088]
-position = Vector2(2383, 429.2)
+position = Vector2(2383, 613.2)
 texture = ExtResource("1")
 region_enabled = true
 region_rect = Rect2(0, 0, 2048, 251.104)
 
 [node name="Sprite2D4" type="Sprite2D" parent="BGMountains" unique_id=2029865550]
-position = Vector2(3167, 429.2)
+position = Vector2(3167, 605.2)
 texture = ExtResource("1")
 region_enabled = true
 region_rect = Rect2(0, 0, 2048, 251.104)
@@ -317,38 +316,24 @@ texture = SubResource("ImageTexture_7cysy")
 region_enabled = true
 region_rect = Rect2(0, 0, 2048, 251.104)
 
-[node name="Sprite2D3" type="Sprite2D" parent="FGMountains" unique_id=230174858]
-position = Vector2(2975, 398.2)
-scale = Vector2(1.2, 1.2)
-texture = ExtResource("6")
-region_enabled = true
-region_rect = Rect2(0, 0, 2048, 251.104)
-
-[node name="Sprite2D4" type="Sprite2D" parent="FGMountains" unique_id=1898715479]
-position = Vector2(4303, 398.20004)
-scale = Vector2(1.2, 1.2)
-texture = ExtResource("6")
-region_enabled = true
-region_rect = Rect2(0, 0, 2048, 251.104)
-
 [node name="EndHill" type="Sprite2D" parent="FGMountains" unique_id=2016416676]
-position = Vector2(-2.9911807, 165.62009)
-scale = Vector2(0.36053708, 0.36053708)
+position = Vector2(-56.32437, 355.62)
+scale = Vector2(0.3883148, 0.38831478)
 texture = ExtResource("8_7c3eu")
 
 [node name="EndHill2" type="Sprite2D" parent="FGMountains" unique_id=32381792]
-position = Vector2(917.0087, 181.62009)
-scale = Vector2(0.36053708, 0.36053708)
+position = Vector2(684.1199, 312.62006)
+scale = Vector2(0.48183334, 0.48183334)
 texture = ExtResource("8_7c3eu")
 
 [node name="FHills" type="Sprite2D" parent="FGMountains" unique_id=1104397631]
-position = Vector2(-122.55551, 189.375)
-scale = Vector2(0.3570602, 0.3570602)
+position = Vector2(79.22231, 320.87503)
+scale = Vector2(0.47881943, 0.4788195)
 texture = ExtResource("7_ldf4p")
 
 [node name="FHills2" type="Sprite2D" parent="FGMountains" unique_id=1936227487]
-position = Vector2(1239.6666, 188.12)
-scale = Vector2(0.35920137, 0.35822222)
+position = Vector2(1902.1628, 309.62)
+scale = Vector2(0.4766512, 0.47535187)
 texture = ExtResource("7_ldf4p")
 
 [node name="CloudGroup9" type="Node2D" parent="FGMountains" unique_id=1050352636]
