@@ -26,14 +26,14 @@ texture = ExtResource("6_0qos2")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_15pjq"]
 texture = ExtResource("7_7rsbv")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y3er5"]
-texture = ExtResource("8_k5ke0")
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vs52p"]
 texture = ExtResource("9_acpjp")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ev8t5"]
 texture = ExtResource("10_y40mr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y3er5"]
+texture = ExtResource("8_k5ke0")
 
 [node name="MesozoicSelectionScreen" type="Control" unique_id=2098257394]
 layout_mode = 3
@@ -92,7 +92,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 theme_override_styles/panel = SubResource("StyleBoxTexture_ten3b")
 
-[node name="OrdovicianPlayButton" type="TextureButton" parent="TopContainer/Jurassic" unique_id=1765121027]
+[node name="JurassicPlayButton" type="TextureButton" parent="TopContainer/Jurassic" unique_id=1765121027]
 layout_mode = 0
 offset_left = 85.0
 offset_top = 802.0
@@ -109,21 +109,6 @@ offset_bottom = 91.00003
 scale = Vector2(1.2, 1.2)
 theme_override_styles/panel = SubResource("StyleBoxTexture_15pjq")
 
-[node name="Barrier" type="Panel" parent="TopContainer/Jurassic" unique_id=733502596]
-layout_mode = 0
-offset_left = -1.0
-offset_right = 505.0
-offset_bottom = 985.0
-
-[node name="ComingSoon" type="Panel" parent="TopContainer/Jurassic" unique_id=1633669370]
-layout_mode = 0
-offset_left = 56.0
-offset_top = 328.0
-offset_right = 191.0
-offset_bottom = 382.0
-scale = Vector2(3, 3)
-theme_override_styles/panel = SubResource("StyleBoxTexture_y3er5")
-
 [node name="Cretaceous" type="Panel" parent="TopContainer" unique_id=1272161271]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -139,7 +124,7 @@ offset_bottom = 91.00003
 scale = Vector2(1.2, 1.2)
 theme_override_styles/panel = SubResource("StyleBoxTexture_ev8t5")
 
-[node name="SilurianPlayButton" type="TextureButton" parent="TopContainer/Cretaceous" unique_id=1195830267]
+[node name="CretaceousPlayButton" type="TextureButton" parent="TopContainer/Cretaceous" unique_id=1195830267]
 layout_mode = 0
 offset_left = 85.0
 offset_top = 802.0
@@ -161,5 +146,3 @@ offset_right = 191.0
 offset_bottom = 382.0
 scale = Vector2(3, 3)
 theme_override_styles/panel = SubResource("StyleBoxTexture_y3er5")
-
-[connection signal="pressed" from="TopContainer/Triassic/TriassicPlayButton" to="." method="OnTriassicPlayButtonPressed"]

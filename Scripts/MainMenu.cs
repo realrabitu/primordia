@@ -37,7 +37,7 @@ public partial class MainMenu : Control
 
 	void OnStartPressed()
 	{
-		GetTree().ChangeSceneToFile("res://Scenes/EonSelectionScreen.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/Menu Scenes/EonSelectionScreen.tscn");
 	}
 	void OnQuitPressed()
 	{
