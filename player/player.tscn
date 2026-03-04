@@ -266,6 +266,7 @@ one_shot = true
 
 [node name="Camera" type="Camera2D" parent="." unique_id=698681711]
 position = Vector2(350, 0)
+zoom = Vector2(1.8, 1.8)
 limit_left = -600
 limit_top = -10000
 limit_right = 100950

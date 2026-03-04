@@ -4,14 +4,11 @@
 [ext_resource type="AudioStream" uid="uid://d33jdhhpu5q01" path="res://Assets/Sounds/MAIN_SOUNDTRACK.mp3" id="2_5egv6"]
 [ext_resource type="Texture2D" uid="uid://dtl0nin05c1b7" path="res://Assets/Buttons/BACK BUTTON.png" id="3_8qtwp"]
 [ext_resource type="Texture2D" uid="uid://cbja7of8vl8fy" path="res://Assets/Buttons/SETTINGS.png" id="3_nlkkf"]
-[ext_resource type="Texture2D" uid="uid://cqax6atup4hyy" path="res://Assets/Menu Images/Main Menu/PRIMORDIA_TEXT.png" id="3_t1dhk"]
 [ext_resource type="Texture2D" uid="uid://ds1qbrn4ww1yv" path="res://Assets/Menu Images/Map (Complete).png" id="3_ysb5d"]
-[ext_resource type="Texture2D" uid="uid://i1q3abeaw47p" path="res://Assets/Buttons/HOW TO PLAY BUTTON.png" id="4_glbon"]
 [ext_resource type="Texture2D" uid="uid://cs2itj3k2lnuk" path="res://Assets/Buttons/question_mark.png" id="4_qe12f"]
+[ext_resource type="Texture2D" uid="uid://d2vifv7lrtr3u" path="res://Assets/Buttons/Main Menu/logo.png" id="4_ysb5d"]
 [ext_resource type="Texture2D" uid="uid://cwihylca643p3" path="res://Assets/Texts/Main Menu/SETTINGS_TEXT.png" id="5_0k4wn"]
 [ext_resource type="Texture2D" uid="uid://byorr1ifx0ohw" path="res://Assets/Texts/Main Menu/CREDITS_TEXT.png" id="5_j5v2v"]
-[ext_resource type="Texture2D" uid="uid://cfp6w0em3a4kq" path="res://Assets/Buttons/QUIT BUTTON.png" id="5_nlkkf"]
-[ext_resource type="Texture2D" uid="uid://c0qatoyqlthfw" path="res://Assets/Buttons/START BUTTON.png" id="6_8qtwp"]
 [ext_resource type="Texture2D" uid="uid://wr3af1dyevxh" path="res://Assets/Texts/Main Menu/WHAT_IS_PRIMORDIA.png" id="6_j5v2v"]
 [ext_resource type="Texture2D" uid="uid://b6qb1jpjc8xgm" path="res://Assets/Texts/Main Menu/INSTRUCTIONS.png" id="8_8dnnj"]
 [ext_resource type="Texture2D" uid="uid://dg8d1whq3v5xk" path="res://Assets/Menu Images/Main Menu/VISUAL_INSTRUCTIONS.png" id="9_m3bi6"]
@@ -19,13 +16,16 @@
 [ext_resource type="Texture2D" uid="uid://be1uew3h04e4e" path="res://Assets/MUSIC_TEXT.png" id="11_riqfo"]
 [ext_resource type="Texture2D" uid="uid://cep70j362opt0" path="res://Assets/Texts/Main Menu/sounds_text.png" id="12_yxkem"]
 [ext_resource type="Texture2D" uid="uid://d06klxcqwn6i" path="res://Assets/settings_text.png" id="13_ysb5d"]
+[ext_resource type="Texture2D" uid="uid://c8amrljtnyog1" path="res://Assets/Buttons/Main Menu/how_to_play-trans-removebg-preview.png" id="17_ysb5d"]
+[ext_resource type="Texture2D" uid="uid://bxeishhe52m3i" path="res://Assets/Buttons/Main Menu/quit-trans.png" id="18_ysb5d"]
+[ext_resource type="Texture2D" uid="uid://dv3wjc74wbrbw" path="res://Assets/Buttons/Main Menu/start-trans.png" id="19_ysb5d"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xjgun"]
 texture = ExtResource("3_ysb5d")
 modulate_color = Color(0.7232479, 0.723248, 0.72324795, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0o4t1"]
-texture = ExtResource("3_t1dhk")
+texture = ExtResource("4_ysb5d")
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_8dnnj"]
 
@@ -83,6 +83,7 @@ bus = &"Music"
 parameters/looping = true
 
 [node name="Background" type="Panel" parent="." unique_id=11439282]
+modulate = Color(0.9131059, 0.91310585, 0.91310585, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,11 +97,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -614.0
-offset_top = 116.0
-offset_right = 596.0
-offset_bottom = 413.0
+offset_left = -375.99994
+offset_top = 79.999985
+offset_right = 1428.5295
+offset_bottom = 1307.4999
 grow_horizontal = 2
+scale = Vector2(0.4, 0.4)
 theme_override_styles/panel = SubResource("StyleBoxTexture_0o4t1")
 
 [node name="CreditsPanel" type="Panel" parent="." unique_id=922152749]
@@ -337,48 +339,42 @@ texture_normal = ExtResource("4_qe12f")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="MainButtons" type="VBoxContainer" parent="." unique_id=1672153726]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -175.0
-offset_right = 175.0
-offset_bottom = 423.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 30
-
-[node name="StartButton" type="TextureButton" parent="MainButtons" unique_id=1149372636]
-custom_minimum_size = Vector2(200, 130)
-layout_mode = 2
+[node name="HowToPlayButton" type="TextureButton" parent="." unique_id=1583352128]
+modulate = Color(0.7004793, 0.93590355, 0.57259005, 1)
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 776.0
+offset_top = 774.0
+offset_right = 1126.0
+offset_bottom = 874.0
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
 action_mode = 0
-texture_normal = ExtResource("6_8qtwp")
+texture_normal = ExtResource("17_ysb5d")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="HowToPlayButton" type="TextureButton" parent="MainButtons" unique_id=1583352128]
+[node name="QuitButton" type="TextureButton" parent="." unique_id=1570613654]
 custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_vertical = 0
+layout_mode = 0
+offset_left = 848.0
+offset_top = 880.0
+offset_right = 1055.69
+offset_bottom = 1009.0
 size_flags_stretch_ratio = 0.0
 action_mode = 0
-texture_normal = ExtResource("4_glbon")
+texture_normal = ExtResource("18_ysb5d")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="QuitButton" type="TextureButton" parent="MainButtons" unique_id=1570613654]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_stretch_ratio = 0.0
-action_mode = 0
-texture_normal = ExtResource("5_nlkkf")
-ignore_texture_size = true
-stretch_mode = 0
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1750501415]
+modulate = Color(0.71145356, 0.76252097, 0.7759439, 1)
+layout_mode = 0
+offset_left = 814.0
+offset_top = 619.0
+offset_right = 1078.0
+offset_bottom = 763.0
+texture_normal = ExtResource("19_ysb5d")
 
 [connection signal="pressed" from="CreditsPanel/CreditsBackButton" to="." method="OnCreditsBackPressed"]
 [connection signal="pressed" from="HowToPlayPanel/HowToPlayBackButton" to="." method="OnHowToPlayBackButtonPressed"]
@@ -387,6 +383,6 @@ stretch_mode = 0
 [connection signal="value_changed" from="OptionsPanel/AudioControl2" to="." method="OnAudioControlValueChanged"]
 [connection signal="pressed" from="TopButtons/SettingsButton" to="." method="OnSettingsPressed"]
 [connection signal="pressed" from="TopButtons/CreditsButton" to="." method="OnCreditsPressed"]
-[connection signal="pressed" from="MainButtons/StartButton" to="." method="OnStartPressed"]
-[connection signal="pressed" from="MainButtons/HowToPlayButton" to="." method="OnHowToPlayPressed"]
-[connection signal="pressed" from="MainButtons/QuitButton" to="." method="OnQuitPressed"]
+[connection signal="pressed" from="HowToPlayButton" to="." method="OnHowToPlayPressed"]
+[connection signal="pressed" from="QuitButton" to="." method="OnQuitPressed"]
+[connection signal="pressed" from="TextureButton" to="." method="OnStartPressed"]

@@ -27,18 +27,18 @@ public partial class EraSelectionScreen : Control
 
 	private void OnHomeButtonPressed()
 	{
-		GetTree().ChangeSceneToFile("res://Scenes/MainMenu.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/Menu Scenes/MainMenu.tscn");
 	}
 	private void OnPaleozoicPlayPressed()
 	{
-		GetTree().ChangeSceneToFile("res://Scenes/PaleozoicSelectionScreen.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/Menu Scenes/PaleozoicSelectionScreen.tscn");
 	}
 	private void OnMesozoicPlayPressed()
 	{
-		GetTree().ChangeSceneToFile("res://Scenes/MesozoicSelectionScreen.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/Menu Scenes/MesozoicSelectionScreen.tscn");
 	}
 	private void OnCenozoicPlayPressed()
 	{
-		GetTree().ChangeSceneToFile("res://Scenes/CenozoicSelectionScreen.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/Menu Scenes/CenozoicSelectionScreen.tscn");
 	}
 }

@@ -15,7 +15,7 @@ const JUMP_VELOCITY = -725.0
 const TERMINAL_VELOCITY = 700
 
 ## The player listens for input actions appended with this suffix.[br]
-## Used to separate controls for multiple players in splitscreen.
+## Keep empty for the default single-player input map.
 @export var action_suffix := ""
 @export_range(1, 20, 1) var max_health := 6
 @export_range(1, 20, 1) var max_hunger := 8

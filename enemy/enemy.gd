@@ -27,6 +27,8 @@ enum State {
 @export_range(0.0, 1500.0, 1.0) var attack_knockback_x := 320.0
 @export_range(-1500.0, 0.0, 1.0) var attack_knockback_y := -260.0
 @export_range(0, 1000, 1) var xp_reward := 10
+@export var is_aggressive := true
+@export var is_passive := false
 
 const PLAYER_GROUP: StringName = &"players"
 
@@ -141,11 +143,13 @@ func is_alive() -> bool:
 
 
 func get_contact_damage() -> int:
+	if is_passive:
+		return 0
 	return contact_damage
 
 
 func can_attack() -> bool:
-	return _state != State.DEAD and _attack_cooldown_left <= 0.0
+	return _state != State.DEAD and _attack_cooldown_left <= 0.0 and is_aggressive and not is_passive and contact_damage > 0
 
 
 func try_attack_player(player: Player, impulse := Vector2.ZERO) -> bool:
@@ -219,6 +223,12 @@ func _on_death_timeout() -> void:
 
 
 func _update_target(delta: float) -> void:
+	if is_passive or not is_aggressive:
+		_target = null
+		_forget_time_left = 0.0
+		_state = State.WALKING
+		return
+
 	var contact_target := _find_contact_player()
 	if contact_target != null:
 		_target = contact_target
