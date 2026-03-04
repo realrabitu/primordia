@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgymjydbjsjmu"]
 
-[ext_resource type="PackedScene" uid="uid://6mtip3ruyn" path="res://enemy/enemy.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://6mtip3ruyn" path="res://enemy/allosaurus.tscn" id="1"]
 [ext_resource type="Script" uid="uid://f5bbfkagqqlj" path="res://enemy/boss.gd" id="2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cd6w7"]

@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://ddmq5iwm2qd1j" path="res://level/props/flower_1.webp" id="13_xdahv"]
 [ext_resource type="Texture2D" uid="uid://crfy1osk1c1gc" path="res://level/props/ground_flowers_1.webp" id="14_krw8e"]
 [ext_resource type="PackedScene" path="res://level/forage_item.tscn" id="15_ifo17"]
-[ext_resource type="PackedScene" uid="uid://6mtip3ruyn" path="res://enemy/enemy.tscn" id="16_q4dhf"]
+[ext_resource type="PackedScene" uid="uid://6mtip3ruyn" path="res://enemy/allosaurus.tscn" id="16_q4dhf"]
 [ext_resource type="PackedScene" uid="uid://bgymjydbjsjmu" path="res://enemy/boss.tscn" id="17_u1dsc"]
 [ext_resource type="Texture2D" uid="uid://dea1a76o6b0ix" path="res://level/props/tree_2.webp" id="18_8yb03"]
 [ext_resource type="PackedScene" uid="uid://c3dh7xb6ef76q" path="res://level/coin.tscn" id="19_1vdk1"]
