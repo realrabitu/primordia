@@ -1,38 +1,10 @@
 [gd_scene format=3 uid="uid://c3tbco8fmfdo7"]
 
 [ext_resource type="Script" uid="uid://rdvvhn0hgd8w" path="res://enemy/enemy.gd" id="1_wlnif"]
-[ext_resource type="Texture2D" uid="uid://4uosbqpwriov" path="res://player/allosaurus_attack/frame0000_transparent.png" id="2_le5os"]
-[ext_resource type="Texture2D" uid="uid://dxbh5lxsj7yex" path="res://player/allosaurus_attack/frame0001_transparent.png" id="3_hxwly"]
-[ext_resource type="Texture2D" uid="uid://d2bd1pjcmgknh" path="res://player/allosaurus_attack/frame0002_trans.png" id="4_0xn35"]
-[ext_resource type="Texture2D" uid="uid://ccfjc4tx7ot3h" path="res://player/allosaurus_attack/frame0003_trans.png" id="5_rufne"]
-[ext_resource type="Texture2D" uid="uid://dg2xv8fosea86" path="res://player/allosaurus_attack/frame0004_trans.png" id="6_a82s3"]
-[ext_resource type="Texture2D" uid="uid://b7fq103vforrg" path="res://player/allosaurus_attack/frame0005_trans.png" id="7_q2a6d"]
-[ext_resource type="Texture2D" uid="uid://bu4k2xkxbiblk" path="res://player/allosaurus_attack/frame0006_trans.png" id="8_na4tb"]
-[ext_resource type="Texture2D" uid="uid://xd7w4l0byyyu" path="res://player/allosaurus_attack/frame0007_trans.png" id="9_cuwas"]
-[ext_resource type="Texture2D" uid="uid://ch3x0el4rcwng" path="res://player/allosaurus_attack/frame0008_trans.png" id="10_70dis"]
-[ext_resource type="Texture2D" uid="uid://b6sogks0fnqfm" path="res://player/allosaurus_attack/frame0009_trans.png" id="11_6dfmh"]
-[ext_resource type="Texture2D" uid="uid://ditgy6y2ete4y" path="res://player/allosaurus_attack/frame0010_trans.png" id="12_d8vdm"]
-[ext_resource type="Texture2D" uid="uid://b6uv2cm8ysgfv" path="res://player/allosaurus_attack/frame0011_trans.png" id="13_g51ti"]
-[ext_resource type="Texture2D" uid="uid://6nan3c5xlnpb" path="res://player/allosaurus_attack/frame0012_trans.png" id="14_5t0wf"]
-[ext_resource type="Texture2D" uid="uid://cwk1o6qw0xrb2" path="res://player/allosaurus_attack/frame0013_trans.png" id="15_2n5xg"]
-[ext_resource type="Texture2D" uid="uid://dr5jsplqy6k75" path="res://player/allosaurus_attack/frame0014_trans.png" id="16_daiit"]
-[ext_resource type="Texture2D" uid="uid://72dp0x86imer" path="res://player/allosaurus_death/frame0000.png" id="17_40sko"]
-[ext_resource type="Texture2D" uid="uid://crd53eophrs8l" path="res://player/allosaurus_death/frame0001.png" id="18_7tbro"]
-[ext_resource type="Texture2D" uid="uid://dmf55f23fsc2w" path="res://player/allosaurus_death/frame0002.png" id="19_5ny1w"]
-[ext_resource type="Texture2D" uid="uid://da5ubqjh6gun4" path="res://player/allosaurus_death/frame0003.png" id="20_lqn6f"]
-[ext_resource type="Texture2D" uid="uid://bgrufsw87yhon" path="res://player/allosaurus_death/frame0004.png" id="21_jswu8"]
-[ext_resource type="Texture2D" uid="uid://be2mobwdck0t7" path="res://player/allosaurus_death/frame0005.png" id="22_1shi6"]
-[ext_resource type="Texture2D" uid="uid://d1kmb0muvwyef" path="res://enemy/Camarasaurus/camarasaurus_idle0.png" id="23_wlnif"]
-[ext_resource type="Texture2D" uid="uid://ji4qax3joejw" path="res://enemy/Camarasaurus/camarasaurus_idle1.png" id="24_le5os"]
-[ext_resource type="Texture2D" uid="uid://b4trep2myk5qo" path="res://enemy/Camarasaurus/camarasaurus_idle2.png" id="25_hxwly"]
-[ext_resource type="Texture2D" uid="uid://dn6mvku8pqlsw" path="res://enemy/Camarasaurus/camarasaurus_idle3.png" id="26_0xn35"]
-[ext_resource type="Texture2D" uid="uid://yih8f122cy05" path="res://player/allosaurus_walk/frame0000.png" id="27_l7m6h"]
-[ext_resource type="Texture2D" uid="uid://colrbegijb4pt" path="res://player/allosaurus_walk/frame0001.png" id="28_r2pvf"]
-[ext_resource type="Texture2D" uid="uid://bcdfuka546dbw" path="res://player/allosaurus_walk/frame0002.png" id="29_3vyju"]
-[ext_resource type="Texture2D" uid="uid://dos5dv1jph8f4" path="res://player/allosaurus_walk/frame0003.png" id="30_gjcs1"]
-[ext_resource type="Texture2D" uid="uid://bb3v5p4m4coue" path="res://player/allosaurus_walk/frame0004.png" id="31_dsnhd"]
-[ext_resource type="Texture2D" uid="uid://8dqh45nklwgv" path="res://player/allosaurus_walk/frame0005.png" id="32_2ghey"]
-[ext_resource type="Texture2D" uid="uid://bkm84h3pqr5xt" path="res://player/allosaurus_walk/frame0006.png" id="33_s7mdq"]
+[ext_resource type="Texture2D" uid="uid://qe8sj77xweqo" path="res://enemy/Dilophosaurus/idle dilophosaurus 1(1).png" id="2_015um"]
+[ext_resource type="Texture2D" uid="uid://bnlfoyx7dt2up" path="res://enemy/Dilophosaurus/idle dilophosaurus 1.png" id="3_ocd14"]
+[ext_resource type="Texture2D" uid="uid://chb0qif82vjrh" path="res://enemy/Dilophosaurus/idle dilophosaurus 3.png" id="4_d0i5c"]
+[ext_resource type="Texture2D" uid="uid://dhibwwwm808we" path="res://enemy/Dilophosaurus/idle dilophosaurus 4.png" id="5_e1rqj"]
 [ext_resource type="Texture2D" uid="uid://coj0d33vyyqx1" path="res://player/bullet.webp" id="34_wnkjy"]
 [ext_resource type="AudioStream" uid="uid://dm7wsawmylc7b" path="res://enemy/hit.wav" id="35_jhnul"]
 [ext_resource type="AudioStream" uid="uid://duwm7i44o75o2" path="res://enemy/explode.wav" id="36_4yqf1"]
@@ -42,119 +14,20 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_le5os")
+"texture": ExtResource("2_015um")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_hxwly")
+"texture": ExtResource("3_ocd14")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_0xn35")
+"texture": ExtResource("4_d0i5c")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_rufne")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_a82s3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_q2a6d")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_na4tb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_cuwas")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_70dis")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_6dfmh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_d8vdm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_g51ti")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_5t0wf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_2n5xg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_daiit")
-}],
-"loop": true,
-"name": &"attack",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("17_40sko")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_7tbro")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_5ny1w")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_lqn6f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_jswu8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_1shi6")
-}],
-"loop": false,
-"name": &"death",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("23_wlnif")
-}, {
-"duration": 1.0,
-"texture": ExtResource("24_le5os")
-}, {
-"duration": 1.0,
-"texture": ExtResource("25_hxwly")
-}, {
-"duration": 1.0,
-"texture": ExtResource("26_0xn35")
+"texture": ExtResource("5_e1rqj")
 }],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("27_l7m6h")
-}, {
-"duration": 1.0,
-"texture": ExtResource("28_r2pvf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("29_3vyju")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_gjcs1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("31_dsnhd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("32_2ghey")
-}, {
-"duration": 1.0,
-"texture": ExtResource("33_s7mdq")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 6.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="5"]
@@ -178,10 +51,12 @@ is_aggressive = false
 is_passive = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
-position = Vector2(40.67091, 21.196077)
+position = Vector2(38, 23.000002)
 scale = Vector2(0.48125613, 0.48125613)
 sprite_frames = SubResource("SpriteFrames_e3etd")
-animation = &"death"
+animation = &"idle"
+frame = 2
+frame_progress = 0.15187539
 
 [node name="PlatformDetector" type="RayCast2D" parent="." unique_id=2026131695]
 position = Vector2(0, 6)

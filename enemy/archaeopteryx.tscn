@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://bdmtl5oxqoyk2"]
+
+[ext_resource type="Script" uid="uid://rdvvhn0hgd8w" path="res://enemy/enemy.gd" id="1_ygo8m"]
+[ext_resource type="Texture2D" uid="uid://df15mpsa4oex8" path="res://enemy/Archaeopteryx/archaeopteryx (2).png" id="2_ygo8m"]
+[ext_resource type="Texture2D" uid="uid://du18s1qardbpw" path="res://enemy/Archaeopteryx/archaeopteryx (3).png" id="3_b0o8h"]
+[ext_resource type="Texture2D" uid="uid://cvgaa5oj61x20" path="res://enemy/Archaeopteryx/archaeopteryx (4).png" id="4_8rqta"]
+[ext_resource type="Texture2D" uid="uid://6er4yfoty2po" path="res://enemy/Archaeopteryx/archaeopteryx.png" id="5_lllhc"]
+[ext_resource type="Texture2D" uid="uid://bhebyju4h8r23" path="res://enemy/Dilophosaurus/5.png" id="6_qfj22"]
+[ext_resource type="Texture2D" uid="uid://b1kqmkxqoerra" path="res://enemy/Dilophosaurus/6.png" id="7_er76i"]
+[ext_resource type="Texture2D" uid="uid://bloekbfmknk6i" path="res://enemy/Dilophosaurus/7.png" id="8_t5ono"]
+[ext_resource type="Texture2D" uid="uid://de1q6bbesj2c5" path="res://enemy/Dilophosaurus/8.png" id="9_eh8ig"]
+[ext_resource type="Texture2D" uid="uid://dyxxpsfu6y6em" path="res://enemy/Dilophosaurus/9.png" id="10_1pwp8"]
+[ext_resource type="Texture2D" uid="uid://bxx2531flfpes" path="res://enemy/Dilophosaurus/10.png" id="11_bj7bb"]
+[ext_resource type="Texture2D" uid="uid://6t4m53ewh3rj" path="res://enemy/Dilophosaurus/11.png" id="12_qyrv7"]
+[ext_resource type="Texture2D" uid="uid://dx4vstdc4p0n7" path="res://enemy/Dilophosaurus/12.png" id="13_8dib4"]
+[ext_resource type="Texture2D" uid="uid://coj0d33vyyqx1" path="res://player/bullet.webp" id="14_82ydh"]
+[ext_resource type="AudioStream" uid="uid://dm7wsawmylc7b" path="res://enemy/hit.wav" id="15_m5s1a"]
+[ext_resource type="AudioStream" uid="uid://duwm7i44o75o2" path="res://enemy/explode.wav" id="16_px8fs"]
+[ext_resource type="PackedScene" uid="uid://d0tnu2xmlen7g" path="res://player/healthbar.tscn" id="17_br48w"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3etd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ygo8m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_b0o8h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8rqta")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lllhc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_qfj22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_er76i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_t5ono")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_eh8ig")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_1pwp8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bj7bb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_qyrv7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_8dib4")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="5"]
+radius = 48.0
+height = 190.0
+
+[sub_resource type="CanvasItemMaterial" id="6"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="7"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=678927329]
+collision_layer = 2
+collision_mask = 24
+script = ExtResource("1_ygo8m")
+jump_velocity = -700.0
+attack_cooldown = 1.8
+is_aggressive = false
+is_passive = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
+position = Vector2(33, -22)
+scale = Vector2(0.14361869, 0.14361869)
+sprite_frames = SubResource("SpriteFrames_e3etd")
+animation = &"idle"
+frame = 3
+frame_progress = 0.39830422
+
+[node name="PlatformDetector" type="RayCast2D" parent="." unique_id=2026131695]
+position = Vector2(0, 6)
+target_position = Vector2(0, 8)
+collision_mask = 8
+
+[node name="FloorDetectorLeft" type="RayCast2D" parent="." unique_id=1398094348]
+position = Vector2(-15, -4)
+target_position = Vector2(0, 35)
+collision_mask = 24
+
+[node name="FloorDetectorRight" type="RayCast2D" parent="." unique_id=1541295602]
+position = Vector2(15.5, -3)
+target_position = Vector2(0, 35)
+collision_mask = 24
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26390868]
+position = Vector2(38, 22)
+rotation = -1.5708
+shape = SubResource("5")
+
+[node name="Explosion" type="CPUParticles2D" parent="." unique_id=1964325938]
+self_modulate = Color(1, 1, 1, 0.12)
+material = SubResource("6")
+emitting = false
+amount = 32
+texture = ExtResource("14_82ydh")
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.2
+explosiveness = 0.7
+draw_order = 215832976
+emission_shape = 1
+emission_sphere_radius = 16.0
+spread = 180.0
+gravity = Vector2(0, -250)
+color_ramp = SubResource("7")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=288222785]
+stream = ExtResource("15_m5s1a")
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="." unique_id=988196303]
+stream = ExtResource("16_px8fs")
+
+[node name="Healthbar" parent="." unique_id=1930226170 instance=ExtResource("17_br48w")]
+offset_left = -30.0
+offset_top = -42.0
+offset_right = 30.0
+offset_bottom = -38.0
