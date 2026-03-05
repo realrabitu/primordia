@@ -29,6 +29,12 @@ enum State {
 @export_range(0, 1000, 1) var xp_reward := 10
 @export var is_aggressive := true
 @export var is_passive := false
+<<<<<<< HEAD
+=======
+@export var dinosaur_id := ""
+@export var dinosaur_name := ""
+@export_multiline var dinosaur_description := ""
+>>>>>>> 426b401c126f470166b3a6ae2ff5cff26cb45cf2
 
 const PLAYER_GROUP: StringName = &"players"
 
@@ -150,6 +156,61 @@ func get_contact_damage() -> int:
 
 func can_attack() -> bool:
 	return _state != State.DEAD and _attack_cooldown_left <= 0.0 and is_aggressive and not is_passive and contact_damage > 0
+<<<<<<< HEAD
+=======
+
+
+func get_dinosaur_id() -> String:
+	if not dinosaur_id.is_empty():
+		return dinosaur_id
+	if not scene_file_path.is_empty():
+		return scene_file_path.get_file().get_basename().to_lower()
+	var inferred_id := _infer_dinosaur_id_from_sprite()
+	if not inferred_id.is_empty():
+		return inferred_id
+	return name.to_lower().strip_edges()
+
+
+func get_dinosaur_name() -> String:
+	if not dinosaur_name.is_empty():
+		return dinosaur_name
+	var fallback_id := get_dinosaur_id()
+	if fallback_id.is_empty():
+		return "Unknown Dinosaur"
+	var words := fallback_id.replace("_", " ").replace("-", " ").split(" ", false)
+	for index in words.size():
+		words[index] = words[index].capitalize()
+	return " ".join(words)
+
+
+func get_dinosaur_description() -> String:
+	if not dinosaur_description.is_empty():
+		return dinosaur_description
+	return "%s encountered." % get_dinosaur_name()
+
+
+func _infer_dinosaur_id_from_sprite() -> String:
+	if sprite == null or sprite.sprite_frames == null:
+		return ""
+	var animation_names := sprite.sprite_frames.get_animation_names()
+	for animation_name in animation_names:
+		var frame_count := sprite.sprite_frames.get_frame_count(animation_name)
+		if frame_count <= 0:
+			continue
+		var texture := sprite.sprite_frames.get_frame_texture(animation_name, 0)
+		if texture == null:
+			continue
+		var texture_path := texture.resource_path
+		if texture_path.is_empty():
+			continue
+		var folder_name := texture_path.get_base_dir().get_file().to_lower()
+		if folder_name.is_empty():
+			continue
+		if folder_name.contains("_"):
+			folder_name = folder_name.split("_", false)[0]
+		return folder_name
+	return ""
+>>>>>>> 426b401c126f470166b3a6ae2ff5cff26cb45cf2
 
 
 func try_attack_player(player: Player, impulse := Vector2.ZERO) -> bool:

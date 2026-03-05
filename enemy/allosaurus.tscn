@@ -174,6 +174,8 @@ collision_mask = 24
 script = ExtResource("5")
 jump_velocity = -700.0
 attack_cooldown = 1.8
+dinosaur_id = "allosaurus"
+dinosaur_name = "Allosaurus"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
 position = Vector2(25.624985, -1.3749999)

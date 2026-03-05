@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://d0tnu2xmlen7g" path="res://player/healthbar.tscn" id="1_1jg6f"]
 [ext_resource type="Texture2D" uid="uid://1cqweii57q2a" path="res://heart.png" id="2_ig88g"]
-[ext_resource type="Script" path="res://player/hud.gd" id="3_hud"]
+[ext_resource type="Script" uid="uid://1qmh783wf4r5" path="res://player/hud.gd" id="3_hud"]
+[ext_resource type="FontFile" uid="uid://wqrno8lackrm" path="res://gui/kenney_mini_square.ttf" id="4_kx3af"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ig88g"]
 texture = ExtResource("2_ig88g")
@@ -35,7 +36,7 @@ offset_right = -5.0
 offset_bottom = 17.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_ig88g")
 
-[node name="Hungerbar" parent="." instance=ExtResource("1_1jg6f")]
+[node name="Hungerbar" parent="." unique_id=134333140 instance=ExtResource("1_1jg6f")]
 offset_left = 72.0
 offset_top = 44.0
 offset_right = 251.99998
@@ -44,7 +45,7 @@ scale = Vector2(2, 2)
 theme_override_styles/fill = SubResource("StyleBoxFlat_hunger_fill")
 metadata/_edit_group_ = true
 
-[node name="Staminabar" parent="." instance=ExtResource("1_1jg6f")]
+[node name="Staminabar" parent="." unique_id=1317018654 instance=ExtResource("1_1jg6f")]
 offset_left = 72.0
 offset_top = 72.0
 offset_right = 251.99998
@@ -53,7 +54,7 @@ scale = Vector2(2, 2)
 theme_override_styles/fill = SubResource("StyleBoxFlat_stamina_fill")
 metadata/_edit_group_ = true
 
-[node name="XPBar" parent="." instance=ExtResource("1_1jg6f")]
+[node name="XPBar" parent="." unique_id=1186852988 instance=ExtResource("1_1jg6f")]
 offset_left = 72.0
 offset_top = 100.0
 offset_right = 251.99998
@@ -62,10 +63,58 @@ scale = Vector2(2, 2)
 theme_override_styles/fill = SubResource("StyleBoxFlat_xp_fill")
 metadata/_edit_group_ = true
 
-[node name="LevelLabel" type="Label" parent="."]
+[node name="LevelLabel" type="Label" parent="." unique_id=1990279800]
 offset_left = 8.0
 offset_top = 95.0
 offset_right = 67.0
 offset_bottom = 118.0
 theme_override_font_sizes/font_size = 18
 text = "LV 1"
+
+[node name="EatPrompt" type="Label" parent="." unique_id=188102411]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = 142.0
+offset_right = 78.0
+offset_bottom = 166.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_kx3af")
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+text = "EAT [E]"
+
+[node name="EncounterPopup" type="TextureRect" parent="." unique_id=162253199]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -668.44434
+offset_top = -428.0
+offset_right = 668.44434
+grow_horizontal = 2
+grow_vertical = 0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CloseButton" type="Button" parent="EncounterPopup" unique_id=1540722308]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -0.7222252
+offset_right = -10.0
+offset_bottom = -272.72223
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_kx3af")
+theme_override_font_sizes/font_size = 64
+text = "X"
+flat = true

@@ -23,6 +23,10 @@ layer = 100
 [node name="PauseMenu" parent="InterfaceLayer" unique_id=1601963384 instance=ExtResource("4_x6l06")]
 
 [connection signal="health_changed" from="Level/Player" to="HUD/Healthbar" method="_on_player_health_changed"]
+<<<<<<< HEAD
+=======
+[connection signal="dinosaur_first_encountered" from="Level/Player" to="HUD" method="_on_player_dinosaur_first_encountered"]
+>>>>>>> 426b401c126f470166b3a6ae2ff5cff26cb45cf2
 [connection signal="hunger_changed" from="Level/Player" to="HUD/Hungerbar" method="_on_player_hunger_changed"]
 [connection signal="level_changed" from="Level/Player" to="HUD" method="_on_player_level_changed"]
 [connection signal="stamina_changed" from="Level/Player" to="HUD/Staminabar" method="_on_player_stamina_changed"]
