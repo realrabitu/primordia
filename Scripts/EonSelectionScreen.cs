@@ -25,11 +25,11 @@ public partial class EonSelectionScreen : Control
 	}
 	private void OnHomeButtonPressed()
 	{
-		GetTree().ChangeSceneToFile("res://Scenes/MainMenu.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/Menu Scenes/MainMenu.tscn");
 	}
 	private void OnPhanerozoicPlayPressed()
 	{
-		GetTree().ChangeSceneToFile("res://Scenes/EraSelectionScreen.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/Menu Scenes/EraSelectionScreen.tscn");
 	}
 	private void OnPrecambrianPlayPressed()
 	{

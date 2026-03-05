@@ -7,6 +7,7 @@ signal hunger_changed(current: int, max_hunger: int)
 signal stamina_changed(current: int, max_stamina: int)
 signal xp_changed(current: int, required: int)
 signal level_changed(level: int)
+signal dinosaur_first_encountered(dinosaur_name: String, dinosaur_description: String)
 
 @export var walk_speed: float = 350.0
 var ACCELERATION_SPEED = walk_speed * 6.0
@@ -15,7 +16,7 @@ const JUMP_VELOCITY = -725.0
 const TERMINAL_VELOCITY = 700
 
 ## The player listens for input actions appended with this suffix.[br]
-## Used to separate controls for multiple players in splitscreen.
+## Keep empty for the default single-player input map.
 @export var action_suffix := ""
 @export_range(1, 20, 1) var max_health := 6
 @export_range(1, 20, 1) var max_hunger := 8
@@ -36,6 +37,7 @@ const TERMINAL_VELOCITY = 700
 @export_range(0.0, 400.0, 1.0) var attack_range := 90.0
 @export_range(0.0, 250.0, 1.0) var attack_vertical_tolerance := 56.0
 @export var attack_hit_offset := Vector2(-70.0, -13.0)
+@export_range(0.0, 3000.0, 1.0) var dinosaur_encounter_radius := 260.0
 @export_range(0.0, 1.0, 0.05) var defend_damage_multiplier := 0.35
 @export_range(0.0, 1.0, 0.05) var defend_knockback_multiplier := 0.35
 @export_range(1.0, 200.0, 1.0) var defend_heat_max := 100.0
@@ -53,6 +55,7 @@ const TERMINAL_VELOCITY = 700
 @export_range(1.0, 3.0, 0.05) var sprint_speed_multiplier := 1.45
 @export_range(0.0, 200.0, 1.0) var sprint_stamina_drain_per_second := 10.0
 @export var sprint_in_air := false
+@export_range(0.0, 300.0, 1.0) var fern_interaction_radius := 72.0
 @export_range(0.0, 1.0, 0.05) var hunger_min_regen_factor := 0.2
 @export_range(0.0, 2.0, 0.05) var hunger_loss_per_stamina_ratio := 0.25
 @export_range(1, 2000, 1) var base_xp_to_level := 25
@@ -95,6 +98,8 @@ var _level := 1
 var _xp := 0
 var _xp_to_next := 1
 var _defend_damage_accumulator := 0.0
+var _encountered_dinosaur_ids: Dictionary = {}
+var _is_near_fern := false
 
 
 func is_god_mode_enabled() -> bool:
@@ -118,6 +123,7 @@ func _ready() -> void:
 	_xp = 0
 	_level = 1
 	_xp_to_next = _calculate_xp_to_next(_level)
+	_encountered_dinosaur_ids.clear()
 	_update_stamina_from_hunger(false)
 	health_changed.emit(_health, max_health)
 	hunger_changed.emit(_hunger, max_hunger)
@@ -203,7 +209,9 @@ func _physics_process(delta: float) -> void:
 	if _handle_hazard_tile_collisions():
 		return
 	_apply_fall_damage_on_landing(was_on_floor, vertical_speed_before_move)
+	_handle_enemy_proximity_encounters()
 	_handle_enemy_collisions()
+	_update_fern_proximity()
 
 	if Input.is_action_just_pressed("shoot" + action_suffix):
 		_try_start_attack()
@@ -215,6 +223,27 @@ func _physics_process(delta: float) -> void:
 	if not animation.is_empty() and should_restart_animation:
 		sprite.play(animation)
 	_update_defend_animation_loop()
+
+
+func is_near_fern() -> bool:
+	return _is_near_fern
+
+
+func _update_fern_proximity() -> void:
+	if fern_interaction_radius <= 0.0:
+		_is_near_fern = false
+		return
+	var radius_squared := fern_interaction_radius * fern_interaction_radius
+	for node in get_tree().get_nodes_in_group(&"ferns"):
+		if not (node is Node2D):
+			continue
+		if not (node as CanvasItem).visible:
+			continue
+		var delta := (node as Node2D).global_position - global_position
+		if delta.length_squared() <= radius_squared:
+			_is_near_fern = true
+			return
+	_is_near_fern = false
 
 
 func get_new_animation() -> String:
@@ -617,6 +646,31 @@ func _handle_enemy_collisions() -> void:
 				push_direction = -_facing_direction
 			if enemy.try_attack_player(self, Vector2(push_direction * 360.0, -280.0)):
 				break
+
+
+func _handle_enemy_proximity_encounters() -> void:
+	if dinosaur_encounter_radius <= 0.0:
+		return
+	var radius_squared := dinosaur_encounter_radius * dinosaur_encounter_radius
+	for node in get_tree().get_nodes_in_group(&"enemies"):
+		if not (node is Enemy):
+			continue
+		var enemy := node as Enemy
+		if not enemy.is_alive():
+			continue
+		var delta := (enemy as Node2D).global_position - global_position
+		if delta.length_squared() <= radius_squared:
+			register_dinosaur_encounter(enemy)
+
+
+func register_dinosaur_encounter(enemy: Enemy) -> void:
+	if enemy == null:
+		return
+	var dinosaur_id := enemy.get_dinosaur_id().strip_edges().to_lower()
+	if dinosaur_id.is_empty() or _encountered_dinosaur_ids.has(dinosaur_id):
+		return
+	_encountered_dinosaur_ids[dinosaur_id] = true
+	dinosaur_first_encountered.emit(enemy.get_dinosaur_name(), enemy.get_dinosaur_description())
 
 
 func _handle_hazard_tile_collisions() -> bool:

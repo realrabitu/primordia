@@ -1,0 +1,229 @@
+[gd_scene format=3 uid="uid://dqo7xftx66see"]
+
+[ext_resource type="Script" uid="uid://rdvvhn0hgd8w" path="res://enemy/enemy.gd" id="1_ewjsj"]
+[ext_resource type="Texture2D" uid="uid://7l1kwrpyi1nk" path="res://enemy/Ceratosaurus/cerato_attack0.png" id="2_61c7g"]
+[ext_resource type="Texture2D" uid="uid://cj5k2rfv608c8" path="res://enemy/Ceratosaurus/cerato_attack1.png" id="3_v5hku"]
+[ext_resource type="Texture2D" uid="uid://b4er11jt30j0a" path="res://enemy/Ceratosaurus/cerato_attack2.png" id="4_ewjsj"]
+[ext_resource type="Texture2D" uid="uid://d1f5peifp04ym" path="res://enemy/Ceratosaurus/cerato_attack3.png" id="5_wdlf5"]
+[ext_resource type="Texture2D" uid="uid://tvsydjwv2uyx" path="res://enemy/Ceratosaurus/cerato_attack4.png" id="6_4f00h"]
+[ext_resource type="Texture2D" uid="uid://8uyr26e3du6m" path="res://enemy/Ceratosaurus/cerato_attack5.png" id="7_mrhym"]
+[ext_resource type="Texture2D" uid="uid://7url81elnemk" path="res://enemy/Ceratosaurus/cerato_attack6.png" id="8_733ml"]
+[ext_resource type="Texture2D" uid="uid://dtjfhpq6sji4u" path="res://enemy/Ceratosaurus/cerato_attack7.png" id="9_uvd1b"]
+[ext_resource type="Texture2D" uid="uid://73n6n06ugy21" path="res://enemy/Ceratosaurus/cerato_attack8.png" id="10_i2giy"]
+[ext_resource type="Texture2D" uid="uid://0gni50ws5xwo" path="res://enemy/Ceratosaurus/cerato_attack9.png" id="11_ei80b"]
+[ext_resource type="Texture2D" uid="uid://n0vy73jmga4e" path="res://enemy/Ceratosaurus/cerato_attack10.png" id="12_8sj4v"]
+[ext_resource type="Texture2D" uid="uid://djvprly27lt7i" path="res://enemy/Ceratosaurus/cerato_attack11.png" id="13_7oog7"]
+[ext_resource type="Texture2D" uid="uid://cnogji1jr0lkl" path="res://enemy/Ceratosaurus/death0.png" id="14_61c7g"]
+[ext_resource type="Texture2D" uid="uid://k306mqdhlykv" path="res://enemy/Ceratosaurus/death1.png" id="15_v5hku"]
+[ext_resource type="Texture2D" uid="uid://b44yef615wx25" path="res://enemy/Ceratosaurus/death2.png" id="16_ewjsj"]
+[ext_resource type="Texture2D" uid="uid://doisfjcr4dlwc" path="res://enemy/Ceratosaurus/death3.png" id="17_wdlf5"]
+[ext_resource type="Texture2D" uid="uid://b4eedx7macs4g" path="res://enemy/Ceratosaurus/death4.png" id="18_4f00h"]
+[ext_resource type="Texture2D" uid="uid://bqaxsvo6fuxut" path="res://enemy/Ceratosaurus/death5.png" id="19_mrhym"]
+[ext_resource type="Texture2D" uid="uid://bdqg3vmnd1hjt" path="res://enemy/Ceratosaurus/idle0.png" id="20_733ml"]
+[ext_resource type="Texture2D" uid="uid://dcyyjcsce1mcp" path="res://enemy/Ceratosaurus/idle1.png" id="21_uvd1b"]
+[ext_resource type="Texture2D" uid="uid://bkkkgup0i0g0g" path="res://enemy/Ceratosaurus/idle2.png" id="22_i2giy"]
+[ext_resource type="Texture2D" uid="uid://cm5grcoty26ys" path="res://enemy/Ceratosaurus/idle3.png" id="23_ei80b"]
+[ext_resource type="Texture2D" uid="uid://bqtr7erro8u33" path="res://enemy/Ceratosaurus/cerato_walk0.png" id="27_ta1vl"]
+[ext_resource type="Texture2D" uid="uid://cv20y5lw75gme" path="res://enemy/Ceratosaurus/cerato_walk1.png" id="28_61c7g"]
+[ext_resource type="Texture2D" uid="uid://dwwhkt1oug8rt" path="res://enemy/Ceratosaurus/cerato_walk2.png" id="29_v5hku"]
+[ext_resource type="Texture2D" uid="uid://c30mmlox0f3y8" path="res://enemy/Ceratosaurus/cerato_walk3.png" id="30_ewjsj"]
+[ext_resource type="Texture2D" uid="uid://2ena3afxsmya" path="res://enemy/Ceratosaurus/cerato_walk4.png" id="31_4f00h"]
+[ext_resource type="Texture2D" uid="uid://dwt02oiyb0tvh" path="res://enemy/Ceratosaurus/cerato_walk5.png" id="32_mrhym"]
+[ext_resource type="Texture2D" uid="uid://b8gqeo40am4vk" path="res://enemy/Ceratosaurus/cerato_walk6.png" id="33_733ml"]
+[ext_resource type="Texture2D" uid="uid://coj0d33vyyqx1" path="res://player/bullet.webp" id="34_6p7wp"]
+[ext_resource type="Texture2D" uid="uid://p5qym2whksi4" path="res://enemy/Ceratosaurus/cerato_walk7.png" id="34_uvd1b"]
+[ext_resource type="AudioStream" uid="uid://dm7wsawmylc7b" path="res://enemy/hit.wav" id="35_y82sm"]
+[ext_resource type="AudioStream" uid="uid://duwm7i44o75o2" path="res://enemy/explode.wav" id="36_g4wnv"]
+[ext_resource type="PackedScene" uid="uid://d0tnu2xmlen7g" path="res://player/healthbar.tscn" id="37_08hgp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3etd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_61c7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_v5hku")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ewjsj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wdlf5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4f00h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mrhym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_733ml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uvd1b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_i2giy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ei80b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_8sj4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_7oog7")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_61c7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_v5hku")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ewjsj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_wdlf5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_4f00h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_mrhym")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_733ml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_uvd1b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_i2giy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ei80b")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_ta1vl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_61c7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_v5hku")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_ewjsj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_4f00h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_mrhym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_733ml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_uvd1b")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="5"]
+radius = 38.999992
+height = 174.00003
+
+[sub_resource type="CanvasItemMaterial" id="6"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="7"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="Enemy3" type="CharacterBody2D" unique_id=678927329]
+collision_layer = 2
+collision_mask = 24
+script = ExtResource("1_ewjsj")
+jump_velocity = -700.0
+attack_cooldown = 1.8
+<<<<<<< HEAD
+=======
+dinosaur_id = "ceratosaurus"
+dinosaur_name = "Ceratosaurus"
+>>>>>>> 426b401c126f470166b3a6ae2ff5cff26cb45cf2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
+position = Vector2(29.000004, 25.000002)
+scale = Vector2(0.56723595, 0.56723595)
+sprite_frames = SubResource("SpriteFrames_e3etd")
+animation = &"death"
+frame_progress = 0.59722066
+
+[node name="PlatformDetector" type="RayCast2D" parent="." unique_id=2026131695]
+position = Vector2(0, 6)
+target_position = Vector2(0, 8)
+collision_mask = 8
+
+[node name="FloorDetectorLeft" type="RayCast2D" parent="." unique_id=1398094348]
+position = Vector2(-15, -4)
+target_position = Vector2(0, 35)
+collision_mask = 24
+
+[node name="FloorDetectorRight" type="RayCast2D" parent="." unique_id=1541295602]
+position = Vector2(15.5, -3)
+target_position = Vector2(0, 35)
+collision_mask = 24
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26390868]
+position = Vector2(30, 29)
+rotation = -1.5708
+shape = SubResource("5")
+
+[node name="Explosion" type="CPUParticles2D" parent="." unique_id=1964325938]
+self_modulate = Color(1, 1, 1, 0.12)
+material = SubResource("6")
+emitting = false
+amount = 32
+texture = ExtResource("34_6p7wp")
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.2
+explosiveness = 0.7
+draw_order = 215832976
+emission_shape = 1
+emission_sphere_radius = 16.0
+spread = 180.0
+gravity = Vector2(0, -250)
+color_ramp = SubResource("7")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=288222785]
+stream = ExtResource("35_y82sm")
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="." unique_id=988196303]
+stream = ExtResource("36_g4wnv")
+
+[node name="Healthbar" parent="." unique_id=1930226170 instance=ExtResource("37_08hgp")]
+offset_left = -30.0
+offset_top = -42.0
+offset_right = 30.0
+offset_bottom = -38.0

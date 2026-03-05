@@ -1,7 +1,7 @@
-[gd_scene format=4 uid="uid://o3g1qncweyh1"]
+[gd_scene format=4 uid="uid://dxbls7cxavvnp"]
 
 [ext_resource type="Script" uid="uid://mo44oulcn5fn" path="res://level/level.gd" id="1_v4yay"]
-[ext_resource type="TileSet" uid="uid://08mkofgbxx70" path="res://level/tileset.tres" id="2_xl7j7"]
+[ext_resource type="TileSet" uid="uid://14qy0q3m30xt" path="res://level/tileset.tres" id="2_xl7j7"]
 [ext_resource type="Material" uid="uid://djwm5nol3d801" path="res://level/props/wind_sway.tres" id="3_o0wo3"]
 [ext_resource type="Texture2D" uid="uid://upfcr5xg5fvh" path="res://level/props/grass_3.webp" id="4_kdsbj"]
 [ext_resource type="Texture2D" uid="uid://bju7r7jqn8bqy" path="res://level/props/grass_2.webp" id="5_ml0fe"]
@@ -15,8 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://ddmq5iwm2qd1j" path="res://level/props/flower_1.webp" id="13_xdahv"]
 [ext_resource type="Texture2D" uid="uid://crfy1osk1c1gc" path="res://level/props/ground_flowers_1.webp" id="14_krw8e"]
 [ext_resource type="PackedScene" path="res://level/forage_item.tscn" id="15_ifo17"]
-[ext_resource type="PackedScene" uid="uid://6mtip3ruyn" path="res://enemy/enemy.tscn" id="16_q4dhf"]
-[ext_resource type="PackedScene" path="res://enemy/boss.tscn" id="17_u1dsc"]
+[ext_resource type="PackedScene" uid="uid://6mtip3ruyn" path="res://enemy/allosaurus.tscn" id="16_q4dhf"]
+[ext_resource type="PackedScene" uid="uid://bgymjydbjsjmu" path="res://enemy/boss.tscn" id="17_u1dsc"]
 [ext_resource type="Texture2D" uid="uid://dea1a76o6b0ix" path="res://level/props/tree_2.webp" id="18_8yb03"]
 [ext_resource type="PackedScene" uid="uid://c3dh7xb6ef76q" path="res://level/coin.tscn" id="19_1vdk1"]
 [ext_resource type="PackedScene" uid="uid://b5xumqn1w82y4" path="res://level/platforms/moving_platform_script.tscn" id="20_3dv6e"]
@@ -2778,8 +2778,6 @@ position = Vector2(480, 627)
 [node name="Boss2" parent="FoliageGroup7" unique_id=486974954 instance=ExtResource("17_u1dsc")]
 z_index = 2
 position = Vector2(774, 625)
-jump_interval = 2.0
-jump_impulse = -420.0
 
 [node name="Bush12" type="Sprite2D" parent="FoliageGroup7" unique_id=936356654]
 z_index = -2
@@ -4013,175 +4011,6 @@ position = Vector2(4047, 559)
 scale = Vector2(1.5625048, 1.5625048)
 texture = ExtResource("13_xdahv")
 
-[node name="FoliageGroup9" type="Node2D" parent="."]
-position = Vector2(8200, -420)
-
-[node name="Tree1" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(1740, 692)
-texture = ExtResource("18_8yb03")
-
-[node name="Tree2" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(2106, 742)
-scale = Vector2(1.109375, 1.109375)
-texture = ExtResource("12_s1aav")
-
-[node name="Bush1" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(1908, 712)
-scale = Vector2(1.484375, 1.484375)
-texture = ExtResource("10_qslh7")
-
-[node name="Bush2" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(2264, 758)
-scale = Vector2(1.671875, 1.671875)
-texture = ExtResource("10_qslh7")
-
-[node name="Rock1" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(2024, 734)
-scale = Vector2(1.203125, 1.203125)
-texture = ExtResource("11_kdj2k")
-
-[node name="Rock2" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(2326, 780)
-scale = Vector2(1.359375, 1.359375)
-texture = ExtResource("11_kdj2k")
-
-[node name="Grass1" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(1856, 726)
-texture = ExtResource("7_7cdnq")
-
-[node name="Grass2" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(1880, 724)
-texture = SubResource("CompressedTexture2D_b7y0n")
-
-[node name="Grass3" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(1904, 728)
-texture = SubResource("CompressedTexture2D_v4yay")
-
-[node name="Grass4" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(1936, 726)
-texture = ExtResource("7_7cdnq")
-
-[node name="Grass5" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(1960, 724)
-texture = SubResource("CompressedTexture2D_b7y0n")
-
-[node name="Grass6" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(1984, 728)
-texture = SubResource("CompressedTexture2D_v4yay")
-
-[node name="Grass7" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(2200, 772)
-texture = ExtResource("7_7cdnq")
-
-[node name="Grass8" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(2224, 770)
-texture = SubResource("CompressedTexture2D_b7y0n")
-
-[node name="Grass9" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(2248, 774)
-texture = SubResource("CompressedTexture2D_v4yay")
-
-[node name="Grass10" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(2280, 772)
-texture = ExtResource("7_7cdnq")
-
-[node name="Fern1" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(2078, 730)
-scale = Vector2(1.328125, 1.328125)
-texture = ExtResource("6_h74y2")
-
-[node name="Fern2" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(2366, 776)
-scale = Vector2(1.328125, 1.328125)
-texture = ExtResource("6_h74y2")
-
-[node name="Flower1" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(2172, 764)
-scale = Vector2(1.40625, 1.40625)
-texture = ExtResource("13_xdahv")
-
-[node name="Vine1" type="Sprite2D" parent="FoliageGroup9"]
-position = Vector2(2032, 730)
-texture = ExtResource("9_u5n7q")
-
-[node name="FoliageGroup10" type="Node2D" parent="."]
-position = Vector2(10120, -520)
-
-[node name="Tree1" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2058, 808)
-scale = Vector2(1.125, 1.125)
-texture = ExtResource("18_8yb03")
-
-[node name="Tree2" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2398, 856)
-scale = Vector2(1.125, 1.125)
-texture = ExtResource("12_s1aav")
-
-[node name="Bush1" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2240, 844)
-scale = Vector2(1.59375, 1.59375)
-texture = ExtResource("10_qslh7")
-
-[node name="Rock1" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2308, 846)
-scale = Vector2(1.375, 1.375)
-texture = ExtResource("11_kdj2k")
-
-[node name="Rock2" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2534, 878)
-scale = Vector2(1.53125, 1.53125)
-texture = ExtResource("11_kdj2k")
-
-[node name="Grass1" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2152, 848)
-texture = ExtResource("7_7cdnq")
-
-[node name="Grass2" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2176, 846)
-texture = SubResource("CompressedTexture2D_b7y0n")
-
-[node name="Grass3" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2200, 850)
-texture = SubResource("CompressedTexture2D_v4yay")
-
-[node name="Grass4" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2232, 848)
-texture = ExtResource("7_7cdnq")
-
-[node name="Grass5" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2256, 846)
-texture = SubResource("CompressedTexture2D_b7y0n")
-
-[node name="Grass6" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2280, 850)
-texture = SubResource("CompressedTexture2D_v4yay")
-
-[node name="Grass7" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2432, 878)
-texture = ExtResource("7_7cdnq")
-
-[node name="Grass8" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2456, 876)
-texture = SubResource("CompressedTexture2D_b7y0n")
-
-[node name="Grass9" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2480, 880)
-texture = SubResource("CompressedTexture2D_v4yay")
-
-[node name="Fern1" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2360, 850)
-scale = Vector2(1.484375, 1.484375)
-texture = ExtResource("6_h74y2")
-
-[node name="Flower1" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2420, 868)
-scale = Vector2(1.40625, 1.40625)
-texture = ExtResource("13_xdahv")
-
-[node name="Vine1" type="Sprite2D" parent="FoliageGroup10"]
-position = Vector2(2312, 844)
-texture = ExtResource("8_lsj08")
-
 [node name="GroundVines1" type="Node2D" parent="." unique_id=1737294816]
 
 [node name="Vine50" type="Sprite2D" parent="GroundVines1" unique_id=557395113]
@@ -4720,8 +4549,6 @@ position = Vector2(5290, 860)
 [node name="Boss" parent="Enemies" unique_id=1230693708 instance=ExtResource("17_u1dsc")]
 z_index = 2
 position = Vector2(774, 609)
-jump_interval = 2.0
-jump_impulse = -420.0
 
 [node name="ParallaxBackground" parent="." unique_id=357139530 instance=ExtResource("22_4vkke")]
 
