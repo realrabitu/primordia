@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://c6vmmai0h87nw"]
+
+[ext_resource type="Script" uid="uid://dkl4ac0j8x3da" path="res://Scripts/CenozoicSelectionScreen.cs" id="1_47juh"]
+[ext_resource type="Texture2D" uid="uid://d1jn0kjmrob1o" path="res://Assets/Menu Images/Eons/EON_SELECTION_SCREEN_BG.png" id="2_io2jt"]
+[ext_resource type="Texture2D" uid="uid://dqn2rthvhnsis" path="res://Assets/Menu Images/Eons/Phanerozoic/Cenozoic/TERTIARY_PANEL.png" id="3_naxyk"]
+[ext_resource type="Texture2D" uid="uid://bh634ilg1f3si" path="res://Assets/Buttons/PLAY_BUTTONS_CENO.png" id="4_jpghk"]
+[ext_resource type="Texture2D" uid="uid://dpm3d7jb4ptqg" path="res://Assets/Menu Images/Eons/Phanerozoic/Cenozoic/TERTIARY.png" id="5_170u3"]
+[ext_resource type="Texture2D" uid="uid://bhn1n6tqyynht" path="res://Assets/Menu Images/Eons/Phanerozoic/Cenozoic/QUATERNARY_PANEL.png" id="6_klmsp"]
+[ext_resource type="Texture2D" uid="uid://sti6tof6pn3l" path="res://Assets/Menu Images/Eons/Phanerozoic/Cenozoic/QUATERNARY.png" id="7_momcy"]
+[ext_resource type="Texture2D" uid="uid://d3031v67o204v" path="res://Assets/Menu Images/Eons/Phanerozoic/Paleozoic/COMING_SOON.png" id="8_ig5qi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ahwsl"]
+texture = ExtResource("2_io2jt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_frrjc"]
+texture = ExtResource("3_naxyk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vsewn"]
+texture = ExtResource("5_170u3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b8kkd"]
+texture = ExtResource("6_klmsp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_25q16"]
+texture = ExtResource("7_momcy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_smo84"]
+texture = ExtResource("8_ig5qi")
+
+[node name="CenozoicSelectionScreen" type="Control" unique_id=1308687435]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_47juh")
+
+[node name="Panel" type="Panel" parent="." unique_id=1755823191]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ahwsl")
+
+[node name="TopContainer" type="HBoxContainer" parent="." unique_id=1285110305]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 52.0
+offset_right = 1597.0
+offset_bottom = 1050.0
+theme_override_constants/separation = 256
+
+[node name="Tertiary" type="Panel" parent="TopContainer" unique_id=1031239387]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.57
+theme_override_styles/panel = SubResource("StyleBoxTexture_frrjc")
+
+[node name="TertiaryPlayButton" type="TextureButton" parent="TopContainer/Tertiary" unique_id=1568849752]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 802.0
+offset_right = 410.0
+offset_bottom = 917.0
+texture_normal = ExtResource("4_jpghk")
+
+[node name="Period" type="Panel" parent="TopContainer/Tertiary" unique_id=1897870207]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 37.000034
+offset_right = 392.0
+offset_bottom = 87.00003
+scale = Vector2(1.3, 1.3)
+theme_override_styles/panel = SubResource("StyleBoxTexture_vsewn")
+
+[node name="Quaternary" type="Panel" parent="TopContainer" unique_id=423397985]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.57
+theme_override_styles/panel = SubResource("StyleBoxTexture_b8kkd")
+
+[node name="QuaternaryPlayButton" type="TextureButton" parent="TopContainer/Quaternary" unique_id=1891819477]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 802.0
+offset_right = 410.0
+offset_bottom = 917.0
+texture_normal = ExtResource("4_jpghk")
+
+[node name="Period" type="Panel" parent="TopContainer/Quaternary" unique_id=1145156040]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 41.00003
+offset_right = 390.0
+offset_bottom = 91.00003
+scale = Vector2(1.3, 1.3)
+theme_override_styles/panel = SubResource("StyleBoxTexture_25q16")
+
+[node name="Barrier" type="Panel" parent="TopContainer/Quaternary" unique_id=1331483098]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 505.0
+offset_bottom = 985.0
+
+[node name="ComingSoon" type="Panel" parent="TopContainer/Quaternary" unique_id=1841470117]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 328.0
+offset_right = 191.0
+offset_bottom = 382.0
+scale = Vector2(3, 3)
+theme_override_styles/panel = SubResource("StyleBoxTexture_smo84")
+
+[connection signal="pressed" from="TopContainer/Tertiary/TertiaryPlayButton" to="." method="OnTertiaryPlayButtonPressed"]

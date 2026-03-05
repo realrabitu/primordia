@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://b5xumqn1w82y4"]
+
+[ext_resource type="Script" uid="uid://dl80a2d0koswo" path="res://level/platforms/moving_platform.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://d0ha2hv42hllq" path="res://Assets/JURASSIC-20260228T020304Z-1-001/JURASSIC/platform_combined.png" id="2_2wl4u"]
+[ext_resource type="Material" uid="uid://djwm5nol3d801" path="res://level/props/wind_sway.tres" id="3"]
+[ext_resource type="Texture2D" uid="uid://cjmv2ek0he6xf" path="res://Assets/grass1.png" id="4_xh868"]
+[ext_resource type="Texture2D" uid="uid://cyo6pkohk0atv" path="res://Assets/rock2.png" id="5_0wwke"]
+[ext_resource type="Texture2D" uid="uid://x4br7stc7p2s" path="res://Assets/grass2.png" id="6_2wl4u"]
+[ext_resource type="Texture2D" uid="uid://ckswn6rdke1x3" path="res://Assets/bush1.png" id="7_45lm7"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(192, 27)
+
+[node name="MovingPlatformScript" type="AnimatableBody2D" unique_id=512578303]
+z_index = -1
+position = Vector2(-1, 0)
+collision_layer = 8
+script = ExtResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=926145949]
+texture = ExtResource("2_2wl4u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1185364415]
+position = Vector2(0, -7.5)
+shape = SubResource("1")
+one_way_collision = true
+
+[node name="Grass" type="Sprite2D" parent="." unique_id=230279922]
+z_index = -1
+material = ExtResource("3")
+position = Vector2(77, -37)
+scale = Vector2(0.8, 0.8)
+
+[node name="g67" type="Sprite2D" parent="." unique_id=1100469185]
+z_index = -1
+material = ExtResource("3")
+position = Vector2(61.00002, -21.000004)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_xh868")
+
+[node name="B5" type="Sprite2D" parent="." unique_id=70223405]
+z_index = -2
+material = ExtResource("3")
+position = Vector2(-32, -41)
+texture = ExtResource("5_0wwke")
+
+[node name="g69" type="Sprite2D" parent="." unique_id=1189656241]
+z_index = -1
+material = ExtResource("3")
+position = Vector2(-1.9999924, -22.000004)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_xh868")
+
+[node name="g68" type="Sprite2D" parent="." unique_id=719327581]
+z_index = -1
+material = ExtResource("3")
+position = Vector2(-51.999992, -19.000004)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_xh868")
+
+[node name="g1" type="Sprite2D" parent="." unique_id=2059208912]
+z_index = -1
+material = ExtResource("3")
+position = Vector2(-36, -19.000004)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("6_2wl4u")
+
+[node name="g3" type="Sprite2D" parent="." unique_id=915427749]
+z_index = -1
+material = ExtResource("3")
+position = Vector2(-58.000008, -33.000004)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_xh868")
+
+[node name="B3" type="Sprite2D" parent="." unique_id=1166359046]
+z_index = -2
+material = ExtResource("3")
+position = Vector2(40.674355, -51.36603)
+rotation = -3.14159
+scale = Vector2(1.0384799, -1.0384799)
+texture = ExtResource("7_45lm7")

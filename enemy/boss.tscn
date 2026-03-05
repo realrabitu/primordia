@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bgymjydbjsjmu"]
+
+[ext_resource type="PackedScene" uid="uid://6mtip3ruyn" path="res://enemy/allosaurus.tscn" id="1"]
+[ext_resource type="Script" uid="uid://f5bbfkagqqlj" path="res://enemy/boss.gd" id="2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cd6w7"]
+radius = 44.85183
+height = 173.33328
+
+[node name="Boss" unique_id=74299289 instance=ExtResource("1")]
+scale = Vector2(1.35, 1.35)
+script = ExtResource("2")
+jump_interval = 2.0
+jump_impulse = -420.0
+walk_speed = 40.0
+max_health = 12
+contact_damage = 2
+
+[node name="FloorDetectorRight" parent="." index="3" unique_id=1541295602]
+position = Vector2(52.907406, 15.555553)
+
+[node name="CollisionShape2D" parent="." index="4" unique_id=26390868]
+position = Vector2(59.25927, 25.592585)
+shape = SubResource("CapsuleShape2D_cd6w7")
