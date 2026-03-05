@@ -37,7 +37,7 @@ const PLAYER_GROUP: StringName = &"players"
 
 var _state := State.WALKING
 var _health := 1
-var _target: Player
+var _target: Node2D
 var _last_damage_source: Node
 var _forget_time_left := 0.0
 var _attack_cooldown_left := 0.0
@@ -207,12 +207,16 @@ func _infer_dinosaur_id_from_sprite() -> String:
 	return ""
 
 
-func try_attack_player(player: Player, impulse := Vector2.ZERO) -> bool:
+func try_attack_player(player: Node, impulse := Vector2.ZERO) -> bool:
 	if player == null or not player.is_inside_tree():
+		return false
+	if not player.is_in_group(PLAYER_GROUP):
+		return false
+	if not player.has_method(&"take_damage"):
 		return false
 	if not can_attack():
 		return false
-	player.take_damage(contact_damage, impulse)
+	player.call(&"take_damage", contact_damage, impulse)
 	_attack_cooldown_left = attack_cooldown
 	return true
 
@@ -329,14 +333,14 @@ func _try_attack_target() -> void:
 	try_attack_player(_target, Vector2(push_direction * attack_knockback_x, attack_knockback_y))
 
 
-func _is_target_in_attack_range(target: Player) -> bool:
+func _is_target_in_attack_range(target: Node2D) -> bool:
 	if target == null or not target.is_inside_tree():
 		return false
 	if attack_radius <= 0.0:
 		return false
 	var enemy_body_position := collision_shape.global_position if collision_shape != null else global_position
 	var target_shape := target.get_node_or_null(^"CollisionShape2D") as CollisionShape2D
-	var target_body_position := target_shape.global_position if target_shape != null else (target as Node2D).global_position
+	var target_body_position := target_shape.global_position if target_shape != null else target.global_position
 	var delta := target_body_position - enemy_body_position
 	var enemy_extents := _get_collision_half_extents(collision_shape)
 	var target_extents := _get_collision_half_extents(target_shape)
@@ -377,22 +381,22 @@ func _get_collision_half_extents(shape_node: CollisionShape2D) -> Vector2:
 	)
 
 
-func _find_nearest_player(max_distance: float) -> Player:
+func _find_nearest_player(max_distance: float) -> Node2D:
 	if max_distance <= 0.0:
 		return null
 	var tree := get_tree()
 	if tree == null:
 		return null
 
-	var nearest_player: Player
+	var nearest_player: Node2D
 	var max_distance_squared := max_distance * max_distance
 	for node in tree.get_nodes_in_group(PLAYER_GROUP):
-		if node is not Player:
+		if not (node is Node2D):
 			continue
-		var player := node as Player
+		var player := node as Node2D
 		if not player.is_inside_tree():
 			continue
-		var distance_squared := global_position.distance_squared_to((player as Node2D).global_position)
+		var distance_squared := global_position.distance_squared_to(player.global_position)
 		if distance_squared <= max_distance_squared:
 			max_distance_squared = distance_squared
 			nearest_player = player
@@ -400,12 +404,12 @@ func _find_nearest_player(max_distance: float) -> Player:
 	return nearest_player
 
 
-func _find_contact_player() -> Player:
+func _find_contact_player() -> Node2D:
 	for index in range(get_slide_collision_count()):
 		var collision := get_slide_collision(index)
 		var collider := collision.get_collider()
-		if collider is Player:
-			var player := collider as Player
+		if collider is Node2D and (collider as Node2D).is_in_group(PLAYER_GROUP):
+			var player := collider as Node2D
 			if player.is_inside_tree():
 				return player
 	return null

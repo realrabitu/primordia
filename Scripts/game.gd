@@ -40,12 +40,14 @@ func _on_tree_node_added(node: Node) -> void:
 
 
 func _connect_enemy_signal(node: Node) -> void:
-	if not (node is Enemy):
+	if not node.is_in_group(&"enemies"):
 		return
-	var enemy := node as Enemy
-	if enemy.slain.is_connected(_on_enemy_slain):
+	if not node.has_signal(&"slain"):
 		return
-	enemy.slain.connect(_on_enemy_slain)
+	var slain_handler := Callable(self, "_on_enemy_slain")
+	if node.is_connected(&"slain", slain_handler):
+		return
+	node.connect(&"slain", slain_handler)
 
 
 func _on_enemy_slain(killer: Node, xp_reward: int) -> void:

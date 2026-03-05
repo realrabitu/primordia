@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bdmtl5oxqoyk2"]
 
 [ext_resource type="Script" uid="uid://rdvvhn0hgd8w" path="res://enemy/enemy.gd" id="1_ygo8m"]
-[ext_resource type="Texture2D" uid="uid://df15mpsa4oex8" path="res://enemy/Archaeopteryx/archaeopteryx (2).png" id="2_ygo8m"]
-[ext_resource type="Texture2D" uid="uid://du18s1qardbpw" path="res://enemy/Archaeopteryx/archaeopteryx (3).png" id="3_b0o8h"]
-[ext_resource type="Texture2D" uid="uid://cvgaa5oj61x20" path="res://enemy/Archaeopteryx/archaeopteryx (4).png" id="4_8rqta"]
-[ext_resource type="Texture2D" uid="uid://6er4yfoty2po" path="res://enemy/Archaeopteryx/archaeopteryx.png" id="5_lllhc"]
+[ext_resource type="Texture2D" uid="uid://df15mpsa4oex8" path="res://enemy/drive-download-20260305T004430Z-3-001/archaeopteryx (2).png" id="2_ygo8m"]
+[ext_resource type="Texture2D" uid="uid://du18s1qardbpw" path="res://enemy/drive-download-20260305T004430Z-3-001/archaeopteryx (3).png" id="3_b0o8h"]
+[ext_resource type="Texture2D" uid="uid://cvgaa5oj61x20" path="res://enemy/drive-download-20260305T004430Z-3-001/archaeopteryx (4).png" id="4_8rqta"]
+[ext_resource type="Texture2D" uid="uid://6er4yfoty2po" path="res://enemy/drive-download-20260305T004430Z-3-001/archaeopteryx.png" id="5_lllhc"]
 [ext_resource type="Texture2D" uid="uid://bhebyju4h8r23" path="res://enemy/Dilophosaurus/5.png" id="6_qfj22"]
 [ext_resource type="Texture2D" uid="uid://b1kqmkxqoerra" path="res://enemy/Dilophosaurus/6.png" id="7_er76i"]
 [ext_resource type="Texture2D" uid="uid://bloekbfmknk6i" path="res://enemy/Dilophosaurus/7.png" id="8_t5ono"]
@@ -78,7 +78,7 @@ blend_mode = 1
 offsets = PackedFloat32Array(0.5, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[node name="Enemy" type="CharacterBody2D" unique_id=678927329]
+[node name="Enemy3" type="CharacterBody2D" unique_id=678927329]
 collision_layer = 2
 collision_mask = 24
 script = ExtResource("1_ygo8m")
