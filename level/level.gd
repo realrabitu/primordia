@@ -4,6 +4,7 @@ const CameraBoundsServiceScript := preload("res://level/CameraBoundsServiceGd.gd
 const CAMERA_MARGIN_X := 320.0
 const CAMERA_MARGIN_TOP := 260.0
 const CAMERA_MARGIN_BOTTOM := 360.0
+const FERN_GROUP: StringName = &"ferns"
 
 var _generated_root: Node2D
 var _generated_bounds := Rect2()
@@ -31,6 +32,7 @@ func _ready() -> void:
         tree.node_removed.connect(_on_tree_node_removed)
 
     _update_camera_limits()
+    _register_existing_ferns()
 
 
 func _exit_tree() -> void:
@@ -79,8 +81,27 @@ func _collect_players() -> Array[Player]:
 func _on_tree_node_added(node: Node) -> void:
     if node is Player:
         _players_dirty = true
+    _register_fern_node(node)
 
 
 func _on_tree_node_removed(node: Node) -> void:
     if node is Player:
         _players_dirty = true
+
+
+func _register_existing_ferns() -> void:
+    var stack: Array[Node] = [self]
+    while not stack.is_empty():
+        var node := stack.pop_back() as Node
+        _register_fern_node(node)
+        for child: Node in node.get_children():
+            stack.append(child)
+
+
+func _register_fern_node(node: Node) -> void:
+    if not (node is Sprite2D):
+        return
+    if not node.name.begins_with("Fern"):
+        return
+    if not node.is_in_group(FERN_GROUP):
+        node.add_to_group(FERN_GROUP)

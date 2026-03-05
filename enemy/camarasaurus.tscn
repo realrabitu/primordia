@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://c3tbco8fmfdo7"]
 
 [ext_resource type="Script" uid="uid://rdvvhn0hgd8w" path="res://enemy/enemy.gd" id="1_wlnif"]
-[ext_resource type="Texture2D" uid="uid://qe8sj77xweqo" path="res://enemy/Dilophosaurus/idle dilophosaurus 1(1).png" id="2_015um"]
-[ext_resource type="Texture2D" uid="uid://bnlfoyx7dt2up" path="res://enemy/Dilophosaurus/idle dilophosaurus 1.png" id="3_ocd14"]
-[ext_resource type="Texture2D" uid="uid://chb0qif82vjrh" path="res://enemy/Dilophosaurus/idle dilophosaurus 3.png" id="4_d0i5c"]
-[ext_resource type="Texture2D" uid="uid://dhibwwwm808we" path="res://enemy/Dilophosaurus/idle dilophosaurus 4.png" id="5_e1rqj"]
+[ext_resource type="Texture2D" uid="uid://d1kmb0muvwyef" path="res://enemy/Camarasaurus/camarasaurus_idle0.png" id="2_015um"]
+[ext_resource type="Texture2D" uid="uid://ji4qax3joejw" path="res://enemy/Camarasaurus/camarasaurus_idle1.png" id="3_ocd14"]
+[ext_resource type="Texture2D" uid="uid://b4trep2myk5qo" path="res://enemy/Camarasaurus/camarasaurus_idle2.png" id="4_d0i5c"]
+[ext_resource type="Texture2D" uid="uid://dn6mvku8pqlsw" path="res://enemy/Camarasaurus/camarasaurus_idle3.png" id="5_e1rqj"]
 [ext_resource type="Texture2D" uid="uid://coj0d33vyyqx1" path="res://player/bullet.webp" id="34_wnkjy"]
 [ext_resource type="AudioStream" uid="uid://dm7wsawmylc7b" path="res://enemy/hit.wav" id="35_jhnul"]
 [ext_resource type="AudioStream" uid="uid://duwm7i44o75o2" path="res://enemy/explode.wav" id="36_4yqf1"]
@@ -31,7 +31,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="5"]
-radius = 48.0
+radius = 63.99996
 height = 190.0
 
 [sub_resource type="CanvasItemMaterial" id="6"]
@@ -49,14 +49,16 @@ jump_velocity = -700.0
 attack_cooldown = 1.8
 is_aggressive = false
 is_passive = true
+dinosaur_id = "camarasaurus"
+dinosaur_name = "Camarasaurus"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
 position = Vector2(38, 23.000002)
 scale = Vector2(0.48125613, 0.48125613)
 sprite_frames = SubResource("SpriteFrames_e3etd")
 animation = &"idle"
-frame = 2
-frame_progress = 0.15187539
+frame = 3
+frame_progress = 0.8956173
 
 [node name="PlatformDetector" type="RayCast2D" parent="." unique_id=2026131695]
 position = Vector2(0, 6)
@@ -74,7 +76,7 @@ target_position = Vector2(0, 35)
 collision_mask = 24
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26390868]
-position = Vector2(38, 22)
+position = Vector2(45, 32)
 rotation = -1.5708
 shape = SubResource("5")
 

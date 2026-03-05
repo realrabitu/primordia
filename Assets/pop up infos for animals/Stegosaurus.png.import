@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://df15mpsa4oex8"
-path="res://.godot/imported/archaeopteryx (2).png-a68c05b23c58a3d2cf8d7955f253676e.ctex"
+uid="uid://cv2ljtvxm8cjw"
+path="res://.godot/imported/Stegosaurus.png-4f082e61e91310e6e61be5977ae0c85a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/Archaeopteryx/archaeopteryx (2).png"
-dest_files=["res://.godot/imported/archaeopteryx (2).png-a68c05b23c58a3d2cf8d7955f253676e.ctex"]
+source_file="res://Assets/pop up infos for animals/Stegosaurus.png"
+dest_files=["res://.godot/imported/Stegosaurus.png-4f082e61e91310e6e61be5977ae0c85a.ctex"]
 
 [params]
 

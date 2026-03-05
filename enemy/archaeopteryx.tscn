@@ -86,6 +86,8 @@ jump_velocity = -700.0
 attack_cooldown = 1.8
 is_aggressive = false
 is_passive = true
+dinosaur_id = "archaeopteryx"
+dinosaur_name = "Archaeopteryx"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
 position = Vector2(33, -22)

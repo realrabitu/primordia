@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6er4yfoty2po"
-path="res://.godot/imported/archaeopteryx.png-ee351c326671768db8657d109678c7a0.ctex"
+uid="uid://0t5j0h4whk7g"
+path="res://.godot/imported/Pterosaur.png-f1db0117bacb0d83cc8105e84013f7b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/Archaeopteryx/archaeopteryx.png"
-dest_files=["res://.godot/imported/archaeopteryx.png-ee351c326671768db8657d109678c7a0.ctex"]
+source_file="res://Assets/pop up infos for animals/Pterosaur.png"
+dest_files=["res://.godot/imported/Pterosaur.png-f1db0117bacb0d83cc8105e84013f7b2.ctex"]
 
 [params]
 
