@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://skubys6sao0e"]
+
+[ext_resource type="Script" uid="uid://ca7xmfmbr3rl4" path="res://Scenes/Menu Scenes/Loading.cs" id="1_v04pb"]
+[ext_resource type="Texture2D" uid="uid://c0iwaitiedcte" path="res://Assets/Buttons/loading bar.png" id="2_7mhnj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mhnj"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_bg"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_fill"]
+bg_color = Color(0.180392, 0.737255, 0.372549, 1)
+corner_radius_top_left = 67
+corner_radius_top_right = 65
+corner_radius_bottom_right = 65
+corner_radius_bottom_left = 67
+corner_detail = 20
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6aiel"]
+texture = ExtResource("2_7mhnj")
+
+[node name="Loading" type="Node" unique_id=2036026552]
+script = ExtResource("1_v04pb")
+ProgressBarPath = NodePath("ProgressFill")
+
+[node name="Panel" type="Panel" parent="." unique_id=1145481842]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7mhnj")
+
+[node name="ProgressFill" type="ProgressBar" parent="." unique_id=674731290]
+offset_left = 592.0
+offset_top = 419.0
+offset_right = 1406.0
+offset_bottom = 579.0
+theme_override_styles/background = SubResource("StyleBoxFlat_progress_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_progress_fill")
+value = 50.0
+show_percentage = false
+
+[node name="LoadingBar" type="Panel" parent="." unique_id=863189149]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -443.0
+offset_top = -276.0
+offset_right = 1477.0
+offset_bottom = 804.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxTexture_6aiel")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=747587875]
+offset_right = 40.0
+offset_bottom = 40.0

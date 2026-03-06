@@ -166,6 +166,11 @@ collision_mask = 24
 script = ExtResource("1_ewjsj")
 jump_velocity = -700.0
 attack_cooldown = 1.8
+<<<<<<< HEAD
+=======
+dinosaur_id = "ceratosaurus"
+dinosaur_name = "Ceratosaurus"
+>>>>>>> 0d47892ceece502f72b108f798841a323ba704f8
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
 position = Vector2(29.000004, 25.000002)

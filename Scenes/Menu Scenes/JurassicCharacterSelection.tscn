@@ -1,0 +1,226 @@
+[gd_scene format=3 uid="uid://clw1augtjyqu0"]
+
+[ext_resource type="Script" uid="uid://cut61jgvqvy2h" path="res://Scenes/Menu Scenes/JurassicCharacterSelection.cs" id="1_lpb34"]
+[ext_resource type="Texture2D" uid="uid://c0u17tnwso5dd" path="res://Assets/Menu Images/background.png" id="1_vcktj"]
+[ext_resource type="Texture2D" uid="uid://b3r1fuurvxfm8" path="res://Assets/Menu Images/name.png" id="2_lpb34"]
+[ext_resource type="FontFile" uid="uid://cspllly82jxrg" path="res://gui/AngerisPixelDemoRegular-DYJdD.otf" id="3_hl38c"]
+[ext_resource type="Texture2D" uid="uid://uqbhlsncunth" path="res://Assets/Menu Images/select button.png" id="4_lmmgd"]
+[ext_resource type="Texture2D" uid="uid://cu8xshktai6w4" path="res://Assets/Menu Images/about.png" id="5_77cel"]
+[ext_resource type="FontFile" uid="uid://wqrno8lackrm" path="res://gui/kenney_mini_square.ttf" id="6_fvpoi"]
+[ext_resource type="Texture2D" uid="uid://dku0f7cbnpdcu" path="res://player/steg_idle/frame0000.png" id="7_das57"]
+[ext_resource type="Texture2D" uid="uid://bukrart2vr133" path="res://player/steg_idle/frame0001.png" id="8_map4b"]
+[ext_resource type="Texture2D" uid="uid://df7eepfu6pyx7" path="res://player/steg_idle/frame0002.png" id="9_spaps"]
+[ext_resource type="Texture2D" uid="uid://b1akg8e3ogf0n" path="res://player/steg_idle/frame0003.png" id="10_te4ul"]
+[ext_resource type="Texture2D" uid="uid://b2prj4jj25egy" path="res://player/steg_idle/frame0004.png" id="11_cqodc"]
+[ext_resource type="Texture2D" uid="uid://cre4vkmaiuq77" path="res://player/steg_idle/frame0005.png" id="12_qfejc"]
+[ext_resource type="Texture2D" uid="uid://wjbp51tgxm0x" path="res://player/steg_idle/frame0006.png" id="13_1v0vk"]
+[ext_resource type="Texture2D" uid="uid://dm047alil3mcu" path="res://player/steg_idle/frame0007.png" id="14_u8kgc"]
+[ext_resource type="Texture2D" uid="uid://chtxexmf55rb0" path="res://player/steg_idle/frame0008.png" id="15_kf5wu"]
+[ext_resource type="Texture2D" uid="uid://m3tt2f0verkt" path="res://player/steg_idle/frame0009.png" id="16_kec3p"]
+[ext_resource type="Texture2D" uid="uid://031ya4fn64rb" path="res://player/steg_idle/frame0010.png" id="17_3vo2i"]
+[ext_resource type="Texture2D" uid="uid://bx4l5w76i6y40" path="res://player/steg_idle/frame0011.png" id="18_gsfki"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m5mse"]
+texture = ExtResource("1_vcktj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2qrkh"]
+texture = ExtResource("2_lpb34")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oryo0"]
+texture = ExtResource("5_77cel")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3f8sl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_das57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_map4b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_spaps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_te4ul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_cqodc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_qfejc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_1v0vk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_u8kgc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_kf5wu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_kec3p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_3vo2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_gsfki")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}]
+
+[node name="CharacterSelectionScreen" type="Control" unique_id=1390768228]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lpb34")
+
+[node name="Background" type="Panel" parent="." unique_id=123014316]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_m5mse")
+metadata/_edit_lock_ = true
+
+[node name="Name" type="Panel" parent="." unique_id=1123977739]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -178.0
+offset_top = -199.0
+offset_right = -630.0
+offset_bottom = -545.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_2qrkh")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="." unique_id=1074880568]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -668.0
+offset_top = 76.0
+offset_right = -160.0
+offset_bottom = 175.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.53333336, 0.40784314, 0.3254902, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_hl38c")
+theme_override_font_sizes/font_size = 100
+text = "Stegosaurus"
+metadata/_edit_lock_ = true
+
+[node name="SelectButton" type="TextureButton" parent="." unique_id=1739076935]
+layout_mode = 0
+offset_left = 347.0
+offset_top = 837.0
+offset_right = 1198.0
+offset_bottom = 1088.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_lmmgd")
+metadata/_edit_lock_ = true
+
+[node name="About" type="Panel" parent="." unique_id=72534669]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1044.0
+offset_top = 9.0
+offset_right = -17.0
+offset_bottom = -3.4281006
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_oryo0")
+metadata/_edit_lock_ = true
+
+[node name="scientific name" type="Label" parent="." unique_id=796469439]
+layout_mode = 0
+offset_left = 1243.0
+offset_top = 311.0
+offset_right = 1733.0
+offset_bottom = 368.0
+theme_override_colors/font_color = Color(0.54509807, 0.40784314, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("6_fvpoi")
+theme_override_font_sizes/font_size = 45
+text = "Stegosaurus (genus)"
+metadata/_edit_lock_ = true
+
+[node name="desc" type="Label" parent="." unique_id=1331319329]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1116.0
+offset_top = 433.0
+offset_right = -90.0
+offset_bottom = 682.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.54509807, 0.40784314, 0.33333334, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_fvpoi")
+theme_override_font_sizes/font_size = 26
+text = "These herbivore dinosaurs lived during the late
+Jurassic period. It is recognizable because of 
+its spiked tails and many triangular plates on their
+back. They are about 6.5 meters yet for such a huge
+body, they have a small brain. Its tails have two 
+pairs of pointed spikes and it is presumed as a
+"
+horizontal_alignment = 3
+metadata/_edit_lock_ = true
+
+[node name="desc2" type="Label" parent="." unique_id=457622752]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1118.0
+offset_top = 648.0
+offset_right = -88.0
+offset_bottom = 686.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.54509807, 0.40784314, 0.33333334, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_fvpoi")
+theme_override_font_sizes/font_size = 26
+text = "defense mechanism."
+metadata/_edit_lock_ = true
+
+[node name="skills" type="Label" parent="." unique_id=2006740047]
+layout_mode = 0
+offset_left = 1118.0
+offset_top = 832.0
+offset_right = 1927.0
+offset_bottom = 923.0
+theme_override_colors/font_color = Color(0.54509807, 0.40784314, 0.33333334, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_fvpoi")
+theme_override_font_sizes/font_size = 35
+text = "Tail Whip (Basic Attack) 
+Tackle (Basic Attack)"
+metadata/_edit_lock_ = true
+
+[node name="Stegosaurus" type="AnimatedSprite2D" parent="." unique_id=195217519]
+position = Vector2(511.00006, 534.00006)
+scale = Vector2(0.4116211, 0.4116211)
+sprite_frames = SubResource("SpriteFrames_3f8sl")
+animation = &"idle"
+frame_progress = 0.8172261
+
+[connection signal="pressed" from="SelectButton" to="." method="OnSelectButtonPressed"]

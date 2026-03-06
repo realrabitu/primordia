@@ -5,6 +5,10 @@ class_name ForageItem extends Area2D
 @export_range(1, 10, 1) var heal_amount := 1
 
 
+func _ready() -> void:
+	add_to_group(&"ferns")
+
+
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		(body as Player).forage(heal_amount)

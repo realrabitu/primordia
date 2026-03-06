@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c3tbco8fmfdo7"]
 
 [ext_resource type="Script" uid="uid://rdvvhn0hgd8w" path="res://enemy/enemy.gd" id="1_wlnif"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://4uosbqpwriov" path="res://player/allosaurus_attack/frame0000_transparent.png" id="2_le5os"]
 [ext_resource type="Texture2D" uid="uid://dxbh5lxsj7yex" path="res://player/allosaurus_attack/frame0001_transparent.png" id="3_hxwly"]
 [ext_resource type="Texture2D" uid="uid://d2bd1pjcmgknh" path="res://player/allosaurus_attack/frame0002_trans.png" id="4_0xn35"]
@@ -33,6 +34,12 @@
 [ext_resource type="Texture2D" uid="uid://bb3v5p4m4coue" path="res://player/allosaurus_walk/frame0004.png" id="31_dsnhd"]
 [ext_resource type="Texture2D" uid="uid://8dqh45nklwgv" path="res://player/allosaurus_walk/frame0005.png" id="32_2ghey"]
 [ext_resource type="Texture2D" uid="uid://bkm84h3pqr5xt" path="res://player/allosaurus_walk/frame0006.png" id="33_s7mdq"]
+=======
+[ext_resource type="Texture2D" uid="uid://d1kmb0muvwyef" path="res://enemy/Camarasaurus/camarasaurus_idle0.png" id="2_015um"]
+[ext_resource type="Texture2D" uid="uid://ji4qax3joejw" path="res://enemy/Camarasaurus/camarasaurus_idle1.png" id="3_ocd14"]
+[ext_resource type="Texture2D" uid="uid://b4trep2myk5qo" path="res://enemy/Camarasaurus/camarasaurus_idle2.png" id="4_d0i5c"]
+[ext_resource type="Texture2D" uid="uid://dn6mvku8pqlsw" path="res://enemy/Camarasaurus/camarasaurus_idle3.png" id="5_e1rqj"]
+>>>>>>> 0d47892ceece502f72b108f798841a323ba704f8
 [ext_resource type="Texture2D" uid="uid://coj0d33vyyqx1" path="res://player/bullet.webp" id="34_wnkjy"]
 [ext_resource type="AudioStream" uid="uid://dm7wsawmylc7b" path="res://enemy/hit.wav" id="35_jhnul"]
 [ext_resource type="AudioStream" uid="uid://duwm7i44o75o2" path="res://enemy/explode.wav" id="36_4yqf1"]
@@ -42,6 +49,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
+<<<<<<< HEAD
 "texture": ExtResource("2_le5os")
 }, {
 "duration": 1.0,
@@ -125,10 +133,23 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("26_0xn35")
+=======
+"texture": ExtResource("2_015um")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ocd14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d0i5c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_e1rqj")
+>>>>>>> 0d47892ceece502f72b108f798841a323ba704f8
 }],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+<<<<<<< HEAD
 }, {
 "frames": [{
 "duration": 1.0,
@@ -160,6 +181,13 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="5"]
 radius = 48.0
 height = 190.0
+=======
+}]
+
+[sub_resource type="CapsuleShape2D" id="5"]
+radius = 63.99996
+height = 219.99998
+>>>>>>> 0d47892ceece502f72b108f798841a323ba704f8
 
 [sub_resource type="CanvasItemMaterial" id="6"]
 blend_mode = 1
@@ -176,12 +204,25 @@ jump_velocity = -700.0
 attack_cooldown = 1.8
 is_aggressive = false
 is_passive = true
+<<<<<<< HEAD
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
 position = Vector2(40.67091, 21.196077)
 scale = Vector2(0.48125613, 0.48125613)
 sprite_frames = SubResource("SpriteFrames_e3etd")
 animation = &"death"
+=======
+dinosaur_id = "camarasaurus"
+dinosaur_name = "Camarasaurus"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
+position = Vector2(45.87792, 17.537977)
+scale = Vector2(0.5162691, 0.5162691)
+sprite_frames = SubResource("SpriteFrames_e3etd")
+animation = &"idle"
+frame = 3
+frame_progress = 0.8956173
+>>>>>>> 0d47892ceece502f72b108f798841a323ba704f8
 
 [node name="PlatformDetector" type="RayCast2D" parent="." unique_id=2026131695]
 position = Vector2(0, 6)
@@ -199,7 +240,11 @@ target_position = Vector2(0, 35)
 collision_mask = 24
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26390868]
+<<<<<<< HEAD
 position = Vector2(38, 22)
+=======
+position = Vector2(45, 32)
+>>>>>>> 0d47892ceece502f72b108f798841a323ba704f8
 rotation = -1.5708
 shape = SubResource("5")
 

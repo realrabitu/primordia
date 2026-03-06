@@ -1,0 +1,235 @@
+[gd_scene format=3 uid="uid://cpnpgp50qku62"]
+
+[ext_resource type="Script" uid="uid://rdvvhn0hgd8w" path="res://enemy/enemy.gd" id="1_5gfw8"]
+[ext_resource type="Texture2D" uid="uid://4uosbqpwriov" path="res://player/allosaurus_attack/frame0000_transparent.png" id="2_b6xni"]
+[ext_resource type="Texture2D" uid="uid://dxbh5lxsj7yex" path="res://player/allosaurus_attack/frame0001_transparent.png" id="3_l8ghd"]
+[ext_resource type="Texture2D" uid="uid://d2bd1pjcmgknh" path="res://player/allosaurus_attack/frame0002_trans.png" id="4_mfml7"]
+[ext_resource type="Texture2D" uid="uid://ccfjc4tx7ot3h" path="res://player/allosaurus_attack/frame0003_trans.png" id="5_5lr28"]
+[ext_resource type="Texture2D" uid="uid://dg2xv8fosea86" path="res://player/allosaurus_attack/frame0004_trans.png" id="6_flhc6"]
+[ext_resource type="Texture2D" uid="uid://b7fq103vforrg" path="res://player/allosaurus_attack/frame0005_trans.png" id="7_6kn4a"]
+[ext_resource type="Texture2D" uid="uid://bu4k2xkxbiblk" path="res://player/allosaurus_attack/frame0006_trans.png" id="8_h2myf"]
+[ext_resource type="Texture2D" uid="uid://xd7w4l0byyyu" path="res://player/allosaurus_attack/frame0007_trans.png" id="9_sraby"]
+[ext_resource type="Texture2D" uid="uid://ch3x0el4rcwng" path="res://player/allosaurus_attack/frame0008_trans.png" id="10_dqy6h"]
+[ext_resource type="Texture2D" uid="uid://b6sogks0fnqfm" path="res://player/allosaurus_attack/frame0009_trans.png" id="11_23qti"]
+[ext_resource type="Texture2D" uid="uid://ditgy6y2ete4y" path="res://player/allosaurus_attack/frame0010_trans.png" id="12_bgchw"]
+[ext_resource type="Texture2D" uid="uid://b6uv2cm8ysgfv" path="res://player/allosaurus_attack/frame0011_trans.png" id="13_oyfdq"]
+[ext_resource type="Texture2D" uid="uid://6nan3c5xlnpb" path="res://player/allosaurus_attack/frame0012_trans.png" id="14_fmc0j"]
+[ext_resource type="Texture2D" uid="uid://cwk1o6qw0xrb2" path="res://player/allosaurus_attack/frame0013_trans.png" id="15_ysqk7"]
+[ext_resource type="Texture2D" uid="uid://dr5jsplqy6k75" path="res://player/allosaurus_attack/frame0014_trans.png" id="16_drd22"]
+[ext_resource type="Texture2D" uid="uid://72dp0x86imer" path="res://player/allosaurus_death/frame0000.png" id="17_7dunl"]
+[ext_resource type="Texture2D" uid="uid://crd53eophrs8l" path="res://player/allosaurus_death/frame0001.png" id="18_hefqd"]
+[ext_resource type="Texture2D" uid="uid://dmf55f23fsc2w" path="res://player/allosaurus_death/frame0002.png" id="19_fwpb0"]
+[ext_resource type="Texture2D" uid="uid://da5ubqjh6gun4" path="res://player/allosaurus_death/frame0003.png" id="20_4g5xd"]
+[ext_resource type="Texture2D" uid="uid://bgrufsw87yhon" path="res://player/allosaurus_death/frame0004.png" id="21_o0eri"]
+[ext_resource type="Texture2D" uid="uid://be2mobwdck0t7" path="res://player/allosaurus_death/frame0005.png" id="22_ahlg7"]
+[ext_resource type="Texture2D" uid="uid://b77gxxya8gn57" path="res://player/allosaurus_idle/frame0000.png" id="23_fyvd1"]
+[ext_resource type="Texture2D" uid="uid://c13e0kdma5gji" path="res://player/allosaurus_idle/frame0001.png" id="24_lq6ux"]
+[ext_resource type="Texture2D" uid="uid://bhn8fdavupb1d" path="res://player/allosaurus_idle/frame0002.png" id="25_eb5gs"]
+[ext_resource type="Texture2D" uid="uid://rq6ibrl5ac5i" path="res://player/allosaurus_idle/frame0003.png" id="26_uhoiy"]
+[ext_resource type="Texture2D" uid="uid://yih8f122cy05" path="res://player/allosaurus_walk/frame0000.png" id="27_ixgbi"]
+[ext_resource type="Texture2D" uid="uid://colrbegijb4pt" path="res://player/allosaurus_walk/frame0001.png" id="28_delib"]
+[ext_resource type="Texture2D" uid="uid://bcdfuka546dbw" path="res://player/allosaurus_walk/frame0002.png" id="29_jv8fp"]
+[ext_resource type="Texture2D" uid="uid://dos5dv1jph8f4" path="res://player/allosaurus_walk/frame0003.png" id="30_q808q"]
+[ext_resource type="Texture2D" uid="uid://bb3v5p4m4coue" path="res://player/allosaurus_walk/frame0004.png" id="31_44yr1"]
+[ext_resource type="Texture2D" uid="uid://8dqh45nklwgv" path="res://player/allosaurus_walk/frame0005.png" id="32_100pk"]
+[ext_resource type="Texture2D" uid="uid://bkm84h3pqr5xt" path="res://player/allosaurus_walk/frame0006.png" id="33_i2wsg"]
+[ext_resource type="Texture2D" uid="uid://coj0d33vyyqx1" path="res://player/bullet.webp" id="34_7r558"]
+[ext_resource type="AudioStream" uid="uid://dm7wsawmylc7b" path="res://enemy/hit.wav" id="35_pm0nh"]
+[ext_resource type="AudioStream" uid="uid://duwm7i44o75o2" path="res://enemy/explode.wav" id="36_fkgbq"]
+[ext_resource type="PackedScene" uid="uid://d0tnu2xmlen7g" path="res://player/healthbar.tscn" id="37_31jmh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3etd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b6xni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_l8ghd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mfml7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5lr28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_flhc6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6kn4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_h2myf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_sraby")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dqy6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_23qti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_bgchw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_oyfdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_fmc0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ysqk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_drd22")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_7dunl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_hefqd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_fwpb0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_4g5xd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_o0eri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_ahlg7")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_fyvd1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_lq6ux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_eb5gs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_uhoiy")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_ixgbi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_delib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_jv8fp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_q808q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_44yr1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_100pk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_i2wsg")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="5"]
+radius = 48.0
+height = 162.00003
+
+[sub_resource type="CanvasItemMaterial" id="6"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="7"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="AllosaurusNormal" type="CharacterBody2D" unique_id=678927329]
+collision_layer = 2
+collision_mask = 24
+script = ExtResource("1_5gfw8")
+walk_speed = 40.0
+chase_speed = 72.0
+jump_velocity = -700.0
+attack_cooldown = 1.8
+dinosaur_id = "allosaurus"
+dinosaur_name = "Allosaurus"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
+position = Vector2(39.124996, 12.125011)
+scale = Vector2(0.13757324, 0.13757324)
+sprite_frames = SubResource("SpriteFrames_e3etd")
+animation = &"walk"
+
+[node name="PlatformDetector" type="RayCast2D" parent="." unique_id=2026131695]
+position = Vector2(0, 6)
+target_position = Vector2(0, 8)
+collision_mask = 8
+
+[node name="FloorDetectorLeft" type="RayCast2D" parent="." unique_id=1398094348]
+position = Vector2(-15, -4)
+target_position = Vector2(0, 35)
+collision_mask = 24
+
+[node name="FloorDetectorRight" type="RayCast2D" parent="." unique_id=1541295602]
+position = Vector2(15.5, -3)
+target_position = Vector2(0, 35)
+collision_mask = 24
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26390868]
+position = Vector2(38, 22)
+rotation = -1.5708
+shape = SubResource("5")
+
+[node name="Explosion" type="CPUParticles2D" parent="." unique_id=1964325938]
+self_modulate = Color(1, 1, 1, 0.12)
+material = SubResource("6")
+emitting = false
+amount = 32
+texture = ExtResource("34_7r558")
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.2
+explosiveness = 0.7
+draw_order = 215832976
+emission_shape = 1
+emission_sphere_radius = 16.0
+spread = 180.0
+gravity = Vector2(0, -250)
+color_ramp = SubResource("7")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=288222785]
+stream = ExtResource("35_pm0nh")
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="." unique_id=988196303]
+stream = ExtResource("36_fkgbq")
+
+[node name="Healthbar" parent="." unique_id=1930226170 instance=ExtResource("37_31jmh")]
+offset_left = -30.0
+offset_top = -42.0
+offset_right = 30.0
+offset_bottom = -38.0

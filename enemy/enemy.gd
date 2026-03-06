@@ -19,6 +19,7 @@ enum State {
 @export_range(0.0, 1200.0, 1.0) var detection_radius := 240.0
 @export_range(0.0, 1600.0, 1.0) var disengage_radius := 320.0
 @export_range(0.0, 10.0, 0.05) var forget_delay := 1.2
+@export_range(0.02, 1.0, 0.01) var target_update_interval := 0.08
 @export_range(1, 50, 1) var max_health := 1
 @export_range(1, 10, 1) var contact_damage := 1
 @export_range(0.0, 500.0, 1.0) var attack_radius := 10.0
@@ -29,18 +30,25 @@ enum State {
 @export_range(0, 1000, 1) var xp_reward := 10
 @export var is_aggressive := true
 @export var is_passive := false
+<<<<<<< HEAD
+=======
+@export var dinosaur_id := ""
+@export var dinosaur_name := ""
+@export_multiline var dinosaur_description := ""
+>>>>>>> 0d47892ceece502f72b108f798841a323ba704f8
 
 const PLAYER_GROUP: StringName = &"players"
 
 var _state := State.WALKING
 var _health := 1
-var _target: Player
+var _target: Node2D
 var _last_damage_source: Node
 var _forget_time_left := 0.0
 var _attack_cooldown_left := 0.0
 var _jump_cooldown_left := 0.0
 var _turn_cooldown_left := 0.0
 var _patrol_direction := 1.0
+var _target_update_left := 0.0
 
 @onready var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
 @onready var platform_detector := $PlatformDetector as RayCast2D
@@ -57,6 +65,8 @@ func _ready() -> void:
 	add_to_group(&"enemies")
 	_health = max_health
 	_patrol_direction = -1.0 if walk_speed < 0.0 else 1.0
+	_target_update_left = (float(get_instance_id() % 17) / 17.0) * target_update_interval
+	_refresh_passive_collision_exceptions()
 	health_changed.emit(_health, max_health)
 
 
@@ -71,7 +81,10 @@ func _physics_process(delta: float) -> void:
 		_turn_cooldown_left = maxf(0.0, _turn_cooldown_left - delta)
 
 	if _state != State.DEAD:
-		_update_target(delta)
+		_target_update_left = maxf(0.0, _target_update_left - delta)
+		if _target_update_left <= 0.0:
+			_target_update_left = target_update_interval
+			_update_target(delta)
 		if _state == State.CHASING and _target != null:
 			var direction := signf((_target as Node2D).global_position.x - global_position.x)
 			if is_zero_approx(direction):
@@ -152,12 +165,68 @@ func can_attack() -> bool:
 	return _state != State.DEAD and _attack_cooldown_left <= 0.0 and is_aggressive and not is_passive and contact_damage > 0
 
 
-func try_attack_player(player: Player, impulse := Vector2.ZERO) -> bool:
+func get_dinosaur_id() -> String:
+	if not dinosaur_id.is_empty():
+		return dinosaur_id
+	if not scene_file_path.is_empty():
+		return scene_file_path.get_file().get_basename().to_lower()
+	var inferred_id := _infer_dinosaur_id_from_sprite()
+	if not inferred_id.is_empty():
+		return inferred_id
+	return name.to_lower().strip_edges()
+
+
+func get_dinosaur_name() -> String:
+	if not dinosaur_name.is_empty():
+		return dinosaur_name
+	var fallback_id := get_dinosaur_id()
+	if fallback_id.is_empty():
+		return "Unknown Dinosaur"
+	var words := fallback_id.replace("_", " ").replace("-", " ").split(" ", false)
+	for index in words.size():
+		words[index] = words[index].capitalize()
+	return " ".join(words)
+
+
+func get_dinosaur_description() -> String:
+	if not dinosaur_description.is_empty():
+		return dinosaur_description
+	return "%s encountered." % get_dinosaur_name()
+
+
+func _infer_dinosaur_id_from_sprite() -> String:
+	if sprite == null or sprite.sprite_frames == null:
+		return ""
+	var animation_names := sprite.sprite_frames.get_animation_names()
+	for animation_name in animation_names:
+		var frame_count := sprite.sprite_frames.get_frame_count(animation_name)
+		if frame_count <= 0:
+			continue
+		var texture := sprite.sprite_frames.get_frame_texture(animation_name, 0)
+		if texture == null:
+			continue
+		var texture_path := texture.resource_path
+		if texture_path.is_empty():
+			continue
+		var folder_name := texture_path.get_base_dir().get_file().to_lower()
+		if folder_name.is_empty():
+			continue
+		if folder_name.contains("_"):
+			folder_name = folder_name.split("_", false)[0]
+		return folder_name
+	return ""
+
+
+func try_attack_player(player: Node, impulse := Vector2.ZERO) -> bool:
 	if player == null or not player.is_inside_tree():
+		return false
+	if not player.is_in_group(PLAYER_GROUP):
+		return false
+	if not player.has_method(&"take_damage"):
 		return false
 	if not can_attack():
 		return false
-	player.take_damage(contact_damage, impulse)
+	player.call(&"take_damage", contact_damage, impulse, true)
 	_attack_cooldown_left = attack_cooldown
 	return true
 
@@ -224,6 +293,10 @@ func _on_death_timeout() -> void:
 
 func _update_target(delta: float) -> void:
 	if is_passive or not is_aggressive:
+<<<<<<< HEAD
+=======
+		_refresh_passive_collision_exceptions()
+>>>>>>> 0d47892ceece502f72b108f798841a323ba704f8
 		_target = null
 		_forget_time_left = 0.0
 		_state = State.WALKING
@@ -241,8 +314,8 @@ func _update_target(delta: float) -> void:
 			_state = State.ATTACKING
 			_forget_time_left = forget_delay
 			return
-		var distance_to_target := global_position.distance_to((_target as Node2D).global_position)
-		if distance_to_target <= disengage_radius:
+		var delta_to_target := (_target as Node2D).global_position - global_position
+		if delta_to_target.length_squared() <= disengage_radius * disengage_radius:
 			_state = State.CHASING
 			_forget_time_left = forget_delay
 			return
@@ -274,14 +347,14 @@ func _try_attack_target() -> void:
 	try_attack_player(_target, Vector2(push_direction * attack_knockback_x, attack_knockback_y))
 
 
-func _is_target_in_attack_range(target: Player) -> bool:
+func _is_target_in_attack_range(target: Node2D) -> bool:
 	if target == null or not target.is_inside_tree():
 		return false
 	if attack_radius <= 0.0:
 		return false
 	var enemy_body_position := collision_shape.global_position if collision_shape != null else global_position
 	var target_shape := target.get_node_or_null(^"CollisionShape2D") as CollisionShape2D
-	var target_body_position := target_shape.global_position if target_shape != null else (target as Node2D).global_position
+	var target_body_position := target_shape.global_position if target_shape != null else target.global_position
 	var delta := target_body_position - enemy_body_position
 	var enemy_extents := _get_collision_half_extents(collision_shape)
 	var target_extents := _get_collision_half_extents(target_shape)
@@ -322,22 +395,22 @@ func _get_collision_half_extents(shape_node: CollisionShape2D) -> Vector2:
 	)
 
 
-func _find_nearest_player(max_distance: float) -> Player:
+func _find_nearest_player(max_distance: float) -> Node2D:
 	if max_distance <= 0.0:
 		return null
 	var tree := get_tree()
 	if tree == null:
 		return null
 
-	var nearest_player: Player
+	var nearest_player: Node2D
 	var max_distance_squared := max_distance * max_distance
 	for node in tree.get_nodes_in_group(PLAYER_GROUP):
-		if node is not Player:
+		if not (node is Node2D):
 			continue
-		var player := node as Player
+		var player := node as Node2D
 		if not player.is_inside_tree():
 			continue
-		var distance_squared := global_position.distance_squared_to((player as Node2D).global_position)
+		var distance_squared := global_position.distance_squared_to(player.global_position)
 		if distance_squared <= max_distance_squared:
 			max_distance_squared = distance_squared
 			nearest_player = player
@@ -345,12 +418,12 @@ func _find_nearest_player(max_distance: float) -> Player:
 	return nearest_player
 
 
-func _find_contact_player() -> Player:
+func _find_contact_player() -> Node2D:
 	for index in range(get_slide_collision_count()):
 		var collision := get_slide_collision(index)
 		var collider := collision.get_collider()
-		if collider is Player:
-			var player := collider as Player
+		if collider is Node2D and (collider as Node2D).is_in_group(PLAYER_GROUP):
+			var player := collider as Node2D
 			if player.is_inside_tree():
 				return player
 	return null
@@ -389,9 +462,33 @@ func _is_edge_ahead(move_direction: float) -> bool:
 	var direction := signf(move_direction)
 	if is_zero_approx(direction):
 		return false
-	if direction > 0.0:
-		return not floor_detector_right.is_colliding()
-	return not floor_detector_left.is_colliding()
+	var floor_detector: RayCast2D = floor_detector_right if direction > 0.0 else floor_detector_left
+	if floor_detector != null:
+		floor_detector.force_raycast_update()
+		if floor_detector.is_colliding():
+			return false
+
+	# Fallback probe based on body bounds keeps patrol stable even if detector nodes are misaligned.
+	return not _has_ground_ahead(direction)
+
+
+func _has_ground_ahead(direction: float) -> bool:
+	var body_extents := _get_collision_half_extents(collision_shape)
+	if body_extents == Vector2.ZERO:
+		return true
+
+	var body_center := collision_shape.global_position if collision_shape != null else global_position
+	var forward_distance := body_extents.x + 6.0
+	var ray_start := body_center + Vector2(direction * forward_distance, body_extents.y - 2.0)
+	var ray_end := ray_start + Vector2(0.0, 20.0)
+
+	var query := PhysicsRayQueryParameters2D.create(ray_start, ray_end)
+	query.exclude = [self]
+	query.collide_with_areas = false
+	query.collide_with_bodies = true
+	query.collision_mask = collision_mask
+	var result := get_world_2d().direct_space_state.intersect_ray(query)
+	return not result.is_empty()
 
 
 func _can_turn() -> bool:
@@ -401,3 +498,19 @@ func _can_turn() -> bool:
 func _flip_patrol_direction() -> void:
 	_patrol_direction = -_patrol_direction
 	_turn_cooldown_left = turn_cooldown
+
+
+func _refresh_passive_collision_exceptions() -> void:
+	if not is_passive:
+		return
+	var tree := get_tree()
+	if tree == null:
+		return
+	for node in tree.get_nodes_in_group(PLAYER_GROUP):
+		if not (node is PhysicsBody2D):
+			continue
+		var player_body := node as PhysicsBody2D
+		if player_body == null:
+			continue
+		add_collision_exception_with(player_body)
+		player_body.add_collision_exception_with(self)

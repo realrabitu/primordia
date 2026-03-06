@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://ti3pxc05ppqy"]
+
+[ext_resource type="Script" uid="uid://rdvvhn0hgd8w" path="res://enemy/enemy.gd" id="1_rhk4b"]
+[ext_resource type="Texture2D" uid="uid://qe8sj77xweqo" path="res://enemy/Dilophosaurus/idle dilophosaurus 1(1).png" id="2_8yh7l"]
+[ext_resource type="Texture2D" uid="uid://dhibwwwm808we" path="res://enemy/Dilophosaurus/idle dilophosaurus 4.png" id="2_g106w"]
+[ext_resource type="Texture2D" uid="uid://bhebyju4h8r23" path="res://enemy/Dilophosaurus/5.png" id="3_7cuo3"]
+[ext_resource type="Texture2D" uid="uid://bnlfoyx7dt2up" path="res://enemy/Dilophosaurus/idle dilophosaurus 1.png" id="3_lf7yw"]
+[ext_resource type="Texture2D" uid="uid://chb0qif82vjrh" path="res://enemy/Dilophosaurus/idle dilophosaurus 3.png" id="4_2sovm"]
+[ext_resource type="Texture2D" uid="uid://b1kqmkxqoerra" path="res://enemy/Dilophosaurus/6.png" id="4_n1k54"]
+[ext_resource type="Texture2D" uid="uid://bloekbfmknk6i" path="res://enemy/Dilophosaurus/7.png" id="5_8yh7l"]
+[ext_resource type="Texture2D" uid="uid://coj0d33vyyqx1" path="res://player/bullet.webp" id="6_g106w"]
+[ext_resource type="Texture2D" uid="uid://de1q6bbesj2c5" path="res://enemy/Dilophosaurus/8.png" id="6_lf7yw"]
+[ext_resource type="Texture2D" uid="uid://dyxxpsfu6y6em" path="res://enemy/Dilophosaurus/9.png" id="7_2sovm"]
+[ext_resource type="AudioStream" uid="uid://dm7wsawmylc7b" path="res://enemy/hit.wav" id="7_7cuo3"]
+[ext_resource type="AudioStream" uid="uid://duwm7i44o75o2" path="res://enemy/explode.wav" id="8_n1k54"]
+[ext_resource type="Texture2D" uid="uid://bxx2531flfpes" path="res://enemy/Dilophosaurus/10.png" id="8_qosgc"]
+[ext_resource type="PackedScene" uid="uid://d0tnu2xmlen7g" path="res://player/healthbar.tscn" id="9_8yh7l"]
+[ext_resource type="Texture2D" uid="uid://6t4m53ewh3rj" path="res://enemy/Dilophosaurus/11.png" id="9_bnri7"]
+[ext_resource type="Texture2D" uid="uid://dx4vstdc4p0n7" path="res://enemy/Dilophosaurus/12.png" id="10_m87m0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3etd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8yh7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lf7yw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2sovm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_g106w")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7cuo3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_n1k54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8yh7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lf7yw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2sovm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_qosgc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_bnri7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_m87m0")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="5"]
+radius = 38.99999
+height = 162.00003
+
+[sub_resource type="CanvasItemMaterial" id="6"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="7"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=678927329]
+collision_layer = 2
+collision_mask = 24
+script = ExtResource("1_rhk4b")
+jump_velocity = -700.0
+attack_cooldown = 1.8
+is_aggressive = false
+is_passive = true
+dinosaur_id = "dilophosaurus"
+dinosaur_name = "Dilophosaurus"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
+position = Vector2(12.5134735, 23.768559)
+scale = Vector2(0.21732308, 0.2173231)
+sprite_frames = SubResource("SpriteFrames_e3etd")
+animation = &"idle"
+frame = 2
+frame_progress = 0.09939815
+
+[node name="PlatformDetector" type="RayCast2D" parent="." unique_id=2026131695]
+position = Vector2(0, 6)
+target_position = Vector2(0, 8)
+collision_mask = 8
+
+[node name="FloorDetectorLeft" type="RayCast2D" parent="." unique_id=1398094348]
+position = Vector2(-15, -4)
+target_position = Vector2(0, 35)
+collision_mask = 24
+
+[node name="FloorDetectorRight" type="RayCast2D" parent="." unique_id=1541295602]
+position = Vector2(15.5, -3)
+target_position = Vector2(0, 35)
+collision_mask = 24
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26390868]
+position = Vector2(14, 30)
+rotation = -1.5708
+shape = SubResource("5")
+
+[node name="Explosion" type="CPUParticles2D" parent="." unique_id=1964325938]
+self_modulate = Color(1, 1, 1, 0.12)
+material = SubResource("6")
+emitting = false
+amount = 32
+texture = ExtResource("6_g106w")
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.2
+explosiveness = 0.7
+draw_order = 215832976
+emission_shape = 1
+emission_sphere_radius = 16.0
+spread = 180.0
+gravity = Vector2(0, -250)
+color_ramp = SubResource("7")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=288222785]
+stream = ExtResource("7_7cuo3")
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="." unique_id=988196303]
+stream = ExtResource("8_n1k54")
+
+[node name="Healthbar" parent="." unique_id=1930226170 instance=ExtResource("9_8yh7l")]
+offset_left = -30.0
+offset_top = -42.0
+offset_right = 30.0
+offset_bottom = -38.0

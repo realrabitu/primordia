@@ -55,6 +55,22 @@
 [ext_resource type="Texture2D" uid="uid://b2ho4m1m3e1rb" path="res://player/steg_revised_defend/frame0012.png" id="31_hggc2"]
 [ext_resource type="Texture2D" uid="uid://payjmsy7kws" path="res://player/steg_revised_defend/frame0013.png" id="32_b2j0d"]
 [ext_resource type="Texture2D" uid="uid://duvgxwkoddsbt" path="res://player/steg_revised_defend/frame0014.png" id="33_7l6ig"]
+[ext_resource type="Texture2D" uid="uid://dmqcpo7q5jbtx" path="res://player/steg_eat/frame0000.png" id="34_utr5e"]
+[ext_resource type="Texture2D" uid="uid://cxwva3jxtfvpr" path="res://player/steg_eat/frame0001.png" id="35_kewli"]
+[ext_resource type="Texture2D" uid="uid://cwh3e64kj5x7q" path="res://player/steg_eat/frame0002.png" id="36_do7qw"]
+[ext_resource type="Texture2D" uid="uid://6k6lv4cg5raq" path="res://player/steg_eat/frame0003.png" id="37_2h6tc"]
+[ext_resource type="Texture2D" uid="uid://bwmt4ktwjjc35" path="res://player/steg_eat/frame0004.png" id="38_8rogd"]
+[ext_resource type="Texture2D" uid="uid://bgkoe7gsq8dr3" path="res://player/steg_eat/frame0005.png" id="39_48p26"]
+[ext_resource type="Texture2D" uid="uid://dgnkpknsxrl40" path="res://player/steg_eat/frame0006.png" id="40_anp34"]
+[ext_resource type="Texture2D" uid="uid://ju8ocuxfs58v" path="res://player/steg_eat/frame0007.png" id="41_jdjat"]
+[ext_resource type="Texture2D" uid="uid://dohsypsra3ebb" path="res://player/steg_eat/frame0008.png" id="42_j420s"]
+[ext_resource type="Texture2D" uid="uid://d3b4b1aclqb8x" path="res://player/steg_eat/frame0009.png" id="43_kcq4v"]
+[ext_resource type="Texture2D" uid="uid://ev2fc2012b1y" path="res://player/steg_eat/frame0010.png" id="44_qavcc"]
+[ext_resource type="Texture2D" uid="uid://bde16frteccyw" path="res://player/steg_eat/frame0011.png" id="45_bd26m"]
+[ext_resource type="Texture2D" uid="uid://bdqmmf7y0bpov" path="res://player/steg_eat/frame0012.png" id="46_lufic"]
+[ext_resource type="Texture2D" uid="uid://boy4ooybbwpsu" path="res://player/steg_eat/frame0013.png" id="47_nxclr"]
+[ext_resource type="Texture2D" uid="uid://fwsj0ocn0ebn" path="res://player/steg_eat/frame0014.png" id="48_onxu2"]
+[ext_resource type="Texture2D" uid="uid://baj3prmktm5ku" path="res://player/steg_eat/frame0015.png" id="49_gci7n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qjkh3"]
 animations = [{
@@ -166,6 +182,59 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("34_utr5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_kewli")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_do7qw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_2h6tc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_8rogd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_48p26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_anp34")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_jdjat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_j420s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_kcq4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_qavcc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_bd26m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_lufic")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_nxclr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_onxu2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_gci7n")
+}],
+"loop": true,
+"name": &"eat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("2_knn7v")
 }, {
 "duration": 1.0,
@@ -248,17 +317,19 @@ collision_mask = 30
 floor_constant_speed = true
 platform_on_leave = 2
 script = ExtResource("3")
+full_hunger_regen_amount = 3
+attack_range = 180.0
+eat_hunger_restore = 2
 
 [node name="PlatformDetector" type="RayCast2D" parent="." unique_id=1538549087]
 target_position = Vector2(0, 6)
 collision_mask = 8
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1157735104 groups=["can_interact_with_water"]]
-position = Vector2(-2.500002, -1.9073486e-06)
+position = Vector2(9.99999, 13.749992)
 scale = Vector2(0.11064148, 0.11064148)
 sprite_frames = SubResource("SpriteFrames_qjkh3")
-animation = &"defend"
-frame = 5
+animation = &"attack"
 
 [node name="ShootAnimation" type="Timer" parent="." unique_id=716614343]
 wait_time = 0.3

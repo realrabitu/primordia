@@ -1,12 +1,11 @@
 class_name Player extends CharacterBody2D
 
-
-signal coin_collected()
 signal health_changed(current: int, max_health: int)
 signal hunger_changed(current: int, max_hunger: int)
 signal stamina_changed(current: int, max_stamina: int)
 signal xp_changed(current: int, required: int)
 signal level_changed(level: int)
+signal dinosaur_first_encountered(dinosaur_name: String, dinosaur_description: String)
 
 @export var walk_speed: float = 350.0
 var ACCELERATION_SPEED = walk_speed * 6.0
@@ -23,6 +22,9 @@ const TERMINAL_VELOCITY = 700
 @export_range(1, 10, 1) var hunger_drain_per_tick := 1
 @export_range(0.1, 30.0, 0.1) var starvation_damage_interval := 2.0
 @export_range(1, 10, 1) var starvation_damage := 1
+@export_range(0.1, 30.0, 0.1) var full_hunger_regen_interval := 4.0
+@export_range(1, 10, 1) var full_hunger_regen_amount := 1
+@export_range(0, 10, 1) var full_hunger_regen_hunger_cost := 1
 @export_range(0.0, 2000.0, 1.0) var fall_damage_start_speed := 560.0
 @export_range(1.0, 1000.0, 1.0) var fall_damage_step := 90.0
 @export_range(1, 20, 1) var max_fall_damage := 4
@@ -36,6 +38,8 @@ const TERMINAL_VELOCITY = 700
 @export_range(0.0, 400.0, 1.0) var attack_range := 90.0
 @export_range(0.0, 250.0, 1.0) var attack_vertical_tolerance := 56.0
 @export var attack_hit_offset := Vector2(-70.0, -13.0)
+@export_range(0.0, 3000.0, 1.0) var dinosaur_encounter_radius := 260.0
+@export_range(0.02, 1.0, 0.01) var dinosaur_encounter_scan_interval := 0.15
 @export_range(0.0, 1.0, 0.05) var defend_damage_multiplier := 0.35
 @export_range(0.0, 1.0, 0.05) var defend_knockback_multiplier := 0.35
 @export_range(1.0, 200.0, 1.0) var defend_heat_max := 100.0
@@ -53,6 +57,9 @@ const TERMINAL_VELOCITY = 700
 @export_range(1.0, 3.0, 0.05) var sprint_speed_multiplier := 1.45
 @export_range(0.0, 200.0, 1.0) var sprint_stamina_drain_per_second := 10.0
 @export var sprint_in_air := false
+@export_range(0.0, 300.0, 1.0) var fern_interaction_radius := 72.0
+@export_range(0.02, 1.0, 0.01) var fern_scan_interval := 0.1
+@export_range(1, 10, 1) var eat_hunger_restore := 1
 @export_range(0.0, 1.0, 0.05) var hunger_min_regen_factor := 0.2
 @export_range(0.0, 2.0, 0.05) var hunger_loss_per_stamina_ratio := 0.25
 @export_range(1, 2000, 1) var base_xp_to_level := 25
@@ -60,6 +67,8 @@ const TERMINAL_VELOCITY = 700
 @export_range(0, 20, 1) var level_up_health_bonus := 1
 @export_range(0.0, 200.0, 1.0) var level_up_stamina_bonus := 8.0
 @export_range(0, 10, 1) var level_up_attack_bonus := 1
+@export_range(0, 50, 1) var base_defense := 0
+@export_range(0, 10, 1) var level_up_defense_bonus := 1
 
 const PLAYER_GROUP: StringName = &"players"
 
@@ -71,18 +80,21 @@ var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
 @onready var camera := $Camera as Camera2D
 var _double_jump_charged := false
 var _facing_direction := 1.0
+var _attack_hit_direction := 1.0
 var _health := 0
 var _hunger := 0
 var _spawn_position := Vector2.ZERO
 var _damage_cooldown_left := 0.0
 var _hunger_tick_left := 0.0
 var _starvation_damage_left := 0.0
+var _full_hunger_regen_left := 0.0
 var _airborne_start_y := 0.0
 var _stamina := 0.0
 var _effective_max_stamina := 1.0
 var _hunger_loss_accumulator := 0.0
 var _is_attacking := false
 var _attack_fired := false
+var _is_eating := false
 var _is_defending := false
 var _is_sprinting := false
 var _defend_hold_left := 0.0
@@ -94,11 +106,25 @@ var _defend_recovery_delay_left := 0.0
 var _level := 1
 var _xp := 0
 var _xp_to_next := 1
+var _defense := 0
 var _defend_damage_accumulator := 0.0
+var _encountered_dinosaur_ids: Dictionary = {}
+var _is_near_fern := false
+var _nearby_food_source: Node2D
+var _eating_food_source: Node2D
+var _eat_time_left := 0.0
+var _dinosaur_scan_left := 0.0
+var _fern_scan_left := 0.0
+var _fern_cache_built := false
+var _fern_candidates_cache: Array[Node2D] = []
 
 
 func is_god_mode_enabled() -> bool:
 	return debug_god_mode
+
+
+func get_defense() -> int:
+	return _defense
 
 
 func _ready() -> void:
@@ -110,6 +136,7 @@ func _ready() -> void:
 	_hunger = max_hunger
 	_hunger_tick_left = hunger_tick_interval
 	_starvation_damage_left = starvation_damage_interval
+	_full_hunger_regen_left = full_hunger_regen_interval
 	_stamina = max_stamina
 	_hunger_loss_accumulator = 0.0
 	_defend_cooldown_left = 0.0
@@ -118,12 +145,20 @@ func _ready() -> void:
 	_xp = 0
 	_level = 1
 	_xp_to_next = _calculate_xp_to_next(_level)
+	_defense = base_defense
+	_encountered_dinosaur_ids.clear()
+	_dinosaur_scan_left = 0.0
+	_fern_scan_left = 0.0
+	_fern_cache_built = false
+	_fern_candidates_cache.clear()
 	_update_stamina_from_hunger(false)
 	health_changed.emit(_health, max_health)
 	hunger_changed.emit(_hunger, max_hunger)
 	_emit_stamina_changed()
 	xp_changed.emit(_xp, _xp_to_next)
 	level_changed.emit(_level)
+	if sprite.sprite_frames != null and sprite.sprite_frames.has_animation("eat"):
+		sprite.sprite_frames.set_animation_loop("eat", false)
 	sprite.animation_finished.connect(_on_sprite_animation_finished)
 
 
@@ -135,6 +170,7 @@ func _physics_process(delta: float) -> void:
 			_hunger = max_hunger
 			_hunger_tick_left = hunger_tick_interval
 			_starvation_damage_left = starvation_damage_interval
+			_full_hunger_regen_left = full_hunger_regen_interval
 			_stamina = max_stamina
 			_hunger_loss_accumulator = 0.0
 			_defend_cooldown_left = 0.0
@@ -146,7 +182,7 @@ func _physics_process(delta: float) -> void:
 			_emit_stamina_changed()
 		print("God mode %s for player%s" % ["enabled" if debug_god_mode else "disabled", action_suffix])
 
-	_update_hunger(0.0)
+	_update_hunger(delta)
 
 	if _damage_cooldown_left > 0.0:
 		_damage_cooldown_left = maxf(0.0, _damage_cooldown_left - delta)
@@ -169,9 +205,9 @@ func _physics_process(delta: float) -> void:
 	_update_defend_state(delta)
 	_update_sprint_state()
 	_update_stamina(delta)
-	if not (_is_attacking or _is_defending) and Input.is_action_just_pressed("jump" + action_suffix):
+	if not (_is_attacking or _is_defending or _is_eating) and Input.is_action_just_pressed("jump" + action_suffix):
 		try_jump()
-	elif not (_is_attacking or _is_defending) and Input.is_action_just_released("jump" + action_suffix) and velocity.y < 0.0:
+	elif not (_is_attacking or _is_defending or _is_eating) and Input.is_action_just_released("jump" + action_suffix) and velocity.y < 0.0:
 		# The player let go of jump early, reduce vertical momentum.
 		velocity.y *= 0.6
 	# Fall.
@@ -182,7 +218,7 @@ func _physics_process(delta: float) -> void:
 		speed_multiplier *= sprint_speed_multiplier
 	var current_walk_speed := walk_speed * speed_multiplier
 	var current_acceleration_speed : float = ACCELERATION_SPEED * speed_multiplier
-	if _is_attacking or _is_defending:
+	if _is_attacking or _is_defending or _is_eating:
 		velocity.x = 0.0
 	else:
 		var direction := Input.get_axis("move_left" + action_suffix, "move_right" + action_suffix) * current_walk_speed
@@ -203,7 +239,19 @@ func _physics_process(delta: float) -> void:
 	if _handle_hazard_tile_collisions():
 		return
 	_apply_fall_damage_on_landing(was_on_floor, vertical_speed_before_move)
+	_handle_enemy_proximity_encounters(delta)
 	_handle_enemy_collisions()
+	_update_fern_proximity(delta)
+	if _is_eating and _has_eating_target_disappeared():
+		_is_eating = false
+		_eating_food_source = null
+		_eat_time_left = 0.0
+	elif _is_eating:
+		_eat_time_left = maxf(0.0, _eat_time_left - delta)
+		if _eat_time_left <= 0.0:
+			_finish_eat_sequence()
+		_try_finish_eat_animation()
+	_try_start_eat()
 
 	if Input.is_action_just_pressed("shoot" + action_suffix):
 		_try_start_attack()
@@ -211,10 +259,108 @@ func _physics_process(delta: float) -> void:
 	_process_attack_shot()
 
 	var animation := get_new_animation()
-	var should_restart_animation := sprite.animation != animation or (not sprite.is_playing() and not (_is_defending and animation == "defend"))
+	var should_restart_animation := sprite.animation != animation or (not sprite.is_playing() and not ((_is_defending and animation == "defend") or (_is_eating and animation == "eat")))
 	if not animation.is_empty() and should_restart_animation:
 		sprite.play(animation)
 	_update_defend_animation_loop()
+
+
+func is_near_fern() -> bool:
+	return _is_near_fern
+
+
+func _update_fern_proximity(delta: float) -> void:
+	if fern_interaction_radius <= 0.0:
+		_nearby_food_source = null
+		_is_near_fern = false
+		return
+
+	_fern_scan_left = maxf(0.0, _fern_scan_left - delta)
+	if _fern_scan_left > 0.0 and _nearby_food_source != null and is_instance_valid(_nearby_food_source):
+		var current_delta := _nearby_food_source.global_position - global_position
+		var radius_squared := fern_interaction_radius * fern_interaction_radius
+		if current_delta.length_squared() <= radius_squared:
+			if not (_nearby_food_source is CanvasItem) or (_nearby_food_source as CanvasItem).visible:
+				_is_near_fern = true
+				return
+
+	_fern_scan_left = fern_scan_interval
+	_nearby_food_source = _find_nearest_food_source()
+	_is_near_fern = _nearby_food_source != null
+
+
+func _find_nearest_food_source() -> Node2D:
+	var radius_squared := fern_interaction_radius * fern_interaction_radius
+	var nearest_food: Node2D
+	var best_distance_squared := radius_squared
+	for node in _get_fern_candidates():
+		var food_node := node
+		if food_node is CanvasItem and not (food_node as CanvasItem).visible:
+			continue
+		var delta := food_node.global_position - global_position
+		var distance_squared := delta.length_squared()
+		if distance_squared <= best_distance_squared:
+			best_distance_squared = distance_squared
+			nearest_food = food_node
+	return nearest_food
+
+
+func _get_fern_candidates() -> Array[Node2D]:
+	var grouped := get_tree().get_nodes_in_group(&"ferns")
+	if not grouped.is_empty():
+		var grouped_candidates: Array[Node2D] = []
+		for node in grouped:
+			if node is Node2D and (node as Node2D).is_inside_tree():
+				grouped_candidates.append(node as Node2D)
+		return grouped_candidates
+
+	if not _fern_cache_built:
+		_build_fern_candidates_cache()
+
+	if _fern_candidates_cache.is_empty():
+		return _fern_candidates_cache
+
+	var alive_candidates: Array[Node2D] = []
+	for candidate in _fern_candidates_cache:
+		if is_instance_valid(candidate) and candidate.is_inside_tree():
+			alive_candidates.append(candidate)
+	_fern_candidates_cache = alive_candidates
+	return _fern_candidates_cache
+
+
+func _build_fern_candidates_cache() -> void:
+	_fern_candidates_cache.clear()
+	var scene_root := get_tree().current_scene
+	if scene_root == null:
+		_fern_cache_built = true
+		return
+
+	var stack: Array[Node] = [scene_root]
+	while not stack.is_empty():
+		var node := stack.pop_back() as Node
+		if _node_looks_like_food_item(node):
+			_fern_candidates_cache.append(node as Node2D)
+		for child in node.get_children():
+			stack.append(child)
+	_fern_cache_built = true
+
+
+func _node_looks_like_food_item(node: Node) -> bool:
+	if not (node is Node2D):
+		return false
+
+	var node_name := node.name.to_lower()
+	if node_name.begins_with("fern") or node_name.begins_with("forage"):
+		return true
+
+	if node is Sprite2D:
+		var node_sprite := node as Sprite2D
+		if node_sprite.texture != null:
+			var texture_path := node_sprite.texture.resource_path.to_lower()
+			if texture_path.contains("fern") or texture_path.contains("forage"):
+				return true
+
+	return false
 
 
 func get_new_animation() -> String:
@@ -222,6 +368,8 @@ func get_new_animation() -> String:
 		return "attack"
 	if _is_defending and sprite.sprite_frames.has_animation("defend"):
 		return "defend"
+	if _is_eating and sprite.sprite_frames.has_animation("eat"):
+		return "eat"
 
 	var animation_base: String
 	if is_on_floor():
@@ -243,19 +391,112 @@ func get_new_animation() -> String:
 
 
 func _try_start_attack() -> void:
-	if _is_attacking or _is_defending or _defend_break_left > 0.0 or not shoot_timer.is_stopped() or not sprite.sprite_frames.has_animation("attack"):
+	if _is_attacking or _is_defending or _is_eating or _defend_break_left > 0.0 or not shoot_timer.is_stopped() or not sprite.sprite_frames.has_animation("attack"):
 		return
 	if not _consume_stamina(attack_stamina_cost):
 		return
+	_align_backside_toward_enemy()
 	_is_attacking = true
 	_attack_fired = false
 	sprite.play("attack")
 
 
+func _try_start_eat() -> void:
+	if not _is_eat_pressed():
+		return
+	if _is_attacking or _is_defending or _is_eating or _defend_break_left > 0.0:
+		return
+	if not _is_near_fern or _nearby_food_source == null or not is_instance_valid(_nearby_food_source):
+		return
+	if sprite.sprite_frames == null or not sprite.sprite_frames.has_animation("eat"):
+		return
+
+	_eating_food_source = _nearby_food_source
+	_is_eating = true
+	_eat_time_left = _get_eat_animation_duration()
+	velocity.x = 0.0
+	sprite.play("eat")
+
+
+func _get_eat_animation_duration() -> float:
+	if sprite.sprite_frames == null or not sprite.sprite_frames.has_animation("eat"):
+		return 0.25
+	var frame_count := sprite.sprite_frames.get_frame_count("eat")
+	if frame_count <= 0:
+		return 0.25
+	var speed := absf(sprite.sprite_frames.get_animation_speed("eat"))
+	if speed <= 0.0:
+		speed = 1.0
+	var total := 0.0
+	for frame in range(frame_count):
+		total += sprite.sprite_frames.get_frame_duration("eat", frame)
+	return maxf(0.05, total / speed)
+
+
+func _has_eating_target_disappeared() -> bool:
+	if _eating_food_source == null:
+		return true
+	if not is_instance_valid(_eating_food_source):
+		return true
+	if _eating_food_source is CanvasItem and not (_eating_food_source as CanvasItem).visible:
+		return true
+	return false
+
+
+func _try_finish_eat_animation() -> void:
+	if sprite.animation != "eat":
+		return
+	if sprite.sprite_frames == null or not sprite.sprite_frames.has_animation("eat"):
+		return
+	var last_frame := sprite.sprite_frames.get_frame_count("eat") - 1
+	if last_frame < 0:
+		return
+	if sprite.frame < last_frame:
+		return
+	if sprite.frame_progress < 0.98:
+		return
+	_finish_eat_sequence()
+
+
+func _finish_eat_sequence() -> void:
+	if not _is_eating:
+		return
+	_is_eating = false
+	_eat_time_left = 0.0
+	if not _has_eating_target_disappeared():
+		_consume_food_source(_eating_food_source)
+	_eating_food_source = null
+
+
+func _consume_food_source(food_source: Node2D) -> void:
+	if food_source == null or not is_instance_valid(food_source):
+		return
+
+	if food_source is CanvasItem:
+		(food_source as CanvasItem).visible = false
+
+	# Area2D food pickups should be removed so they cannot be consumed twice.
+	if food_source is Area2D or food_source.name.to_lower().begins_with("forage"):
+		food_source.queue_free()
+
+	_nearby_food_source = null
+	_is_near_fern = false
+	forage(eat_hunger_restore)
+
+
+func _is_eat_pressed() -> bool:
+	var action_name := "eat" + action_suffix
+	if InputMap.has_action(action_name):
+		return Input.is_action_just_pressed(action_name)
+	if InputMap.has_action("eat"):
+		return Input.is_action_just_pressed("eat")
+	return false
+
+
 func _update_defend_state(delta: float) -> void:
 	var was_defending := _is_defending
 
-	if _is_attacking:
+	if _is_attacking or _is_eating:
 		_is_defending = false
 		_start_defend_cooldown_if_needed(was_defending)
 		return
@@ -331,7 +572,7 @@ func _is_sprint_pressed() -> bool:
 
 
 func _update_sprint_state() -> void:
-	if _is_attacking or _is_defending:
+	if _is_attacking or _is_defending or _is_eating:
 		_is_sprinting = false
 		return
 	if not sprint_in_air and not is_on_floor():
@@ -381,34 +622,94 @@ func _update_defend_animation_loop() -> void:
 func _apply_attack_hit() -> void:
 	if attack_damage <= 0 or attack_range <= 0.0:
 		return
-	var attack_origin := global_position + Vector2(attack_hit_offset.x * _facing_direction, attack_hit_offset.y)
-	var attack_direction := -_facing_direction
-	var closest_enemy: Enemy
-	var closest_distance := INF
+	var closest_enemy := _find_nearest_enemy_in_attack_radius(attack_range)
+	if closest_enemy != null and closest_enemy.has_method(&"take_damage"):
+		closest_enemy.call(&"take_damage", attack_damage, self)
+
+
+func _align_backside_toward_enemy() -> void:
+	var nearest_enemy := _find_nearest_attackable_enemy(attack_range * 1.35, attack_vertical_tolerance * 1.6)
+	if nearest_enemy == null:
+		_attack_hit_direction = -_facing_direction
+		return
+	var to_enemy_x := nearest_enemy.global_position.x - global_position.x
+	if is_zero_approx(to_enemy_x):
+		_attack_hit_direction = -_facing_direction
+		return
+	var enemy_direction := signf(to_enemy_x)
+	_attack_hit_direction = enemy_direction
+	# Attack animation is mirrored, so facing the enemy here makes the animated backside point at them.
+	_facing_direction = enemy_direction
+	sprite.flip_h = enemy_direction < 0.0
+
+
+func _find_nearest_attackable_enemy(horizontal_range: float, vertical_range: float) -> Node2D:
+	var closest_enemy: Node2D
+	var closest_distance_squared := INF
 	for node in get_tree().get_nodes_in_group(&"enemies"):
-		if not (node is Enemy):
+		if not (node is Node2D):
 			continue
-		var enemy := node as Enemy
-		if not enemy.is_alive():
+		var enemy := node as Node2D
+		if not _can_player_attack_enemy(enemy):
 			continue
-		var delta := (enemy as Node2D).global_position - attack_origin
-		if delta.x * attack_direction < 0.0:
+		var delta := enemy.global_position - global_position
+		if absf(delta.x) > horizontal_range or absf(delta.y) > vertical_range:
 			continue
+		var distance_squared := delta.length_squared()
+		if distance_squared < closest_distance_squared:
+			closest_distance_squared = distance_squared
+			closest_enemy = enemy
+	return closest_enemy
+
+
+func _find_nearest_enemy_in_attack_radius(radius: float) -> Node2D:
+	var closest_enemy: Node2D
+	var closest_score := INF
+	var radius_squared := radius * radius
+	var attack_direction := _attack_hit_direction
+	if is_zero_approx(attack_direction):
+		attack_direction = -_facing_direction
+	var attack_origin := global_position + Vector2(absf(attack_hit_offset.x) * attack_direction, attack_hit_offset.y)
+	var back_tolerance := 24.0
+	for node in get_tree().get_nodes_in_group(&"enemies"):
+		if not (node is Node2D):
+			continue
+		var enemy := node as Node2D
+		if not _can_player_attack_enemy(enemy):
+			continue
+		var delta := enemy.global_position - attack_origin
 		if absf(delta.y) > attack_vertical_tolerance:
 			continue
-		var distance := delta.length()
-		if distance > attack_range:
+		var projected := delta.x * attack_direction
+		if projected < -back_tolerance:
 			continue
-		if distance < closest_distance:
-			closest_distance = distance
+		if projected > radius:
+			continue
+		if delta.length_squared() > radius_squared:
+			continue
+		var score := absf(projected) + absf(delta.y) * 0.25
+		if score < closest_score:
+			closest_score = score
 			closest_enemy = enemy
-	if closest_enemy != null:
-		closest_enemy.take_damage(attack_damage, self)
+	return closest_enemy
+
+
+func _can_player_attack_enemy(enemy: Node2D) -> bool:
+	if enemy == null or not enemy.is_inside_tree():
+		return false
+	if enemy.has_method(&"is_alive") and not bool(enemy.call(&"is_alive")):
+		return false
+	# Passive mobs report zero contact damage; treat them as non-attackable.
+	if enemy.has_method(&"get_contact_damage") and int(enemy.call(&"get_contact_damage")) <= 0:
+		return false
+	return true
 
 
 func _on_sprite_animation_finished() -> void:
 	if sprite.animation == "attack":
 		_is_attacking = false
+	elif sprite.animation == "eat":
+		_finish_eat_sequence()
 
 
 func _update_stamina(delta: float) -> void:
@@ -540,14 +841,20 @@ func heal(amount: int) -> void:
 		health_changed.emit(_health, max_health)
 
 
-func take_damage(amount: int, impulse := Vector2.ZERO) -> void:
+func take_damage(amount: int, impulse := Vector2.ZERO, from_enemy := false) -> void:
 	if debug_god_mode:
 		return
-	if _is_defending:
-		var reduced_with_carry := float(amount) * defend_damage_multiplier + _defend_damage_accumulator
-		amount = maxi(0, int(floor(reduced_with_carry)))
-		_defend_damage_accumulator = reduced_with_carry - float(amount)
-		impulse *= defend_knockback_multiplier
+	if from_enemy:
+		var mitigated_with_carry := float(amount)
+		if _defense > 0:
+			var defense_ratio := clampf(float(_defense) / 100.0, 0.0, 0.95)
+			mitigated_with_carry *= (1.0 - defense_ratio)
+		if _is_defending:
+			mitigated_with_carry *= defend_damage_multiplier
+			impulse *= defend_knockback_multiplier
+		mitigated_with_carry += _defend_damage_accumulator
+		amount = maxi(0, int(floor(mitigated_with_carry)))
+		_defend_damage_accumulator = mitigated_with_carry - float(amount)
 	else:
 		_defend_damage_accumulator = 0.0
 	if amount <= 0 or _damage_cooldown_left > 0.0:
@@ -570,6 +877,7 @@ func _respawn() -> void:
 	_damage_cooldown_left = 0.0
 	_hunger_tick_left = hunger_tick_interval
 	_starvation_damage_left = starvation_damage_interval
+	_full_hunger_regen_left = full_hunger_regen_interval
 	_stamina = max_stamina
 	_hunger_loss_accumulator = 0.0
 	_defend_cooldown_left = 0.0
@@ -581,8 +889,27 @@ func _respawn() -> void:
 	_emit_stamina_changed()
 
 
-func _update_hunger(_delta: float) -> void:
-	pass
+func _update_hunger(delta: float) -> void:
+	if delta <= 0.0:
+		return
+	if full_hunger_regen_interval <= 0.0 or full_hunger_regen_amount <= 0:
+		return
+
+	var can_regen := _health < max_health and max_hunger > 0 and _hunger >= max_hunger
+	if not can_regen:
+		_full_hunger_regen_left = full_hunger_regen_interval
+		return
+
+	_full_hunger_regen_left -= delta
+	while _full_hunger_regen_left <= 0.0 and _health < max_health and _hunger >= max_hunger:
+		heal(full_hunger_regen_amount)
+		if full_hunger_regen_hunger_cost > 0:
+			var hunger_before := _hunger
+			_hunger = maxi(0, _hunger - full_hunger_regen_hunger_cost)
+			if _hunger != hunger_before:
+				hunger_changed.emit(_hunger, max_hunger)
+				_set_stamina(minf(_stamina, _get_hunger_limited_stamina_cap()))
+		_full_hunger_regen_left += full_hunger_regen_interval
 
 
 func _consume_hunger(amount: int) -> void:
@@ -610,13 +937,48 @@ func _handle_enemy_collisions() -> void:
 	for index in range(get_slide_collision_count()):
 		var collision := get_slide_collision(index)
 		var collider := collision.get_collider()
-		if collider is Enemy and (collider as Enemy).is_alive():
-			var enemy := collider as Enemy
-			var push_direction := signf(global_position.x - (collider as Node2D).global_position.x)
+		if collider is Node2D and (collider as Node2D).is_in_group(&"enemies"):
+			var enemy := collider as Node2D
+			if enemy.has_method(&"is_alive") and not bool(enemy.call(&"is_alive")):
+				continue
+			var push_direction := signf(global_position.x - enemy.global_position.x)
 			if is_zero_approx(push_direction):
 				push_direction = -_facing_direction
-			if enemy.try_attack_player(self, Vector2(push_direction * 360.0, -280.0)):
+			if enemy.has_method(&"try_attack_player") and bool(enemy.call(&"try_attack_player", self, Vector2(push_direction * 360.0, -280.0))):
 				break
+
+
+func _handle_enemy_proximity_encounters(delta: float) -> void:
+	if dinosaur_encounter_radius <= 0.0:
+		return
+	_dinosaur_scan_left = maxf(0.0, _dinosaur_scan_left - delta)
+	if _dinosaur_scan_left > 0.0:
+		return
+	_dinosaur_scan_left = dinosaur_encounter_scan_interval
+	var radius_squared := dinosaur_encounter_radius * dinosaur_encounter_radius
+	for node in get_tree().get_nodes_in_group(&"enemies"):
+		if not (node is Node2D):
+			continue
+		var enemy := node as Node2D
+		if enemy.has_method(&"is_alive") and not bool(enemy.call(&"is_alive")):
+			continue
+		var position_delta := enemy.global_position - global_position
+		if position_delta.length_squared() <= radius_squared:
+			register_dinosaur_encounter(enemy)
+
+
+func register_dinosaur_encounter(enemy: Node) -> void:
+	if enemy == null:
+		return
+	if not enemy.has_method(&"get_dinosaur_id"):
+		return
+	var dinosaur_id := String(enemy.call(&"get_dinosaur_id")).strip_edges().to_lower()
+	if dinosaur_id.is_empty() or _encountered_dinosaur_ids.has(dinosaur_id):
+		return
+	_encountered_dinosaur_ids[dinosaur_id] = true
+	var dinosaur_name := String(enemy.call(&"get_dinosaur_name")) if enemy.has_method(&"get_dinosaur_name") else "Unknown Dinosaur"
+	var dinosaur_description := String(enemy.call(&"get_dinosaur_description")) if enemy.has_method(&"get_dinosaur_description") else "%s encountered." % dinosaur_name
+	dinosaur_first_encountered.emit(dinosaur_name, dinosaur_description)
 
 
 func _handle_hazard_tile_collisions() -> bool:
@@ -709,3 +1071,5 @@ func _apply_level_up_rewards() -> void:
 	_emit_stamina_changed()
 	if level_up_attack_bonus > 0:
 		attack_damage += level_up_attack_bonus
+	if level_up_defense_bonus > 0:
+		_defense += level_up_defense_bonus

@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://cr0awvy0lx8sp" path="res://Assets/Menu Images/Eons/Precambrian/PRECAMBRIAN_CENTER_IMAGE1.png" id="4_fqubo"]
 [ext_resource type="Texture2D" uid="uid://lc55slldgr3v" path="res://Assets/Menu Images/Eons/Precambrian/PRECAMBRIAN_CENTER_IMAGE2.png" id="5_ej7oj"]
 [ext_resource type="Texture2D" uid="uid://dn0i8pat0i42q" path="res://Assets/Menu Images/Eons/Precambrian/PRECAMBRIAN_CENTER_IMAGE3.png" id="6_bslhh"]
-[ext_resource type="Texture2D" uid="uid://cl5ig58rrvvw3" path="res://Assets/Buttons/HOME_BUTTON.png" id="10_7hac0"]
 [ext_resource type="Texture2D" uid="uid://80upcd3gbp3r" path="res://Assets/Buttons/ARROW_BUTTON.png" id="11_wc2fn"]
 [ext_resource type="Texture2D" uid="uid://bj0pholud6r30" path="res://Assets/Menu Images/Eons/Phanerozoic/MESOZOIC_LPANELS.png" id="13_8ye46"]
 [ext_resource type="Texture2D" uid="uid://cs35tt2qr8tgm" path="res://Assets/Menu Images/Eons/Phanerozoic/CENOZOIC_LPANELS.png" id="14_1gd1k"]
@@ -18,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cyakt1eh0ksy0" path="res://Assets/Menu Images/Eons/Phanerozoic/PHANEROZOIC_CENTER_MID.png" id="16_gjmkr"]
 [ext_resource type="Texture2D" uid="uid://beqgtd0c1fgqw" path="res://Assets/Buttons/PLAY_BUTTON_PAL&MES.png" id="16_q227p"]
 [ext_resource type="Texture2D" uid="uid://g8axhtcordqc" path="res://Assets/Menu Images/Eons/Phanerozoic/PHANEROZOIC_CENTER_BOTTOM.png" id="17_hiaog"]
+[ext_resource type="Texture2D" uid="uid://dx1r4otpg42vy" path="res://Assets/Buttons/back_button_leaf.png" id="17_vcqy7"]
 [ext_resource type="Texture2D" uid="uid://c003upqkr8fsu" path="res://Assets/Texts/Phanerozoic/CENOZOIC_PRIMORDIA.png" id="24_bslhh"]
 [ext_resource type="Texture2D" uid="uid://bh634ilg1f3si" path="res://Assets/Buttons/PLAY_BUTTONS_CENO.png" id="24_if5hy"]
 [ext_resource type="Texture2D" uid="uid://cj6cta62h4jmt" path="res://Assets/Texts/Phanerozoic/CENOZOIC_SUB.png" id="25_if5hy"]
@@ -77,9 +77,6 @@ load_path = "res://.godot/imported/PALEOZOIC_SUB.png-9ccaf30d8a1c461c148c1dfcaaa
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_if5hy"]
 texture = SubResource("CompressedTexture2D_fqubo")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ej7oj"]
-load_path = "res://.godot/imported/HOME_BUTTON.png-e5991453d895aae474e7d17f759a870b.ctex"
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bslhh"]
 load_path = "res://.godot/imported/ARROW_BUTTON.png-d7307121a109a7b812984e9b6c09b0fd.ctex"
 
@@ -97,9 +94,6 @@ load_path = "res://.godot/imported/MESOZOIC_SUB.png-afa25501c9bf55b7f0b4b3c24c50
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8smfk"]
 texture = SubResource("CompressedTexture2D_8smfk")
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7hac0"]
-load_path = "res://.godot/imported/HOME_BUTTON.png-e5991453d895aae474e7d17f759a870b.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wc2fn"]
 load_path = "res://.godot/imported/ARROW_BUTTON.png-d7307121a109a7b812984e9b6c09b0fd.ctex"
@@ -355,12 +349,14 @@ offset_bottom = 180.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_if5hy")
 
-[node name="HomeButton" type="TextureButton" parent="PaleozoicUI" unique_id=1888259599]
-layout_mode = 0
-offset_left = 40.0
-offset_right = 171.0
-offset_bottom = 131.0
-texture_normal = SubResource("CompressedTexture2D_ej7oj")
+[node name="backButton" type="TextureButton" parent="PaleozoicUI" unique_id=1888259599]
+layout_mode = 1
+offset_left = 56.0
+offset_top = 50.0
+offset_right = 222.98254
+offset_bottom = 143.0
+scale = Vector2(1.3, 1.3)
+texture_normal = ExtResource("17_vcqy7")
 
 [node name="SwitchToMesozoic" type="TextureButton" parent="PaleozoicUI" unique_id=1651750345]
 layout_mode = 1
@@ -425,12 +421,14 @@ offset_bottom = 180.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_8smfk")
 
-[node name="HomeButton" type="TextureButton" parent="MesozoicUI" unique_id=1870056002]
-layout_mode = 0
-offset_left = 40.0
-offset_right = 171.0
-offset_bottom = 131.0
-texture_normal = SubResource("CompressedTexture2D_7hac0")
+[node name="backButton2" type="TextureButton" parent="MesozoicUI" unique_id=1623177020]
+layout_mode = 1
+offset_left = 56.0
+offset_top = 50.0
+offset_right = 222.98254
+offset_bottom = 143.0
+scale = Vector2(1.3, 1.3)
+texture_normal = ExtResource("17_vcqy7")
 
 [node name="SwitchtoCenozoic" type="TextureButton" parent="MesozoicUI" unique_id=1962484051]
 layout_mode = 1
@@ -511,12 +509,14 @@ offset_bottom = 180.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_124q5")
 
-[node name="HomeButton" type="TextureButton" parent="CenozoicUI" unique_id=288200062]
-layout_mode = 0
-offset_left = 40.0
-offset_right = 171.0
-offset_bottom = 131.0
-texture_normal = ExtResource("10_7hac0")
+[node name="backButton3" type="TextureButton" parent="CenozoicUI" unique_id=1526220042]
+layout_mode = 1
+offset_left = 56.0
+offset_top = 50.0
+offset_right = 222.98254
+offset_bottom = 143.0
+scale = Vector2(1.3, 1.3)
+texture_normal = ExtResource("17_vcqy7")
 
 [node name="SwitchToMesozoic" type="TextureButton" parent="CenozoicUI" unique_id=968760661]
 layout_mode = 1
@@ -535,11 +535,11 @@ texture_normal = ExtResource("11_wc2fn")
 flip_h = true
 
 [connection signal="pressed" from="PaleozoicUI/PaleozoicPlay" to="." method="OnPaleozoicPlayPressed"]
-[connection signal="pressed" from="PaleozoicUI/HomeButton" to="." method="OnHomeButtonPressed"]
+[connection signal="pressed" from="PaleozoicUI/backButton" to="." method="OnBackButtonPressed"]
 [connection signal="pressed" from="PaleozoicUI/SwitchToMesozoic" to="ScreensContainer/EraScroller" method="ScrollLeft"]
 [connection signal="pressed" from="MesozoicUI/PlayButton" to="." method="OnMesozoicPlayPressed"]
-[connection signal="pressed" from="MesozoicUI/HomeButton" to="." method="OnHomeButtonPressed"]
+[connection signal="pressed" from="MesozoicUI/backButton2" to="." method="OnBackButtonPressed"]
 [connection signal="pressed" from="MesozoicUI/SwitchtoCenozoic" to="ScreensContainer/EraScroller" method="ScrollLeft"]
 [connection signal="pressed" from="MesozoicUI/SwitchtoPaleozoic" to="ScreensContainer/EraScroller" method="SwitchToPaleozoic"]
-[connection signal="pressed" from="CenozoicUI/HomeButton" to="." method="OnHomeButtonPressed"]
+[connection signal="pressed" from="CenozoicUI/backButton3" to="." method="OnBackButtonPressed"]
 [connection signal="pressed" from="CenozoicUI/SwitchToMesozoic" to="ScreensContainer/EraScroller" method="ScrollRight"]
