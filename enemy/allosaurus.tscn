@@ -172,14 +172,16 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 collision_layer = 2
 collision_mask = 24
 script = ExtResource("5")
+walk_speed = 40.0
+chase_speed = 72.0
 jump_velocity = -700.0
 attack_cooldown = 1.8
 dinosaur_id = "allosaurus"
 dinosaur_name = "Allosaurus"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
-position = Vector2(25.624985, -1.3749999)
-scale = Vector2(0.12438964, 0.12438964)
+position = Vector2(39.124996, 12.125011)
+scale = Vector2(0.13757324, 0.13757324)
 sprite_frames = SubResource("SpriteFrames_e3etd")
 animation = &"walk"
 

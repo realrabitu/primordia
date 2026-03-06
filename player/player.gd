@@ -1,7 +1,5 @@
 class_name Player extends CharacterBody2D
 
-
-signal coin_collected()
 signal health_changed(current: int, max_health: int)
 signal hunger_changed(current: int, max_hunger: int)
 signal stamina_changed(current: int, max_stamina: int)
@@ -41,6 +39,7 @@ const TERMINAL_VELOCITY = 700
 @export_range(0.0, 250.0, 1.0) var attack_vertical_tolerance := 56.0
 @export var attack_hit_offset := Vector2(-70.0, -13.0)
 @export_range(0.0, 3000.0, 1.0) var dinosaur_encounter_radius := 260.0
+@export_range(0.02, 1.0, 0.01) var dinosaur_encounter_scan_interval := 0.15
 @export_range(0.0, 1.0, 0.05) var defend_damage_multiplier := 0.35
 @export_range(0.0, 1.0, 0.05) var defend_knockback_multiplier := 0.35
 @export_range(1.0, 200.0, 1.0) var defend_heat_max := 100.0
@@ -59,6 +58,7 @@ const TERMINAL_VELOCITY = 700
 @export_range(0.0, 200.0, 1.0) var sprint_stamina_drain_per_second := 10.0
 @export var sprint_in_air := false
 @export_range(0.0, 300.0, 1.0) var fern_interaction_radius := 72.0
+@export_range(0.02, 1.0, 0.01) var fern_scan_interval := 0.1
 @export_range(1, 10, 1) var eat_hunger_restore := 1
 @export_range(0.0, 1.0, 0.05) var hunger_min_regen_factor := 0.2
 @export_range(0.0, 2.0, 0.05) var hunger_loss_per_stamina_ratio := 0.25
@@ -109,6 +109,10 @@ var _is_near_fern := false
 var _nearby_food_source: Node2D
 var _eating_food_source: Node2D
 var _eat_time_left := 0.0
+var _dinosaur_scan_left := 0.0
+var _fern_scan_left := 0.0
+var _fern_cache_built := false
+var _fern_candidates_cache: Array[Node2D] = []
 
 
 func is_god_mode_enabled() -> bool:
@@ -134,6 +138,10 @@ func _ready() -> void:
 	_level = 1
 	_xp_to_next = _calculate_xp_to_next(_level)
 	_encountered_dinosaur_ids.clear()
+	_dinosaur_scan_left = 0.0
+	_fern_scan_left = 0.0
+	_fern_cache_built = false
+	_fern_candidates_cache.clear()
 	_update_stamina_from_hunger(false)
 	health_changed.emit(_health, max_health)
 	hunger_changed.emit(_hunger, max_hunger)
@@ -222,9 +230,9 @@ func _physics_process(delta: float) -> void:
 	if _handle_hazard_tile_collisions():
 		return
 	_apply_fall_damage_on_landing(was_on_floor, vertical_speed_before_move)
-	_handle_enemy_proximity_encounters()
+	_handle_enemy_proximity_encounters(delta)
 	_handle_enemy_collisions()
-	_update_fern_proximity()
+	_update_fern_proximity(delta)
 	if _is_eating and _has_eating_target_disappeared():
 		_is_eating = false
 		_eating_food_source = null
@@ -252,11 +260,22 @@ func is_near_fern() -> bool:
 	return _is_near_fern
 
 
-func _update_fern_proximity() -> void:
+func _update_fern_proximity(delta: float) -> void:
 	if fern_interaction_radius <= 0.0:
 		_nearby_food_source = null
 		_is_near_fern = false
 		return
+
+	_fern_scan_left = maxf(0.0, _fern_scan_left - delta)
+	if _fern_scan_left > 0.0 and _nearby_food_source != null and is_instance_valid(_nearby_food_source):
+		var current_delta := _nearby_food_source.global_position - global_position
+		var radius_squared := fern_interaction_radius * fern_interaction_radius
+		if current_delta.length_squared() <= radius_squared:
+			if not (_nearby_food_source is CanvasItem) or (_nearby_food_source as CanvasItem).visible:
+				_is_near_fern = true
+				return
+
+	_fern_scan_left = fern_scan_interval
 	_nearby_food_source = _find_nearest_food_source()
 	_is_near_fern = _nearby_food_source != null
 
@@ -266,9 +285,7 @@ func _find_nearest_food_source() -> Node2D:
 	var nearest_food: Node2D
 	var best_distance_squared := radius_squared
 	for node in _get_fern_candidates():
-		if not (node is Node2D):
-			continue
-		var food_node := node as Node2D
+		var food_node := node
 		if food_node is CanvasItem and not (food_node as CanvasItem).visible:
 			continue
 		var delta := food_node.global_position - global_position
@@ -279,24 +296,44 @@ func _find_nearest_food_source() -> Node2D:
 	return nearest_food
 
 
-func _get_fern_candidates() -> Array[Node]:
+func _get_fern_candidates() -> Array[Node2D]:
 	var grouped := get_tree().get_nodes_in_group(&"ferns")
 	if not grouped.is_empty():
-		return grouped
+		var grouped_candidates: Array[Node2D] = []
+		for node in grouped:
+			if node is Node2D and (node as Node2D).is_inside_tree():
+				grouped_candidates.append(node as Node2D)
+		return grouped_candidates
 
-	var candidates: Array[Node] = []
+	if not _fern_cache_built:
+		_build_fern_candidates_cache()
+
+	if _fern_candidates_cache.is_empty():
+		return _fern_candidates_cache
+
+	var alive_candidates: Array[Node2D] = []
+	for candidate in _fern_candidates_cache:
+		if is_instance_valid(candidate) and candidate.is_inside_tree():
+			alive_candidates.append(candidate)
+	_fern_candidates_cache = alive_candidates
+	return _fern_candidates_cache
+
+
+func _build_fern_candidates_cache() -> void:
+	_fern_candidates_cache.clear()
 	var scene_root := get_tree().current_scene
 	if scene_root == null:
-		return candidates
+		_fern_cache_built = true
+		return
 
 	var stack: Array[Node] = [scene_root]
 	while not stack.is_empty():
 		var node := stack.pop_back() as Node
 		if _node_looks_like_food_item(node):
-			candidates.append(node)
+			_fern_candidates_cache.append(node as Node2D)
 		for child in node.get_children():
 			stack.append(child)
-	return candidates
+	_fern_cache_built = true
 
 
 func _node_looks_like_food_item(node: Node) -> bool:
@@ -308,9 +345,9 @@ func _node_looks_like_food_item(node: Node) -> bool:
 		return true
 
 	if node is Sprite2D:
-		var sprite := node as Sprite2D
-		if sprite.texture != null:
-			var texture_path := sprite.texture.resource_path.to_lower()
+		var node_sprite := node as Sprite2D
+		if node_sprite.texture != null:
+			var texture_path := node_sprite.texture.resource_path.to_lower()
 			if texture_path.contains("fern") or texture_path.contains("forage"):
 				return true
 
@@ -837,9 +874,13 @@ func _handle_enemy_collisions() -> void:
 				break
 
 
-func _handle_enemy_proximity_encounters() -> void:
+func _handle_enemy_proximity_encounters(delta: float) -> void:
 	if dinosaur_encounter_radius <= 0.0:
 		return
+	_dinosaur_scan_left = maxf(0.0, _dinosaur_scan_left - delta)
+	if _dinosaur_scan_left > 0.0:
+		return
+	_dinosaur_scan_left = dinosaur_encounter_scan_interval
 	var radius_squared := dinosaur_encounter_radius * dinosaur_encounter_radius
 	for node in get_tree().get_nodes_in_group(&"enemies"):
 		if not (node is Node2D):
@@ -847,8 +888,8 @@ func _handle_enemy_proximity_encounters() -> void:
 		var enemy := node as Node2D
 		if enemy.has_method(&"is_alive") and not bool(enemy.call(&"is_alive")):
 			continue
-		var delta := enemy.global_position - global_position
-		if delta.length_squared() <= radius_squared:
+		var position_delta := enemy.global_position - global_position
+		if position_delta.length_squared() <= radius_squared:
 			register_dinosaur_encounter(enemy)
 
 

@@ -19,6 +19,7 @@ enum State {
 @export_range(0.0, 1200.0, 1.0) var detection_radius := 240.0
 @export_range(0.0, 1600.0, 1.0) var disengage_radius := 320.0
 @export_range(0.0, 10.0, 0.05) var forget_delay := 1.2
+@export_range(0.02, 1.0, 0.01) var target_update_interval := 0.08
 @export_range(1, 50, 1) var max_health := 1
 @export_range(1, 10, 1) var contact_damage := 1
 @export_range(0.0, 500.0, 1.0) var attack_radius := 10.0
@@ -44,6 +45,7 @@ var _attack_cooldown_left := 0.0
 var _jump_cooldown_left := 0.0
 var _turn_cooldown_left := 0.0
 var _patrol_direction := 1.0
+var _target_update_left := 0.0
 
 @onready var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
 @onready var platform_detector := $PlatformDetector as RayCast2D
@@ -60,6 +62,7 @@ func _ready() -> void:
 	add_to_group(&"enemies")
 	_health = max_health
 	_patrol_direction = -1.0 if walk_speed < 0.0 else 1.0
+	_target_update_left = (float(get_instance_id() % 17) / 17.0) * target_update_interval
 	health_changed.emit(_health, max_health)
 
 
@@ -74,7 +77,10 @@ func _physics_process(delta: float) -> void:
 		_turn_cooldown_left = maxf(0.0, _turn_cooldown_left - delta)
 
 	if _state != State.DEAD:
-		_update_target(delta)
+		_target_update_left = maxf(0.0, _target_update_left - delta)
+		if _target_update_left <= 0.0:
+			_target_update_left = target_update_interval
+			_update_target(delta)
 		if _state == State.CHASING and _target != null:
 			var direction := signf((_target as Node2D).global_position.x - global_position.x)
 			if is_zero_approx(direction):
@@ -300,8 +306,8 @@ func _update_target(delta: float) -> void:
 			_state = State.ATTACKING
 			_forget_time_left = forget_delay
 			return
-		var distance_to_target := global_position.distance_to((_target as Node2D).global_position)
-		if distance_to_target <= disengage_radius:
+		var delta_to_target := (_target as Node2D).global_position - global_position
+		if delta_to_target.length_squared() <= disengage_radius * disengage_radius:
 			_state = State.CHASING
 			_forget_time_left = forget_delay
 			return
@@ -448,9 +454,33 @@ func _is_edge_ahead(move_direction: float) -> bool:
 	var direction := signf(move_direction)
 	if is_zero_approx(direction):
 		return false
-	if direction > 0.0:
-		return not floor_detector_right.is_colliding()
-	return not floor_detector_left.is_colliding()
+	var floor_detector: RayCast2D = floor_detector_right if direction > 0.0 else floor_detector_left
+	if floor_detector != null:
+		floor_detector.force_raycast_update()
+		if floor_detector.is_colliding():
+			return false
+
+	# Fallback probe based on body bounds keeps patrol stable even if detector nodes are misaligned.
+	return not _has_ground_ahead(direction)
+
+
+func _has_ground_ahead(direction: float) -> bool:
+	var body_extents := _get_collision_half_extents(collision_shape)
+	if body_extents == Vector2.ZERO:
+		return true
+
+	var body_center := collision_shape.global_position if collision_shape != null else global_position
+	var forward_distance := body_extents.x + 6.0
+	var ray_start := body_center + Vector2(direction * forward_distance, body_extents.y - 2.0)
+	var ray_end := ray_start + Vector2(0.0, 20.0)
+
+	var query := PhysicsRayQueryParameters2D.create(ray_start, ray_end)
+	query.exclude = [self]
+	query.collide_with_areas = false
+	query.collide_with_bodies = true
+	query.collision_mask = collision_mask
+	var result := get_world_2d().direct_space_state.intersect_ray(query)
+	return not result.is_empty()
 
 
 func _can_turn() -> bool:
