@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 const POPUP_IMAGE_FOLDER := "res://Assets/pop up infos for animals"
+const EAT_PROMPT_REFRESH_INTERVAL := 0.1
 const POPUP_IMAGE_ALIASES := {
 	"camarasaurus": "brachiosaurus",
 }
@@ -12,6 +13,7 @@ const POPUP_IMAGE_ALIASES := {
 
 var _popup_images_by_key: Dictionary = {}
 var _player: Player
+var _eat_prompt_refresh_left := 0.0
 
 
 func _ready() -> void:
@@ -25,12 +27,21 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	_eat_prompt_refresh_left -= _delta
+	if _eat_prompt_refresh_left > 0.0 and _player != null and is_instance_valid(_player):
+		return
+	_eat_prompt_refresh_left = EAT_PROMPT_REFRESH_INTERVAL
+
 	if _player == null or not is_instance_valid(_player):
 		_resolve_player()
 	if _player == null:
-		eat_prompt.visible = false
+		if eat_prompt.visible:
+			eat_prompt.visible = false
 		return
-	eat_prompt.visible = _player.is_near_fern()
+
+	var show_prompt := _player.is_near_fern()
+	if eat_prompt.visible != show_prompt:
+		eat_prompt.visible = show_prompt
 
 
 func _on_player_level_changed(level: int) -> void:

@@ -32,7 +32,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="5"]
 radius = 63.99996
-height = 190.0
+height = 219.99998
 
 [sub_resource type="CanvasItemMaterial" id="6"]
 blend_mode = 1
@@ -53,8 +53,8 @@ dinosaur_id = "camarasaurus"
 dinosaur_name = "Camarasaurus"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
-position = Vector2(38, 23.000002)
-scale = Vector2(0.48125613, 0.48125613)
+position = Vector2(45.87792, 17.537977)
+scale = Vector2(0.5162691, 0.5162691)
 sprite_frames = SubResource("SpriteFrames_e3etd")
 animation = &"idle"
 frame = 3

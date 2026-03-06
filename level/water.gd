@@ -20,6 +20,9 @@ class_name water
 
 var segment_data: Array = []
 var recently_splashed: bool = false
+var _left_deltas: Array[float] = []
+var _right_deltas: Array[float] = []
+var _visuals_dirty := true
 
 var surface_line: Line2D
 var fill_polygon: Polygon2D
@@ -43,6 +46,7 @@ func update_physics(delta: float) -> void:
 	var step_count: int = max(simulation_substeps, 1)
 	var dt: float = min(delta, 1.0 / 30.0) / float(step_count)
 	var physics_step: float = water_physics_speed * dt
+	_ensure_wave_buffers()
 
 	for _step in range(step_count):
 		for i in range(segment_count):
@@ -53,30 +57,26 @@ func update_physics(delta: float) -> void:
 			segment_data[i]["height"] += segment_data[i]["velocity"] * physics_step
 
 		for updates in range(wave_spread_updates):
-			var left_deltas: Array[float] = []
-			left_deltas.resize(segment_count)
-			left_deltas.fill(0.0)
-
-			var right_deltas: Array[float] = []
-			right_deltas.resize(segment_count)
-			right_deltas.fill(0.0)
+			for i in range(segment_count):
+				_left_deltas[i] = 0.0
+				_right_deltas[i] = 0.0
 
 			for i in range (segment_count):
 				if i > 0:
-					left_deltas[i] = (segment_data[i]["height"] - segment_data[i-1]["height"]) * wave_strength
+					_left_deltas[i] = (segment_data[i]["height"] - segment_data[i-1]["height"]) * wave_strength
 				
-					segment_data[i-1]["velocity"] += left_deltas[i] * physics_step
+					segment_data[i-1]["velocity"] += _left_deltas[i] * physics_step
 
 				if i < segment_count - 1:
-					right_deltas[i] = (segment_data[i]["height"] - segment_data[i+1]["height"]) * wave_strength
+					_right_deltas[i] = (segment_data[i]["height"] - segment_data[i+1]["height"]) * wave_strength
 
-					segment_data[i+1]["velocity"] += right_deltas[i] * physics_step
+					segment_data[i+1]["velocity"] += _right_deltas[i] * physics_step
 			
 			for i in range(segment_count):
 				if i > 0:
-					segment_data[i-1]["height"] += left_deltas[i] * physics_step
+					segment_data[i-1]["height"] += _left_deltas[i] * physics_step
 				if i < segment_count-1:
-					segment_data[i+1]["height"] += right_deltas[i] * physics_step
+					segment_data[i+1]["height"] += _right_deltas[i] * physics_step
 
 		segment_data[0]["height"] = surface_pos_y
 		segment_data[1]["height"] = surface_pos_y
@@ -87,11 +87,13 @@ func update_physics(delta: float) -> void:
 		segment_data[segment_count - 2]["height"] = surface_pos_y
 		segment_data[segment_count - 1]["velocity"] = 0.0
 		segment_data[segment_count - 2]["velocity"] = 0.0
+
+	_visuals_dirty = true
 	
 	if !recently_splashed:
 		var is_still: bool = true
-		for i in surface_line.points:
-			if abs(abs(i.y) - abs(surface_pos_y)) > 0.001:
+		for i in range(segment_count):
+			if absf(segment_data[i]["height"] - surface_pos_y) > 0.001 or absf(segment_data[i]["velocity"]) > 0.001:
 				is_still = false
 				break
 		set_physics_process(!is_still)
@@ -118,6 +120,7 @@ func update_visuals() -> void:
 	final_points.append(Vector2(water_size.x, bottom_y))
 	final_points.append(Vector2(0, bottom_y))
 	fill_polygon.polygon = final_points
+	_visuals_dirty = false
 
 func splash(splash_pos: Vector2, splash_velocity: float) -> void:
 	var local_x_pos: float = to_local(splash_pos).x
@@ -125,6 +128,7 @@ func splash(splash_pos: Vector2, splash_velocity: float) -> void:
 	var index: int = int(clamp(local_x_pos / segment_width, 0, segment_count - 1))
 	segment_data[index]["velocity"] = splash_velocity
 	recently_splashed = true
+	_visuals_dirty = true
 	set_physics_process(true)
 	
 # Called when the node enters the scene tree for the first time.
@@ -133,16 +137,22 @@ func _ready() -> void:
 		i.queue_free()
 	
 	_initiate_water()
+	_visuals_dirty = true
 	update_visuals()
 	set_physics_process(false)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	update_visuals()
-
 func _physics_process(delta: float) -> void:
 	update_physics(delta)
+	if _visuals_dirty:
+		update_visuals()
+
+
+func _ensure_wave_buffers() -> void:
+	if _left_deltas.size() != segment_count:
+		_left_deltas.resize(segment_count)
+	if _right_deltas.size() != segment_count:
+		_right_deltas.resize(segment_count)
 
 func _initiate_water() -> void:
 	segment_data.clear()
@@ -153,6 +163,7 @@ func _initiate_water() -> void:
 			"wave_to_left": 0.0,
 			"wave_to_right": 0.0
 		})
+	_ensure_wave_buffers()
 	
 	var new_line: Line2D = Line2D.new()
 	new_line.width = surface_line_thickness

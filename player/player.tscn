@@ -317,6 +317,7 @@ collision_mask = 30
 floor_constant_speed = true
 platform_on_leave = 2
 script = ExtResource("3")
+full_hunger_regen_amount = 2
 
 [node name="PlatformDetector" type="RayCast2D" parent="." unique_id=1538549087]
 target_position = Vector2(0, 6)

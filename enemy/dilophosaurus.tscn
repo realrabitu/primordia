@@ -68,8 +68,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="5"]
-radius = 48.0
-height = 190.0
+radius = 38.99999
+height = 162.00003
 
 [sub_resource type="CanvasItemMaterial" id="6"]
 blend_mode = 1
@@ -90,8 +90,8 @@ dinosaur_id = "dilophosaurus"
 dinosaur_name = "Dilophosaurus"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
-position = Vector2(38, 9)
-scale = Vector2(0.28901514, 0.28901514)
+position = Vector2(12.5134735, 23.768559)
+scale = Vector2(0.21732308, 0.2173231)
 sprite_frames = SubResource("SpriteFrames_e3etd")
 animation = &"idle"
 frame = 2
@@ -113,7 +113,7 @@ target_position = Vector2(0, 35)
 collision_mask = 24
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26390868]
-position = Vector2(38, 22)
+position = Vector2(14, 30)
 rotation = -1.5708
 shape = SubResource("5")
 
