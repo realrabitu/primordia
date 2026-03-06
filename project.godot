@@ -28,6 +28,7 @@ buses/default_bus_layout="uid://c2sm4qver5qd8"
 
 CursorManager="*res://Scripts/CursorManager.cs"
 Music="*res://music.tscn"
+SceneLoadState="*res://Scripts/SceneLoadState.cs"
 
 [display]
 

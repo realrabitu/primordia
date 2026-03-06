@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dh5j201klpbuq" path="res://Assets/Menu Images/Eons/GENERAL_BACKGROUND.png" id="2_a17nf"]
 [ext_resource type="Script" uid="uid://bsp72wwdy6r2u" path="res://Scripts/EonSelectionScreen.cs" id="2_nhgj5"]
-[ext_resource type="Script" uid="uid://15eh40marvec" path="res://Scripts/EonScroller.cs" id="3_ov6a8"]
+[ext_resource type="Script" path="res://Scripts/EonScroller.cs" id="3_ov6a8"]
 [ext_resource type="Texture2D" uid="uid://25dqtbrx8b5u" path="res://Assets/Menu Images/Eons/Precambrian/PRECAMBRIAN_R-PANEL.png" id="3_tos0h"]
 [ext_resource type="Texture2D" uid="uid://dlq8gdcdeoujf" path="res://Assets/Texts/Precambrian/PRECAMBRIAN_TEXT2.png" id="4_6nv5f"]
 [ext_resource type="Texture2D" uid="uid://bl7npsjrbq2v0" path="res://Assets/Menu Images/Eons/Phanerozoic/PALEOZOIC_LPANELS.png" id="4_a17nf"]

@@ -168,13 +168,15 @@ blend_mode = 1
 offsets = PackedFloat32Array(0.5, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[node name="Enemy2" type="CharacterBody2D" unique_id=678927329]
+[node name="Allosaurus" type="CharacterBody2D" unique_id=678927329]
 collision_layer = 2
 collision_mask = 24
 script = ExtResource("5")
-walk_speed = 40.0
-chase_speed = 72.0
+walk_speed = 70.0
+chase_speed = 140.0
 jump_velocity = -700.0
+detection_radius = 324.0
+disengage_radius = 432.0
 attack_cooldown = 1.8
 dinosaur_id = "allosaurus"
 dinosaur_name = "Allosaurus"

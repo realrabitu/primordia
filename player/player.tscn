@@ -317,7 +317,9 @@ collision_mask = 30
 floor_constant_speed = true
 platform_on_leave = 2
 script = ExtResource("3")
-full_hunger_regen_amount = 2
+full_hunger_regen_amount = 3
+attack_range = 180.0
+eat_hunger_restore = 2
 
 [node name="PlatformDetector" type="RayCast2D" parent="." unique_id=1538549087]
 target_position = Vector2(0, 6)
@@ -327,7 +329,7 @@ collision_mask = 8
 position = Vector2(9.99999, 13.749992)
 scale = Vector2(0.11064148, 0.11064148)
 sprite_frames = SubResource("SpriteFrames_qjkh3")
-animation = &"idle"
+animation = &"attack"
 
 [node name="ShootAnimation" type="Timer" parent="." unique_id=716614343]
 wait_time = 0.3

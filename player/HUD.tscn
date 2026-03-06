@@ -38,38 +38,39 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_ig88g")
 
 [node name="Hungerbar" parent="." unique_id=134333140 instance=ExtResource("1_1jg6f")]
 offset_left = 72.0
-offset_top = 44.0
+offset_top = 54.0
 offset_right = 251.99998
-offset_bottom = 53.0
+offset_bottom = 63.0
 scale = Vector2(2, 2)
 theme_override_styles/fill = SubResource("StyleBoxFlat_hunger_fill")
 metadata/_edit_group_ = true
 
 [node name="Staminabar" parent="." unique_id=1317018654 instance=ExtResource("1_1jg6f")]
 offset_left = 72.0
-offset_top = 72.0
+offset_top = 96.0
 offset_right = 251.99998
-offset_bottom = 81.0
+offset_bottom = 105.0
 scale = Vector2(2, 2)
 theme_override_styles/fill = SubResource("StyleBoxFlat_stamina_fill")
 metadata/_edit_group_ = true
 
 [node name="XPBar" parent="." unique_id=1186852988 instance=ExtResource("1_1jg6f")]
 offset_left = 72.0
-offset_top = 100.0
+offset_top = 140.0
 offset_right = 251.99998
-offset_bottom = 109.0
+offset_bottom = 149.0
 scale = Vector2(2, 2)
 theme_override_styles/fill = SubResource("StyleBoxFlat_xp_fill")
 metadata/_edit_group_ = true
 
 [node name="LevelLabel" type="Label" parent="." unique_id=1990279800]
 offset_left = 8.0
-offset_top = 95.0
+offset_top = 135.0
 offset_right = 67.0
-offset_bottom = 118.0
+offset_bottom = 161.0
+theme_override_fonts/font = ExtResource("4_kx3af")
 theme_override_font_sizes/font_size = 18
-text = "LV 1"
+text = "LEVEL"
 
 [node name="EatPrompt" type="Label" parent="." unique_id=188102411]
 anchors_preset = 8
@@ -77,15 +78,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -78.0
-offset_top = 142.0
-offset_right = 78.0
-offset_bottom = 166.0
+offset_left = 354.0
+offset_top = 161.0
+offset_right = 510.0
+offset_bottom = 211.0
 grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_kx3af")
-theme_override_font_sizes/font_size = 22
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 48
 text = "EAT [E]"
+horizontal_alignment = 1
 
 [node name="EncounterPopup" type="TextureRect" parent="." unique_id=162253199]
 anchors_preset = 7

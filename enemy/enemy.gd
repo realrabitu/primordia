@@ -63,6 +63,7 @@ func _ready() -> void:
 	_health = max_health
 	_patrol_direction = -1.0 if walk_speed < 0.0 else 1.0
 	_target_update_left = (float(get_instance_id() % 17) / 17.0) * target_update_interval
+	_refresh_passive_collision_exceptions()
 	health_changed.emit(_health, max_health)
 
 
@@ -222,7 +223,7 @@ func try_attack_player(player: Node, impulse := Vector2.ZERO) -> bool:
 		return false
 	if not can_attack():
 		return false
-	player.call(&"take_damage", contact_damage, impulse)
+	player.call(&"take_damage", contact_damage, impulse, true)
 	_attack_cooldown_left = attack_cooldown
 	return true
 
@@ -289,6 +290,7 @@ func _on_death_timeout() -> void:
 
 func _update_target(delta: float) -> void:
 	if is_passive or not is_aggressive:
+		_refresh_passive_collision_exceptions()
 		_target = null
 		_forget_time_left = 0.0
 		_state = State.WALKING
@@ -490,3 +492,19 @@ func _can_turn() -> bool:
 func _flip_patrol_direction() -> void:
 	_patrol_direction = -_patrol_direction
 	_turn_cooldown_left = turn_cooldown
+
+
+func _refresh_passive_collision_exceptions() -> void:
+	if not is_passive:
+		return
+	var tree := get_tree()
+	if tree == null:
+		return
+	for node in tree.get_nodes_in_group(PLAYER_GROUP):
+		if not (node is PhysicsBody2D):
+			continue
+		var player_body := node as PhysicsBody2D
+		if player_body == null:
+			continue
+		add_collision_exception_with(player_body)
+		player_body.add_collision_exception_with(self)
