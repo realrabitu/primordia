@@ -20,7 +20,7 @@ public partial class MesozoicSelectionScreen : Control
 	}
 	private void OnJurassicPlayPressed()
 	{
-		GetTree().ChangeSceneToFile("res://game_singleplayer.tscn");
+		GetTree().ChangeSceneToFile("res://JurassicCharacterSelection.tscn");
 	}
 	// for future use, will not be implemented yet
 	private void OnCretaceousPlayPressed() { }

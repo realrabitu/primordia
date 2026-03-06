@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://do7htx4sqmcnh"]
 
-[ext_resource type="AudioStream" uid="uid://dp0tta14mu7ux" path="res://music.ogg" id="1_8pjkj"]
+[ext_resource type="AudioStream" uid="uid://dp0tta14mu7ux" path="res://Assets/Sounds/MAIN_SOUNDTRACK.mp3" id="1_8pjkj"]
+[ext_resource type="Script" uid="uid://xf1g2c6j8sv10" path="res://Scripts/MusicManager.cs" id="2_4a9sm"]
 
 [node name="Music" type="AudioStreamPlayer"]
+script = ExtResource("2_4a9sm")
 process_mode = 1
 stream = ExtResource("1_8pjkj")
+bus = &"Music"
 volume_db = -3.0
-autoplay = true
+autoplay = false

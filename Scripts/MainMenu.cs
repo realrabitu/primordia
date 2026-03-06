@@ -5,28 +5,40 @@ using System;
 
 public partial class MainMenu : Control
 {
-	private VBoxContainer MainButtons;
-	private Panel Options;
-	private HBoxContainer TopButtons;
-	private Panel Credits;
-	private Panel Logo;
-	private Panel HowToPlay;
-
+	private TextureButton _startButton;
+	private TextureButton _quitButton;
+	private TextureButton _howToPlayButton;
+	private TextureButton _settingsButton;
+	private TextureButton _creditsButton;
+	private HBoxContainer _topButtons;
+	private Panel _options;
+	private Panel _credits;
+	private Panel _logo;
+	private Panel _howToPlay;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		MainButtons = GetNode<VBoxContainer>("MainButtons");
-		Options = GetNode<Panel>("OptionsPanel");
-		TopButtons = GetNode<HBoxContainer>("TopButtons");
-		Credits = GetNode<Panel>("CreditsPanel");
-		Logo = GetNode<Panel>("Logo");
-		HowToPlay = GetNode<Panel>("HowToPlayPanel");
-		MainButtons.Visible = true;
-		Options.Visible = false;
-		Credits.Visible = false;
-		HowToPlay.Visible = false;
+		_startButton = GetNode<TextureButton>("TextureButton");
+		_quitButton = GetNode<TextureButton>("QuitButton");
+		_howToPlayButton = GetNode<TextureButton>("HowToPlayButton");
+		_settingsButton = GetNode<TextureButton>("TopButtons/SettingsButton");
+		_creditsButton = GetNode<TextureButton>("TopButtons/CreditsButton");
+		_topButtons = GetNode<HBoxContainer>("TopButtons");
+		_options = GetNode<Panel>("OptionsPanel");
+		_credits = GetNode<Panel>("CreditsPanel");
+		_logo = GetNode<Panel>("Logo");
+		_howToPlay = GetNode<Panel>("HowToPlayPanel");
 
+		_options.Visible = false;
+		_credits.Visible = false;
+		_howToPlay.Visible = false;
+
+		_startButton.Pressed += OnStartPressed;
+		_quitButton.Pressed += OnQuitPressed;
+		_howToPlayButton.Pressed += OnHowToPlayPressed;
+		_settingsButton.Pressed += OnSettingsPressed;
+		_creditsButton.Pressed += OnCreditsPressed;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,47 +55,44 @@ public partial class MainMenu : Control
 	{
 		GetTree().Quit();
 	}
+	private void SetMainControlsVisible(bool visible)
+	{
+		_startButton.Visible = visible;
+		_quitButton.Visible = visible;
+		_howToPlayButton.Visible = visible;
+		_topButtons.Visible = visible;
+		_logo.Visible = visible;
+	}
+
 	void OnHowToPlayPressed()
 	{
-		MainButtons.Visible = false;
-		TopButtons.Visible = false;
-		Logo.Visible = false;
-		HowToPlay.Visible = true;
+		SetMainControlsVisible(false);
+		_howToPlay.Visible = true;
 	}
 	void OnSettingsPressed()
 	{
-		MainButtons.Visible = false;
-		Options.Visible = true;
-		TopButtons.Visible = false;
-		Logo.Visible = false;
+		SetMainControlsVisible(false);
+		_options.Visible = true;
 	}
 	void OnCreditsPressed()
 	{
-		MainButtons.Visible = false;
-		Credits.Visible = true;
-		TopButtons.Visible = false;
-		Logo.Visible = false;
+		SetMainControlsVisible(false);
+		_credits.Visible = true;
 	}
 	void OnCreditsBackPressed()
 	{
-		MainButtons.Visible = true;
-		Credits.Visible = false;
-		TopButtons.Visible = true;
-		Logo.Visible = true;
+		SetMainControlsVisible(true);
+		_credits.Visible = false;
 	}
 	void OnOptionsBackPressed()
 	{
-		MainButtons.Visible = true;
-		Options.Visible = false;
-		TopButtons.Visible = true;
-		Logo.Visible = true;
+		SetMainControlsVisible(true);
+		_options.Visible = false;
 	}
 	void OnHowToPlayBackButtonPressed()
 	{
-		MainButtons.Visible = true;
-		HowToPlay.Visible = false;
-		TopButtons.Visible = true;
-		Logo.Visible = true;
+		SetMainControlsVisible(true);
+		_howToPlay.Visible = false;
 	}
 
 }

@@ -28,21 +28,6 @@ public partial class EraSelectionScreen : Control
 
 	private void OnBackButtonPressed()
 	{
-<<<<<<< HEAD
-		GetTree().ChangeSceneToFile("res://Scenes/Menu Scenes/MainMenu.tscn");
-	}
-	private void OnPaleozoicPlayPressed()
-	{
-		GetTree().ChangeSceneToFile("res://Scenes/Menu Scenes/PaleozoicSelectionScreen.tscn");
-	}
-	private void OnMesozoicPlayPressed()
-	{
-		GetTree().ChangeSceneToFile("res://Scenes/Menu Scenes/MesozoicSelectionScreen.tscn");
-	}
-	private void OnCenozoicPlayPressed()
-	{
-		GetTree().ChangeSceneToFile("res://Scenes/Menu Scenes/CenozoicSelectionScreen.tscn");
-=======
 		GetTree().ChangeSceneToFile("res://Scenes/Menu Scenes/EonSelectionScreen.tscn");
 	}
 	private void OnPaleozoicPlayPressed()
@@ -69,6 +54,5 @@ public partial class EraSelectionScreen : Control
 
 		loadState.TargetScenePath = targetScenePath;
 		GetTree().ChangeSceneToFile(LoadingScenePath);
->>>>>>> 0d47892ceece502f72b108f798841a323ba704f8
 	}
 }
