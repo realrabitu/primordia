@@ -43,10 +43,16 @@ enum State {
 @export_range(0.0, 1.0, 0.05) var water_exit_boost_damping := 0.35
 @export var is_aggressive := true
 @export var is_passive := false
+<<<<<<< HEAD
 @export_range(0.1, 32.0, 0.1) var hostile_collision_priority := 8.0
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 977f0e04645e63f0a3c1dd75ca35a66942ff8b3a
 @export var dinosaur_id := ""
 @export var dinosaur_name := ""
 @export_multiline var dinosaur_description := ""
+>>>>>>> 0d47892ceece502f72b108f798841a323ba704f8
 
 const PLAYER_GROUP: StringName = &"players"
 
@@ -353,6 +359,13 @@ func _on_death_timeout() -> void:
 
 func _update_target(delta: float) -> void:
 	if is_passive or not is_aggressive:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		_refresh_passive_collision_exceptions()
+>>>>>>> 0d47892ceece502f72b108f798841a323ba704f8
+>>>>>>> 977f0e04645e63f0a3c1dd75ca35a66942ff8b3a
 		_target = null
 		_forget_time_left = 0.0
 		_state = State.WALKING

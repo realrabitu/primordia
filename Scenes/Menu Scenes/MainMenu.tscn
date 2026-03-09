@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b6qb1jpjc8xgm" path="res://Assets/Texts/Main Menu/INSTRUCTIONS.png" id="8_8dnnj"]
 [ext_resource type="Texture2D" uid="uid://dg8d1whq3v5xk" path="res://Assets/Menu Images/Main Menu/VISUAL_INSTRUCTIONS.png" id="9_m3bi6"]
 [ext_resource type="Script" uid="uid://bxv0h2gvctrsn" path="res://Scripts/AudioControl.cs" id="11_m3bi6"]
-[ext_resource type="Texture2D" uid="uid://be1uew3h04e4e" path="res://Assets/MUSIC_TEXT.png" id="11_riqfo"]
+[ext_resource type="Texture2D" uid="uid://chq2xvcvw0ds5" path="res://Assets/Texts/Main Menu/MUSIC_TEXT.png" id="11_riqfo"]
 [ext_resource type="Texture2D" uid="uid://cep70j362opt0" path="res://Assets/Texts/Main Menu/sounds_text.png" id="12_yxkem"]
 [ext_resource type="Texture2D" uid="uid://d06klxcqwn6i" path="res://Assets/settings_text.png" id="13_ysb5d"]
 [ext_resource type="Texture2D" uid="uid://c8amrljtnyog1" path="res://Assets/Buttons/Main Menu/how_to_play-trans-removebg-preview.png" id="17_ysb5d"]

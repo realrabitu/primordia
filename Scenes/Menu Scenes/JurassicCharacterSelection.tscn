@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bucuttto0phnm"]
+[gd_scene format=3 uid="uid://clw1augtjyqu0"]
 
 [ext_resource type="Script" uid="uid://cut61jgvqvy2h" path="res://Scenes/Menu Scenes/JurassicCharacterSelection.cs" id="1_lpb34"]
 [ext_resource type="Texture2D" uid="uid://c0u17tnwso5dd" path="res://Assets/Menu Images/background.png" id="1_vcktj"]

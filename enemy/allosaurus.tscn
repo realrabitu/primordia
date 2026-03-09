@@ -168,7 +168,11 @@ blend_mode = 1
 offsets = PackedFloat32Array(0.5, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
+<<<<<<< HEAD
+[node name="Enemy2" type="CharacterBody2D" unique_id=678927329]
+=======
 [node name="Allosaurus" type="CharacterBody2D" unique_id=678927329]
+>>>>>>> 0d47892ceece502f72b108f798841a323ba704f8
 collision_layer = 2
 collision_mask = 24
 script = ExtResource("5")
