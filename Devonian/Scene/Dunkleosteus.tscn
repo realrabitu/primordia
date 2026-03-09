@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://cxi0vvvh041j2"]
+
+[ext_resource type="Texture2D" uid="uid://dto6tq2khwk0d" path="res://Devonian/enemy/Dunkleosteus/attack/1.png" id="1_ftplk"]
+[ext_resource type="Texture2D" uid="uid://d4h8xwglot2lw" path="res://Devonian/enemy/Dunkleosteus/attack/2.png" id="2_fgpqa"]
+[ext_resource type="Texture2D" uid="uid://bgd0c4hqsqdei" path="res://Devonian/enemy/Dunkleosteus/attack/3.png" id="3_j6pqp"]
+[ext_resource type="Texture2D" uid="uid://bso0hpn61r47" path="res://Devonian/enemy/Dunkleosteus/attack/4.png" id="4_o8to0"]
+[ext_resource type="Texture2D" uid="uid://bbj2wu4feuck2" path="res://Devonian/enemy/Dunkleosteus/swim/1.png" id="11_ftplk"]
+[ext_resource type="Texture2D" uid="uid://bd6cf5dlbpqhe" path="res://Devonian/enemy/Dunkleosteus/swim/2.png" id="12_fgpqa"]
+[ext_resource type="Texture2D" uid="uid://dau608qv781eq" path="res://Devonian/enemy/Dunkleosteus/swim/3.png" id="13_j6pqp"]
+[ext_resource type="Texture2D" uid="uid://b20p6xhju5aqd" path="res://Devonian/enemy/Dunkleosteus/swim/4.png" id="14_o8to0"]
+[ext_resource type="Texture2D" uid="uid://coj0d33vyyqx1" path="res://player/bullet.webp" id="16_4ed8y"]
+[ext_resource type="AudioStream" uid="uid://dm7wsawmylc7b" path="res://enemy/hit.wav" id="17_y7c32"]
+[ext_resource type="AudioStream" uid="uid://duwm7i44o75o2" path="res://enemy/explode.wav" id="18_42owo"]
+[ext_resource type="PackedScene" uid="uid://d0tnu2xmlen7g" path="res://player/healthbar.tscn" id="19_qjbef"]
+[ext_resource type="Script" uid="uid://b6owtvaa6icg" path="res://Devonian/script/devonian_enemy_base.gd" id="100_base"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3etd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ftplk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fgpqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_j6pqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_o8to0")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_ftplk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_fgpqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_j6pqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_o8to0")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="5"]
+radius = 31.0
+height = 126.0
+
+[sub_resource type="CanvasItemMaterial" id="6"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="7"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="Dunkleosteus" type="CharacterBody2D" unique_id=678927329]
+collision_layer = 2
+collision_mask = 25
+script = ExtResource("100_base")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
+position = Vector2(39.124996, 12.125011)
+scale = Vector2(0.13757324, 0.13757324)
+sprite_frames = SubResource("SpriteFrames_e3etd")
+animation = &"attack"
+
+[node name="PlatformDetector" type="RayCast2D" parent="." unique_id=2026131695]
+position = Vector2(0, 6)
+target_position = Vector2(0, 8)
+collision_mask = 9
+
+[node name="FloorDetectorLeft" type="RayCast2D" parent="." unique_id=1398094348]
+position = Vector2(-15, -4)
+target_position = Vector2(0, 35)
+collision_mask = 25
+
+[node name="FloorDetectorRight" type="RayCast2D" parent="." unique_id=1541295602]
+position = Vector2(15.5, -3)
+target_position = Vector2(0, 35)
+collision_mask = 25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26390868]
+position = Vector2(39, 14)
+rotation = -1.5707964
+shape = SubResource("5")
+
+[node name="Explosion" type="CPUParticles2D" parent="." unique_id=1964325938]
+self_modulate = Color(1, 1, 1, 0.12)
+material = SubResource("6")
+emitting = false
+amount = 32
+texture = ExtResource("16_4ed8y")
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.2
+explosiveness = 0.7
+draw_order = 215832976
+emission_shape = 1
+emission_sphere_radius = 16.0
+spread = 180.0
+gravity = Vector2(0, -250)
+color_ramp = SubResource("7")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=288222785]
+stream = ExtResource("17_y7c32")
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="." unique_id=988196303]
+stream = ExtResource("18_42owo")
+
+[node name="Healthbar" parent="." unique_id=1930226170 instance=ExtResource("19_qjbef")]
+offset_left = -30.0
+offset_top = -42.0
+offset_right = 30.0
+offset_bottom = -38.0

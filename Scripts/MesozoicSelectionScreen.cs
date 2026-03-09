@@ -16,12 +16,23 @@ public partial class MesozoicSelectionScreen : Control
 	}
 	private void OnTriassicPlayPressed()
 	{
+		ResetScore();
 		GetTree().ChangeSceneToFile("res://Scenes/TriassicStage.tscn");
 	}
 	private void OnJurassicPlayPressed()
 	{
+		ResetScore();
 		GetTree().ChangeSceneToFile("res://game_singleplayer.tscn");
 	}
 	// for future use, will not be implemented yet
 	private void OnCretaceousPlayPressed() { }
+
+	private void ResetScore()
+	{
+		var scoreNode = GetNodeOrNull<Node>("/root/Score");
+		if (scoreNode != null)
+		{
+			scoreNode.Call("reset_score");
+		}
+	}
 }

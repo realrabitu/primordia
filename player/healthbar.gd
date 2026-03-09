@@ -1,9 +1,15 @@
 extends ProgressBar
 
-@onready var timer = $Timer
-@onready var damage_bar = $DamageBar
+@onready var timer: Timer = $Timer
+@onready var damage_bar: ProgressBar = $DamageBar
 
 var health = 0 : set = _set_health
+
+
+func _ensure_damage_bar() -> ProgressBar:
+	if damage_bar == null:
+		damage_bar = get_node_or_null("DamageBar") as ProgressBar
+	return damage_bar
 
 func _set_health(new_health):
 	var prev_health = health
@@ -11,9 +17,12 @@ func _set_health(new_health):
 	value = health
 
 	if health < prev_health:
-		timer.start()
+		if timer != null:
+			timer.start()
 	else:
-		damage_bar.value = health
+		var bar := _ensure_damage_bar()
+		if bar != null:
+			bar.value = health
 
 func init_health(_health):
 	set_health_state(_health, _health)
@@ -21,7 +30,9 @@ func init_health(_health):
 
 func set_health_state(current_health: int, max_health: int) -> void:
 	max_value = maxi(1, max_health)
-	damage_bar.max_value = max_value
+	var bar := _ensure_damage_bar()
+	if bar != null:
+		bar.max_value = max_value
 	health = current_health
 
 
@@ -42,11 +53,18 @@ func _on_player_xp_changed(current: int, required: int) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	_ensure_damage_bar()
+	var bar := _ensure_damage_bar()
+	if bar != null:
+		bar.max_value = max_value
+		bar.value = health
 	var parent := get_parent()
 	if parent and parent.has_signal("health_changed"):
 		if not parent.health_changed.is_connected(_on_player_health_changed):
 			parent.health_changed.connect(_on_player_health_changed)
 
 func _on_timer_timeout() -> void:
-	damage_bar.value = health
+	var bar := _ensure_damage_bar()
+	if bar != null:
+		bar.value = health
 	

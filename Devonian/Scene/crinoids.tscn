@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://cmt4wq3t552m7"]
+
+[ext_resource type="Texture2D" uid="uid://cji2i78643f8e" path="res://Devonian/enemy/Crinoids/swim/1.png" id="22_iuxai"]
+[ext_resource type="Texture2D" uid="uid://stqluwg13fh8" path="res://Devonian/enemy/Crinoids/swim/2.png" id="23_24gfo"]
+[ext_resource type="Texture2D" uid="uid://y6kcfvfkygav" path="res://Devonian/enemy/Crinoids/swim/3.png" id="24_453bx"]
+[ext_resource type="Texture2D" uid="uid://d0smq61og736l" path="res://Devonian/enemy/Crinoids/swim/4.png" id="25_6v22f"]
+[ext_resource type="Texture2D" uid="uid://cv1fma8qq8yyl" path="res://Devonian/enemy/Crinoids/idle/1.png" id="26_iuxai"]
+[ext_resource type="Texture2D" uid="uid://cio1tfvciraqp" path="res://Devonian/enemy/Crinoids/idle/2.png" id="27_24gfo"]
+[ext_resource type="Texture2D" uid="uid://ie6xe6u4x6x1" path="res://Devonian/enemy/Crinoids/idle/3.png" id="28_453bx"]
+[ext_resource type="Texture2D" uid="uid://b6r8n05sp4743" path="res://Devonian/enemy/Crinoids/idle/4.png" id="29_6v22f"]
+[ext_resource type="Texture2D" uid="uid://coj0d33vyyqx1" path="res://player/bullet.webp" id="30_6p2d1"]
+[ext_resource type="AudioStream" uid="uid://dm7wsawmylc7b" path="res://enemy/hit.wav" id="31_ffnuo"]
+[ext_resource type="AudioStream" uid="uid://duwm7i44o75o2" path="res://enemy/explode.wav" id="32_nlcgp"]
+[ext_resource type="PackedScene" uid="uid://d0tnu2xmlen7g" path="res://player/healthbar.tscn" id="33_bbv5f"]
+[ext_resource type="Script" uid="uid://dpqcwrkashxl2" path="res://Devonian/script/crinoid.gd" id="101_crinoid"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3etd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_iuxai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_24gfo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_453bx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_6v22f")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_iuxai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_24gfo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_453bx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_6v22f")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="5"]
+radius = 37.0
+height = 146.0
+
+[sub_resource type="CanvasItemMaterial" id="6"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="7"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="Crinoids" type="CharacterBody2D" unique_id=678927329]
+collision_layer = 2
+collision_mask = 25
+script = ExtResource("101_crinoid")
+contact_damage = 0
+is_aggressive = false
+is_passive = true
+dinosaur_id = "crinoids"
+dinosaur_name = "Crinoids"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
+position = Vector2(32.521957, 47.89147)
+scale = Vector2(0.22420326, 0.22420327)
+sprite_frames = SubResource("SpriteFrames_e3etd")
+animation = &"idle"
+
+[node name="PlatformDetector" type="RayCast2D" parent="." unique_id=2026131695]
+position = Vector2(0, 6)
+target_position = Vector2(0, 8)
+collision_mask = 9
+
+[node name="FloorDetectorLeft" type="RayCast2D" parent="." unique_id=1398094348]
+position = Vector2(-15, -4)
+target_position = Vector2(0, 35)
+collision_mask = 25
+
+[node name="FloorDetectorRight" type="RayCast2D" parent="." unique_id=1541295602]
+position = Vector2(15.5, -3)
+target_position = Vector2(0, 35)
+collision_mask = 25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26390868]
+position = Vector2(33.418945, 59.78295)
+rotation = -3.1236846
+shape = SubResource("5")
+
+[node name="Explosion" type="CPUParticles2D" parent="." unique_id=1964325938]
+self_modulate = Color(1, 1, 1, 0.12)
+material = SubResource("6")
+emitting = false
+amount = 32
+texture = ExtResource("30_6p2d1")
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.2
+explosiveness = 0.7
+draw_order = 215832976
+emission_shape = 1
+emission_sphere_radius = 16.0
+spread = 180.0
+gravity = Vector2(0, -250)
+color_ramp = SubResource("7")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=288222785]
+stream = ExtResource("31_ffnuo")
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="." unique_id=988196303]
+stream = ExtResource("32_nlcgp")
+
+[node name="Healthbar" parent="." unique_id=1930226170 instance=ExtResource("33_bbv5f")]
+offset_left = -30.0
+offset_top = -42.0
+offset_right = 30.0
+offset_bottom = -38.0

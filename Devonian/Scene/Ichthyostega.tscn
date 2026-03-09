@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://u2lf5yasuna6"]
+
+[ext_resource type="Texture2D" uid="uid://ixboq383bk0w" path="res://Devonian/enemy/Ichthyostega/idle/1.png" id="1_ykr3d"]
+[ext_resource type="Texture2D" uid="uid://cw0qf5v6oq2um" path="res://Devonian/enemy/Ichthyostega/idle/2.png" id="2_nq1m7"]
+[ext_resource type="Texture2D" uid="uid://wdnnbguhk0s2" path="res://Devonian/enemy/Ichthyostega/idle/3.png" id="3_720g4"]
+[ext_resource type="Texture2D" uid="uid://cinoagsc2hdox" path="res://Devonian/enemy/Ichthyostega/idle/4.png" id="4_3nmls"]
+[ext_resource type="Texture2D" uid="uid://72dp0x86imer" path="res://player/allosaurus_death/frame0000.png" id="5_smjn2"]
+[ext_resource type="Texture2D" uid="uid://crd53eophrs8l" path="res://player/allosaurus_death/frame0001.png" id="6_l403v"]
+[ext_resource type="Texture2D" uid="uid://dmf55f23fsc2w" path="res://player/allosaurus_death/frame0002.png" id="7_7hc4u"]
+[ext_resource type="Texture2D" uid="uid://da5ubqjh6gun4" path="res://player/allosaurus_death/frame0003.png" id="8_dtmaj"]
+[ext_resource type="Texture2D" uid="uid://bgrufsw87yhon" path="res://player/allosaurus_death/frame0004.png" id="9_f0mw1"]
+[ext_resource type="Texture2D" uid="uid://be2mobwdck0t7" path="res://player/allosaurus_death/frame0005.png" id="10_k05tt"]
+[ext_resource type="Texture2D" uid="uid://bj2pgovq2r3bq" path="res://Devonian/enemy/Ichthyostega/walking/1.png" id="11_ykr3d"]
+[ext_resource type="Texture2D" uid="uid://dh2huyd2ntjbi" path="res://Devonian/enemy/Ichthyostega/walking/2.png" id="12_nq1m7"]
+[ext_resource type="Texture2D" uid="uid://4kf2yverrql4" path="res://Devonian/enemy/Ichthyostega/walking/3.png" id="13_720g4"]
+[ext_resource type="Texture2D" uid="uid://0fk1kloc5hkl" path="res://Devonian/enemy/Ichthyostega/walking/4.png" id="14_3nmls"]
+[ext_resource type="Texture2D" uid="uid://coj0d33vyyqx1" path="res://player/bullet.webp" id="15_0sm7y"]
+[ext_resource type="AudioStream" uid="uid://dm7wsawmylc7b" path="res://enemy/hit.wav" id="16_6dwo6"]
+[ext_resource type="AudioStream" uid="uid://duwm7i44o75o2" path="res://enemy/explode.wav" id="17_vu0x2"]
+[ext_resource type="PackedScene" uid="uid://d0tnu2xmlen7g" path="res://player/healthbar.tscn" id="18_veqry"]
+[ext_resource type="Script" uid="uid://b6owtvaa6icg" path="res://Devonian/script/devonian_enemy_base.gd" id="100_base"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3etd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ykr3d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nq1m7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_720g4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3nmls")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_smjn2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_l403v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7hc4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_dtmaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_f0mw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_k05tt")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_ykr3d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_nq1m7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_720g4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_3nmls")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="5"]
+radius = 45.0
+height = 240.0
+
+[sub_resource type="CanvasItemMaterial" id="6"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="7"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="Ichthyostega" type="CharacterBody2D" unique_id=678927329]
+collision_layer = 2
+collision_mask = 25
+script = ExtResource("100_base")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
+position = Vector2(44.85527, 42.39147)
+scale = Vector2(0.24975878, 0.24975882)
+sprite_frames = SubResource("SpriteFrames_e3etd")
+animation = &"walk"
+frame = 3
+frame_progress = 0.2752245
+
+[node name="PlatformDetector" type="RayCast2D" parent="." unique_id=2026131695]
+position = Vector2(0, 6)
+target_position = Vector2(0, 8)
+collision_mask = 9
+
+[node name="FloorDetectorLeft" type="RayCast2D" parent="." unique_id=1398094348]
+position = Vector2(-15, -4)
+target_position = Vector2(0, 35)
+collision_mask = 25
+
+[node name="FloorDetectorRight" type="RayCast2D" parent="." unique_id=1541295602]
+position = Vector2(15.5, -3)
+target_position = Vector2(0, 35)
+collision_mask = 25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26390868]
+position = Vector2(56.418945, 42.78295)
+rotation = -1.5707964
+shape = SubResource("5")
+
+[node name="Explosion" type="CPUParticles2D" parent="." unique_id=1964325938]
+self_modulate = Color(1, 1, 1, 0.12)
+material = SubResource("6")
+emitting = false
+amount = 32
+texture = ExtResource("15_0sm7y")
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.2
+explosiveness = 0.7
+draw_order = 215832976
+emission_shape = 1
+emission_sphere_radius = 16.0
+spread = 180.0
+gravity = Vector2(0, -250)
+color_ramp = SubResource("7")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=288222785]
+stream = ExtResource("16_6dwo6")
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="." unique_id=988196303]
+stream = ExtResource("17_vu0x2")
+
+[node name="Healthbar" parent="." unique_id=1930226170 instance=ExtResource("18_veqry")]
+offset_left = -30.0
+offset_top = -42.0
+offset_right = 30.0
+offset_bottom = -38.0

@@ -90,8 +90,8 @@ dinosaur_id = "archaeopteryx"
 dinosaur_name = "Archaeopteryx"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
-position = Vector2(33, -22)
-scale = Vector2(0.14361869, 0.14361869)
+position = Vector2(46.999996, 13)
+scale = Vector2(0.11092045, 0.11092045)
 sprite_frames = SubResource("SpriteFrames_e3etd")
 animation = &"idle"
 frame = 3

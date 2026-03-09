@@ -54,12 +54,15 @@ func _on_enemy_slain(killer: Node, xp_reward: int) -> void:
 	var player := _resolve_killer_player(killer)
 	if player == null:
 		return
-	player.add_xp(xp_reward)
+	if player.has_method(&"add_xp"):
+		player.call(&"add_xp", xp_reward)
 
 
-func _resolve_killer_player(killer: Node) -> Player:
-	if killer is Player:
-		return killer as Player
+func _resolve_killer_player(killer: Node) -> Node:
+	if killer != null and killer.is_in_group(&"players"):
+		return killer
 	if killer is Bullet:
-		return (killer as Bullet).source_player
+		var source_player := (killer as Bullet).source_player as Node
+		if source_player != null and source_player.is_in_group(&"players"):
+			return source_player
 	return null

@@ -62,6 +62,7 @@ public partial class Loading : Node
 			if (Time.GetTicksMsec() >= _switchAtMs)
 			{
 				_isSwitching = true;
+				ResetScore();
 				GetTree().ChangeSceneToPacked(_loadedScene);
 			}
 			return;
@@ -99,6 +100,15 @@ public partial class Loading : Node
 		if (status == ResourceLoader.ThreadLoadStatus.Failed)
 		{
 			GD.PushError("Loading failed.");
+		}
+	}
+
+	private void ResetScore()
+	{
+		var scoreNode = GetNodeOrNull<Node>("/root/Score");
+		if (scoreNode != null)
+		{
+			scoreNode.Call("reset_score");
 		}
 	}
 }

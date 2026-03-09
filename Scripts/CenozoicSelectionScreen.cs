@@ -14,10 +14,21 @@ public partial class CenozoicSelectionScreen : Control
 	}
 	private void OnTertiaryPlayPressed()
 	{
+		ResetScore();
 		GetTree().ChangeSceneToFile("res://Scenes/TertiaryStage.tscn");
 	}
 	private void OnQuaternaryPlayPressed()
 	{
+		ResetScore();
 		GetTree().ChangeSceneToFile("res://Scenes/QuaternaryStage.tscn");
+	}
+
+	private void ResetScore()
+	{
+		var scoreNode = GetNodeOrNull<Node>("/root/Score");
+		if (scoreNode != null)
+		{
+			scoreNode.Call("reset_score");
+		}
 	}
 }

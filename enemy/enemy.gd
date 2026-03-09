@@ -28,8 +28,22 @@ enum State {
 @export_range(0.0, 1500.0, 1.0) var attack_knockback_x := 320.0
 @export_range(-1500.0, 0.0, 1.0) var attack_knockback_y := -260.0
 @export_range(0, 1000, 1) var xp_reward := 10
+@export var can_swim := true
+@export_range(0.0, 2.0, 0.05) var swim_horizontal_speed_multiplier := 0.8
+@export_range(0.0, 500.0, 1.0) var swim_vertical_speed := 90.0
+@export_range(0.0, 2000.0, 1.0) var swim_vertical_acceleration := 540.0
+@export_range(0.0, 500.0, 1.0) var swim_passive_sink_speed := 24.0
+@export_range(0.0, 500.0, 1.0) var swim_idle_vertical_speed := 40.0
+@export_range(0.0, 120.0, 1.0) var swim_idle_bob_amplitude := 16.0
+@export_range(0.0, 6.0, 0.05) var swim_idle_bob_frequency := 1.1
+@export_range(0.0, 128.0, 1.0) var swim_buoyancy_depth := 24.0
+@export_range(0.0, 20.0, 0.1) var swim_buoyancy_strength := 3.0
+@export_range(0.0, 64.0, 1.0) var swim_target_vertical_tolerance := 12.0
+@export_range(0.0, 64.0, 1.0) var swim_surface_padding := 6.0
+@export_range(0.0, 1.0, 0.05) var water_exit_boost_damping := 0.35
 @export var is_aggressive := true
 @export var is_passive := false
+@export_range(0.1, 32.0, 0.1) var hostile_collision_priority := 8.0
 @export var dinosaur_id := ""
 @export var dinosaur_name := ""
 @export_multiline var dinosaur_description := ""
@@ -46,6 +60,8 @@ var _jump_cooldown_left := 0.0
 var _turn_cooldown_left := 0.0
 var _patrol_direction := 1.0
 var _target_update_left := 0.0
+var _is_in_water := false
+var _water_overlaps: Array[Node2D] = []
 
 @onready var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
 @onready var platform_detector := $PlatformDetector as RayCast2D
@@ -60,9 +76,12 @@ var _target_update_left := 0.0
 
 func _ready() -> void:
 	add_to_group(&"enemies")
+	add_to_group(&"can_interact_with_water")
 	_health = max_health
 	_patrol_direction = -1.0 if walk_speed < 0.0 else 1.0
 	_target_update_left = (float(get_instance_id() % 17) / 17.0) * target_update_interval
+	if is_aggressive and not is_passive:
+		collision_priority = maxf(collision_priority, hostile_collision_priority)
 	_refresh_passive_collision_exceptions()
 	health_changed.emit(_health, max_health)
 
@@ -76,6 +95,12 @@ func _physics_process(delta: float) -> void:
 		_jump_cooldown_left = maxf(0.0, _jump_cooldown_left - delta)
 	if _turn_cooldown_left > 0.0:
 		_turn_cooldown_left = maxf(0.0, _turn_cooldown_left - delta)
+
+	if is_passive:
+		_target = null
+		_forget_time_left = 0.0
+		if _state == State.ATTACKING or _state == State.CHASING:
+			_state = State.WALKING
 
 	if _state != State.DEAD:
 		_target_update_left = maxf(0.0, _target_update_left - delta)
@@ -107,7 +132,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = 0.0
 
-	velocity.y += gravity * delta
+	if _is_in_water and can_swim:
+		velocity.x *= swim_horizontal_speed_multiplier
+		_apply_swim_vertical(delta)
+	else:
+		velocity.y += gravity * delta
 
 	move_and_slide()
 
@@ -158,8 +187,40 @@ func get_contact_damage() -> int:
 	return contact_damage
 
 
+func is_passive_enemy() -> bool:
+	return is_passive
+
+
 func can_attack() -> bool:
 	return _state != State.DEAD and _attack_cooldown_left <= 0.0 and is_aggressive and not is_passive and contact_damage > 0
+
+
+func is_in_water() -> bool:
+	return _is_in_water
+
+
+func _on_enter_water(_water: Node2D) -> void:
+	if _water != null and not _water_overlaps.has(_water):
+		_water_overlaps.append(_water)
+	if _is_in_water:
+		return
+	_is_in_water = true
+	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	velocity.y *= water_exit_boost_damping
+
+
+func _on_exit_water(_water: Node2D) -> void:
+	if _water != null:
+		_water_overlaps.erase(_water)
+	for i in range(_water_overlaps.size() - 1, -1, -1):
+		if not is_instance_valid(_water_overlaps[i]):
+			_water_overlaps.remove_at(i)
+	if not _water_overlaps.is_empty():
+		return
+	if not _is_in_water:
+		return
+	_is_in_water = false
+	motion_mode = CharacterBody2D.MOTION_MODE_GROUNDED
 
 
 func get_dinosaur_id() -> String:
@@ -223,7 +284,7 @@ func try_attack_player(player: Node, impulse := Vector2.ZERO) -> bool:
 		return false
 	if not can_attack():
 		return false
-	player.call(&"take_damage", contact_damage, impulse, true)
+	player.call(&"take_damage", contact_damage, impulse)
 	_attack_cooldown_left = attack_cooldown
 	return true
 
@@ -231,7 +292,9 @@ func try_attack_player(player: Node, impulse := Vector2.ZERO) -> bool:
 func get_new_animation() -> StringName:
 	var animation_new: StringName
 	if _state == State.ATTACKING:
-		if sprite.sprite_frames and sprite.sprite_frames.has_animation(&"attack"):
+		if is_passive:
+			animation_new = &"idle"
+		elif sprite.sprite_frames and sprite.sprite_frames.has_animation(&"attack"):
 			animation_new = &"attack"
 		else:
 			animation_new = &"idle"
@@ -290,10 +353,10 @@ func _on_death_timeout() -> void:
 
 func _update_target(delta: float) -> void:
 	if is_passive or not is_aggressive:
-		_refresh_passive_collision_exceptions()
 		_target = null
 		_forget_time_left = 0.0
 		_state = State.WALKING
+		_refresh_passive_collision_exceptions()
 		return
 
 	var contact_target := _find_contact_player()
@@ -330,6 +393,8 @@ func _update_target(delta: float) -> void:
 
 
 func _try_attack_target() -> void:
+	if is_passive or not is_aggressive:
+		return
 	if _target == null or not _target.is_inside_tree():
 		return
 	if not _is_target_in_attack_range(_target):
@@ -339,6 +404,62 @@ func _try_attack_target() -> void:
 	if is_zero_approx(push_direction):
 		push_direction = -1.0 if sprite.flip_h else 1.0
 	try_attack_player(_target, Vector2(push_direction * attack_knockback_x, attack_knockback_y))
+
+
+func _apply_swim_vertical(delta: float) -> void:
+	var desired_y := 0.0
+	var active_water := _get_active_water()
+	var top_limit := -INF
+	var bottom_limit := INF
+
+	if active_water != null:
+		var local_surface_y := float(active_water.get("surface_pos_y"))
+		var surface_world := active_water.to_global(Vector2(0.0, local_surface_y))
+		top_limit = surface_world.y + swim_surface_padding
+		var water_size: Variant = active_water.get("water_size")
+		if water_size is Vector2:
+			var bottom_world := active_water.to_global(Vector2(0.0, local_surface_y + (water_size as Vector2).y))
+			bottom_limit = bottom_world.y - swim_surface_padding
+
+	if _target != null and _target.is_inside_tree() and (_state == State.CHASING or _state == State.ATTACKING):
+		var delta_y := (_target as Node2D).global_position.y - global_position.y
+		if absf(delta_y) > swim_target_vertical_tolerance:
+			desired_y = signf(delta_y) * swim_vertical_speed
+	else:
+		var bob_phase := (float(get_instance_id() % 997) / 997.0) * TAU
+		var bob_time := (Time.get_ticks_msec() * 0.001 * swim_idle_bob_frequency * TAU) + bob_phase
+		desired_y = sin(bob_time) * swim_idle_vertical_speed
+		desired_y += swim_passive_sink_speed
+		if active_water != null:
+			var center_y := top_limit + swim_buoyancy_depth + (sin(bob_time) * swim_idle_bob_amplitude)
+			if is_finite(bottom_limit):
+				center_y = minf(center_y, bottom_limit)
+			desired_y += (center_y - global_position.y) * swim_buoyancy_strength
+
+	if is_finite(bottom_limit) and global_position.y >= bottom_limit and desired_y > 0.0:
+		desired_y = 0.0
+	if is_finite(top_limit) and global_position.y <= top_limit and desired_y < 0.0:
+		desired_y = 0.0
+
+	desired_y = clampf(desired_y, -swim_vertical_speed, swim_vertical_speed)
+
+	velocity.y = move_toward(velocity.y, desired_y, swim_vertical_acceleration * delta)
+
+	if is_finite(top_limit) and global_position.y < top_limit and velocity.y < 0.0:
+		velocity.y = 0.0
+	if is_finite(bottom_limit) and global_position.y > bottom_limit and velocity.y > 0.0:
+		velocity.y = 0.0
+
+
+func _get_active_water() -> Node2D:
+	for i in range(_water_overlaps.size() - 1, -1, -1):
+		var overlap := _water_overlaps[i]
+		if not is_instance_valid(overlap):
+			_water_overlaps.remove_at(i)
+			continue
+		if overlap.has_method("get") and overlap.get("surface_pos_y") != null:
+			return overlap
+	return null
 
 
 func _is_target_in_attack_range(target: Node2D) -> bool:
@@ -424,6 +545,8 @@ func _find_contact_player() -> Node2D:
 
 
 func _try_jump(move_direction: float) -> bool:
+	if _is_in_water:
+		return false
 	if jump_velocity >= 0.0:
 		return false
 	if _jump_cooldown_left > 0.0:

@@ -63,6 +63,9 @@ func _on_resume_button_pressed() -> void:
 func _on_singleplayer_button_pressed() -> void:
 	if visible:
 		get_tree().paused = false
+		var score_node := get_node_or_null("/root/Score")
+		if score_node != null and score_node.has_method("reset_score"):
+			score_node.call("reset_score")
 		get_tree().change_scene_to_file("res://game_singleplayer.tscn")
 
 

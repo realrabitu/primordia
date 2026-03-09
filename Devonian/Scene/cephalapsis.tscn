@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://c0p75i2udabrk"]
+
+[ext_resource type="Texture2D" uid="uid://cb62gl2w1mmg1" path="res://Devonian/enemy/Cephalapsis/idle/1.png" id="22_thv1p"]
+[ext_resource type="Texture2D" uid="uid://drlxqco2snoem" path="res://Devonian/enemy/Cephalapsis/idle/2.png" id="23_upbiv"]
+[ext_resource type="Texture2D" uid="uid://c2c5nchc84t33" path="res://Devonian/enemy/Cephalapsis/idle/3.png" id="24_8i3ye"]
+[ext_resource type="Texture2D" uid="uid://cxphkxwysays8" path="res://Devonian/enemy/Cephalapsis/idle/4.png" id="25_vuheu"]
+[ext_resource type="Texture2D" uid="uid://ctiteliufcquc" path="res://Devonian/enemy/Cephalapsis/swim/1.png" id="26_ub1j4"]
+[ext_resource type="Texture2D" uid="uid://4sw16forsxww" path="res://Devonian/enemy/Cephalapsis/swim/2.png" id="27_5dx6k"]
+[ext_resource type="Texture2D" uid="uid://dp30jtcye71a4" path="res://Devonian/enemy/Cephalapsis/swim/3.png" id="28_ogc8h"]
+[ext_resource type="Texture2D" uid="uid://ddxqv3spb7ggt" path="res://Devonian/enemy/Cephalapsis/swim/4.png" id="29_thv1p"]
+[ext_resource type="Texture2D" uid="uid://coj0d33vyyqx1" path="res://player/bullet.webp" id="34_o1gjg"]
+[ext_resource type="AudioStream" uid="uid://dm7wsawmylc7b" path="res://enemy/hit.wav" id="35_c2l65"]
+[ext_resource type="AudioStream" uid="uid://duwm7i44o75o2" path="res://enemy/explode.wav" id="36_dkcgy"]
+[ext_resource type="PackedScene" uid="uid://d0tnu2xmlen7g" path="res://player/healthbar.tscn" id="37_g3jk1"]
+[ext_resource type="Script" uid="uid://b6owtvaa6icg" path="res://Devonian/script/devonian_enemy_base.gd" id="100_base"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3etd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_thv1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_upbiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_8i3ye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_vuheu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_ub1j4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_5dx6k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_ogc8h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_thv1p")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="5"]
+radius = 21.000004
+height = 198.0
+
+[sub_resource type="CanvasItemMaterial" id="6"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="7"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="Cephalapsis" type="CharacterBody2D" unique_id=678927329]
+collision_layer = 2
+collision_mask = 25
+script = ExtResource("100_base")
+contact_damage = 0
+is_aggressive = false
+is_passive = true
+dinosaur_id = "cephalapsis"
+dinosaur_name = "Cephalapsis"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
+position = Vector2(107.7697, 44.608536)
+scale = Vector2(0.25198108, 0.25198108)
+sprite_frames = SubResource("SpriteFrames_e3etd")
+animation = &"swim"
+
+[node name="PlatformDetector" type="RayCast2D" parent="." unique_id=2026131695]
+position = Vector2(0, 6)
+target_position = Vector2(0, 8)
+collision_mask = 9
+
+[node name="FloorDetectorLeft" type="RayCast2D" parent="." unique_id=1398094348]
+position = Vector2(-15, -4)
+target_position = Vector2(0, 35)
+collision_mask = 25
+
+[node name="FloorDetectorRight" type="RayCast2D" parent="." unique_id=1541295602]
+position = Vector2(15.5, -3)
+target_position = Vector2(0, 35)
+collision_mask = 25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26390868]
+position = Vector2(107, 46)
+rotation = -1.5708
+shape = SubResource("5")
+
+[node name="Explosion" type="CPUParticles2D" parent="." unique_id=1964325938]
+self_modulate = Color(1, 1, 1, 0.12)
+material = SubResource("6")
+emitting = false
+amount = 32
+texture = ExtResource("34_o1gjg")
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.2
+explosiveness = 0.7
+draw_order = 215832976
+emission_shape = 1
+emission_sphere_radius = 16.0
+spread = 180.0
+gravity = Vector2(0, -250)
+color_ramp = SubResource("7")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=288222785]
+stream = ExtResource("35_c2l65")
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="." unique_id=988196303]
+stream = ExtResource("36_dkcgy")
+
+[node name="Healthbar" parent="." unique_id=1930226170 instance=ExtResource("37_g3jk1")]
+offset_left = -30.0
+offset_top = -42.0
+offset_right = 30.0
+offset_bottom = -38.0

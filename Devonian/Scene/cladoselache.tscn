@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://b8thl4nc4kpf2"]
+
+[ext_resource type="Texture2D" uid="uid://c4h8a5y3o57rn" path="res://Devonian/enemy/Cladoselache/attack/Cladoselache (1).png" id="1_ivyi4"]
+[ext_resource type="Texture2D" uid="uid://dsryjjviubuo0" path="res://Devonian/enemy/Cladoselache/attack/Cladoselache (2).png" id="2_77ksd"]
+[ext_resource type="Texture2D" uid="uid://ct3etxh7li3s0" path="res://Devonian/enemy/Cladoselache/attack/Cladoselache (3).png" id="3_icai0"]
+[ext_resource type="Texture2D" uid="uid://dj4g6maggeih6" path="res://Devonian/enemy/Cladoselache/attack/Cladoselache (4).png" id="4_4jgdm"]
+[ext_resource type="Texture2D" uid="uid://ce0f1co3ca5x3" path="res://Devonian/enemy/Cladoselache/attack/Cladoselache (5).png" id="5_oqa23"]
+[ext_resource type="Texture2D" uid="uid://3wg5lyovwn51" path="res://Devonian/enemy/Cladoselache/swim1.png" id="13_4jgdm"]
+[ext_resource type="Texture2D" uid="uid://br062y48od6ye" path="res://Devonian/enemy/Cladoselache/swim2.png" id="14_oqa23"]
+[ext_resource type="Texture2D" uid="uid://cflqbj1yjbwne" path="res://Devonian/enemy/Cladoselache/swim3.png" id="15_ugtu1"]
+[ext_resource type="Texture2D" uid="uid://omt5qki8qi82" path="res://Devonian/enemy/Cladoselache/swim4.png" id="16_72xw1"]
+[ext_resource type="Texture2D" uid="uid://bfcspqwofy5xg" path="res://Devonian/enemy/Cladoselache/swim5.png" id="17_x12h4"]
+[ext_resource type="Texture2D" uid="uid://df2sg3tp1km4b" path="res://Devonian/enemy/Cladoselache/swim6.png" id="18_vnk8v"]
+[ext_resource type="Texture2D" uid="uid://coj0d33vyyqx1" path="res://player/bullet.webp" id="30_4j8ns"]
+[ext_resource type="AudioStream" uid="uid://dm7wsawmylc7b" path="res://enemy/hit.wav" id="31_vsw2b"]
+[ext_resource type="AudioStream" uid="uid://duwm7i44o75o2" path="res://enemy/explode.wav" id="32_yr0f3"]
+[ext_resource type="PackedScene" uid="uid://d0tnu2xmlen7g" path="res://player/healthbar.tscn" id="33_54e5q"]
+[ext_resource type="Script" uid="uid://b6owtvaa6icg" path="res://Devonian/script/devonian_enemy_base.gd" id="100_base"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3etd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ivyi4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_77ksd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_icai0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4jgdm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_oqa23")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_4jgdm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_oqa23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ugtu1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_72xw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_x12h4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_vnk8v")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="5"]
+radius = 47.015347
+height = 385.95193
+
+[sub_resource type="CanvasItemMaterial" id="6"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="7"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="Cladoselache" type="CharacterBody2D" unique_id=678927329]
+collision_layer = 2
+collision_mask = 25
+script = ExtResource("100_base")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=842867149]
+z_index = 3
+position = Vector2(143.14592, 45.897015)
+scale = Vector2(0.78228396, 0.78228396)
+sprite_frames = SubResource("SpriteFrames_e3etd")
+animation = &"attack"
+
+[node name="PlatformDetector" type="RayCast2D" parent="." unique_id=2026131695]
+position = Vector2(0, 6)
+target_position = Vector2(0, 8)
+collision_mask = 9
+
+[node name="FloorDetectorLeft" type="RayCast2D" parent="." unique_id=1398094348]
+position = Vector2(-15, -4)
+target_position = Vector2(0, 35)
+collision_mask = 25
+
+[node name="FloorDetectorRight" type="RayCast2D" parent="." unique_id=1541295602]
+position = Vector2(15.5, -3)
+target_position = Vector2(0, 35)
+collision_mask = 25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26390868]
+position = Vector2(152.00002, 47.000004)
+rotation = -4.720914
+shape = SubResource("5")
+
+[node name="Explosion" type="CPUParticles2D" parent="." unique_id=1964325938]
+self_modulate = Color(1, 1, 1, 0.12)
+material = SubResource("6")
+emitting = false
+amount = 32
+texture = ExtResource("30_4j8ns")
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.2
+explosiveness = 0.7
+draw_order = 215832976
+emission_shape = 1
+emission_sphere_radius = 16.0
+spread = 180.0
+gravity = Vector2(0, -250)
+color_ramp = SubResource("7")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=288222785]
+stream = ExtResource("31_vsw2b")
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="." unique_id=988196303]
+stream = ExtResource("32_yr0f3")
+
+[node name="Healthbar" parent="." unique_id=1930226170 instance=ExtResource("33_54e5q")]
+offset_left = -30.0
+offset_top = -42.0
+offset_right = 30.0
+offset_bottom = -38.0

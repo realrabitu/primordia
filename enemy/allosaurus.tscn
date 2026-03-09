@@ -185,7 +185,7 @@ dinosaur_name = "Allosaurus"
 position = Vector2(39.124996, 12.125011)
 scale = Vector2(0.13757324, 0.13757324)
 sprite_frames = SubResource("SpriteFrames_e3etd")
-animation = &"walk"
+animation = &"idle"
 
 [node name="PlatformDetector" type="RayCast2D" parent="." unique_id=2026131695]
 position = Vector2(0, 6)
@@ -203,7 +203,7 @@ target_position = Vector2(0, 35)
 collision_mask = 24
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26390868]
-position = Vector2(38, 22)
+position = Vector2(86, 38)
 rotation = -1.5708
 shape = SubResource("5")
 

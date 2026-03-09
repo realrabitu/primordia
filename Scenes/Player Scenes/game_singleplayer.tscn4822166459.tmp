@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://d1374qs2hhwd0"]
+
+[ext_resource type="Script" uid="uid://02x02we0rtei" path="res://Scripts/game.gd" id="1_m8f8q"]
+[ext_resource type="PackedScene" uid="uid://3i31jgnfkys5" path="res://player/HUD.tscn" id="2_4f2lf"]
+[ext_resource type="PackedScene" uid="uid://d03oq2ons3dy1" path="res://level/level.scn" id="3_ru8yf"]
+[ext_resource type="PackedScene" uid="uid://vh7pmputa7r3" path="res://player/player.tscn" id="4_k7lqj"]
+[ext_resource type="PackedScene" uid="uid://c7ai4bigaryci" path="res://gui/pause_menu_singleplayer.tscn" id="5_w6kk3"]
+
+[node name="Game" type="Node" unique_id=1703444483]
+process_mode = 3
+script = ExtResource("1_m8f8q")
+
+[node name="HUD" parent="." unique_id=1411474500 instance=ExtResource("2_4f2lf")]
+
+[node name="Level" parent="." unique_id=1546933389 instance=ExtResource("3_ru8yf")]
+
+[node name="Player" parent="Level" unique_id=1462370138 instance=ExtResource("4_k7lqj")]
+position = Vector2(90, 546)
+
+[node name="InterfaceLayer" type="CanvasLayer" parent="." unique_id=1015140158]
+layer = 100
+
+[node name="PauseMenu" parent="InterfaceLayer" unique_id=1601963384 instance=ExtResource("5_w6kk3")]
+
+[connection signal="dinosaur_first_encountered" from="Level/Player" to="HUD" method="_on_player_dinosaur_first_encountered"]
+[connection signal="health_changed" from="Level/Player" to="HUD/Healthbar" method="_on_player_health_changed"]
+[connection signal="hunger_changed" from="Level/Player" to="HUD/Hungerbar" method="_on_player_hunger_changed"]
+[connection signal="level_changed" from="Level/Player" to="HUD" method="_on_player_level_changed"]
+[connection signal="stamina_changed" from="Level/Player" to="HUD/Staminabar" method="_on_player_stamina_changed"]
+[connection signal="xp_changed" from="Level/Player" to="HUD/XPBar" method="_on_player_xp_changed"]

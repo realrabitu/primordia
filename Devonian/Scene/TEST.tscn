@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://c2c7cmc64dwe6"]
 
-[ext_resource type="Texture2D" uid="uid://cbf3le5onjfw5" path="res://Devo/SKY.png" id="1_eeqf4"]
-[ext_resource type="Texture2D" uid="uid://ccyfl5ko17nbc" path="res://Devo/B CLOUDS.png" id="2_6l4i5"]
-[ext_resource type="Texture2D" uid="uid://byjn3b8fx1hvc" path="res://Devo/OUTSIDE.png" id="3_yfm1q"]
-[ext_resource type="Texture2D" uid="uid://drlnv0eksmae3" path="res://Devo/TREE.png" id="4_tgdsk"]
-[ext_resource type="Texture2D" uid="uid://02pmd0s1gppt" path="res://Devo/HILL.png" id="5_816a6"]
-[ext_resource type="Texture2D" uid="uid://do4ech8nr63my" path="res://Devo/F CLOUDS.png" id="6_gtoly"]
+[ext_resource type="Texture2D" uid="uid://cbf3le5onjfw5" path="res://Devonian/Devo/SKY.png" id="1_eeqf4"]
+[ext_resource type="Texture2D" uid="uid://ccyfl5ko17nbc" path="res://Devonian/Devo/B CLOUDS.png" id="2_6l4i5"]
+[ext_resource type="Texture2D" uid="uid://byjn3b8fx1hvc" path="res://Devonian/Devo/OUTSIDE.png" id="3_yfm1q"]
+[ext_resource type="Texture2D" uid="uid://drlnv0eksmae3" path="res://Devonian/Devo/TREE.png" id="4_tgdsk"]
+[ext_resource type="Texture2D" uid="uid://02pmd0s1gppt" path="res://Devonian/Devo/HILL.png" id="5_816a6"]
+[ext_resource type="Texture2D" uid="uid://do4ech8nr63my" path="res://Devonian/Devo/F CLOUDS.png" id="6_gtoly"]
 
 [node name="Node2D" type="Node2D" unique_id=355739988]
 

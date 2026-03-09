@@ -1,0 +1,181 @@
+[gd_scene format=3 uid="uid://cb1yy7mcy32v4"]
+
+[ext_resource type="PackedScene" uid="uid://d0tnu2xmlen7g" path="res://player/healthbar.tscn" id="1_bar"]
+[ext_resource type="Script" uid="uid://c00agmpxbp87n" path="res://Devonian/script/tiktaalik_hud.gd" id="1_hud"]
+[ext_resource type="FontFile" uid="uid://wqrno8lackrm" path="res://gui/kenney_mini_square.ttf" id="2_font"]
+[ext_resource type="Texture2D" uid="uid://1cqweii57q2a" path="res://heart.png" id="3_heart"]
+[ext_resource type="Texture2D" uid="uid://2nfxm37s2hd1" path="res://Assets/hunger.png" id="5_be7en"]
+[ext_resource type="Texture2D" uid="uid://drj20jt1ikrry" path="res://Assets/stamina.png" id="6_ypta3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_heart"]
+texture = ExtResource("3_heart")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sprint_fill"]
+bg_color = Color(0.857255, 0.521724, 0.0471577, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_attack_fill"]
+bg_color = Color(0.179311, 0.576197, 0.91236, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxygen_fill"]
+bg_color = Color(0.203922, 0.690196, 0.772549, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ypta3"]
+texture = ExtResource("5_be7en")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ygass"]
+texture = ExtResource("6_ypta3")
+
+[node name="TiktaalikHUD" type="CanvasLayer" unique_id=669523889]
+script = ExtResource("1_hud")
+
+[node name="Healthbar" parent="." unique_id=1105392922 instance=ExtResource("1_bar")]
+offset_left = 72.0
+offset_top = 16.0
+offset_right = 252.0
+offset_bottom = 25.0
+scale = Vector2(3, 3)
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="Healthbar" unique_id=1393366651]
+layout_mode = 0
+offset_left = -24.99999
+offset_top = -7.0
+offset_right = -1.3333282
+offset_bottom = 13.402294
+theme_override_styles/panel = SubResource("StyleBoxTexture_heart")
+
+[node name="HealthValue" type="Label" parent="Healthbar" unique_id=1203051554]
+layout_mode = 0
+offset_left = 80.0
+offset_top = -2.0
+offset_right = 125.0
+offset_bottom = 21.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+text = "0 / 0"
+
+[node name="HungerBar" parent="." unique_id=1073512264 instance=ExtResource("1_bar")]
+offset_left = 72.0
+offset_top = 68.0
+offset_right = 252.0
+offset_bottom = 77.0
+scale = Vector2(3, 3)
+theme_override_styles/fill = SubResource("StyleBoxFlat_sprint_fill")
+metadata/_edit_group_ = true
+
+[node name="HungerValue" type="Label" parent="HungerBar" unique_id=252770838]
+layout_mode = 0
+offset_left = 80.0
+offset_top = -2.0
+offset_right = 125.0
+offset_bottom = 24.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+text = "0 / 0"
+
+[node name="Staminabar" parent="." unique_id=1196239241 instance=ExtResource("1_bar")]
+offset_left = 72.0
+offset_top = 121.0
+offset_right = 252.0
+offset_bottom = 130.0
+scale = Vector2(3, 3)
+theme_override_styles/fill = SubResource("StyleBoxFlat_attack_fill")
+metadata/_edit_group_ = true
+
+[node name="StaminaValue" type="Label" parent="Staminabar" unique_id=1737644592]
+layout_mode = 0
+offset_left = 80.0
+offset_top = -2.0
+offset_right = 125.0
+offset_bottom = 21.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+text = "0 / 0"
+
+[node name="OxygenBar" parent="." unique_id=2081102896 instance=ExtResource("1_bar")]
+offset_left = 72.0
+offset_top = 174.0
+offset_right = 252.0
+offset_bottom = 183.0
+scale = Vector2(3, 3)
+theme_override_styles/fill = SubResource("StyleBoxFlat_oxygen_fill")
+metadata/_edit_group_ = true
+
+[node name="OxygenValue" type="Label" parent="OxygenBar" unique_id=281831490]
+layout_mode = 0
+offset_left = 80.0
+offset_top = -2.0
+offset_right = 125.0
+offset_bottom = 21.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+text = "0 / 0"
+
+[node name="HungerLabel" type="Panel" parent="." unique_id=1726533033]
+offset_left = 8.0
+offset_top = 63.0
+offset_right = 60.192307
+offset_bottom = 101.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ypta3")
+
+[node name="StaminaLabel" type="Panel" parent="." unique_id=1128629664]
+offset_left = 5.0
+offset_top = 103.0
+offset_right = 65.0
+offset_bottom = 171.93617
+theme_override_styles/panel = SubResource("StyleBoxTexture_ygass")
+
+[node name="OxygenLabel" type="Label" parent="." unique_id=1220700659]
+offset_left = 8.0
+offset_top = 169.0
+offset_right = 67.0
+offset_bottom = 195.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+text = "OXY"
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1848391768]
+offset_left = 70.0
+offset_top = 228.0
+offset_right = 300.0
+offset_bottom = 264.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 32
+text = "SCORE 0"
+
+[node name="EncounterPopup" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -668.44434
+offset_top = -428.0
+offset_right = 668.44434
+grow_horizontal = 2
+grow_vertical = 0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CloseButton" type="Button" parent="EncounterPopup"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -0.7222252
+offset_right = -10.0
+offset_bottom = -272.72223
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 64
+text = "X"
+flat = true

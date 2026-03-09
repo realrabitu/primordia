@@ -1,31 +1,46 @@
 [gd_scene format=3 uid="uid://3i31jgnfkys5"]
 
 [ext_resource type="PackedScene" uid="uid://d0tnu2xmlen7g" path="res://player/healthbar.tscn" id="1_1jg6f"]
-[ext_resource type="Texture2D" uid="uid://1cqweii57q2a" path="res://heart.png" id="2_ig88g"]
 [ext_resource type="Script" uid="uid://1qmh783wf4r5" path="res://player/hud.gd" id="3_hud"]
+[ext_resource type="Texture2D" uid="uid://buaoxru1g3fg4" path="res://Assets/dino_heart.png" id="3_kx3af"]
+[ext_resource type="Texture2D" uid="uid://2nfxm37s2hd1" path="res://Assets/hunger.png" id="4_4ybtw"]
 [ext_resource type="FontFile" uid="uid://wqrno8lackrm" path="res://gui/kenney_mini_square.ttf" id="4_kx3af"]
+[ext_resource type="Texture2D" uid="uid://g46kb4jobldu" path="res://Assets/xp-icon/XP-Icon/XP1.png" id="5_j41y3"]
+[ext_resource type="Texture2D" uid="uid://drj20jt1ikrry" path="res://Assets/stamina.png" id="5_tkmt1"]
+[ext_resource type="Texture2D" path="res://Assets/you won.png" id="8_win"]
+[ext_resource type="Texture2D" path="res://Assets/exit and main menu/main menuuu.png" id="9_main"]
+[ext_resource type="Texture2D" path="res://Assets/exit and main menu/exit.png" id="10_exit"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ig88g"]
-texture = ExtResource("2_ig88g")
+texture = ExtResource("3_kx3af")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hunger_fill"]
 bg_color = Color(0.857255, 0.521724, 0.0471577, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tkmt1"]
+texture = ExtResource("4_4ybtw")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stamina_fill"]
 bg_color = Color(0.179311, 0.576197, 0.91236, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_up6qx"]
+texture = ExtResource("5_tkmt1")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xp_fill"]
 bg_color = Color(0.543274, 0.360995, 0.880905, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j41y3"]
+texture = ExtResource("5_j41y3")
 
 [node name="HUD" type="CanvasLayer" unique_id=1411474500]
 script = ExtResource("3_hud")
 
 [node name="Healthbar" parent="." unique_id=795759321 instance=ExtResource("1_1jg6f")]
-offset_left = 72.0
-offset_top = 16.0
-offset_right = 251.99998
-offset_bottom = 25.0
-scale = Vector2(2, 2)
+offset_left = 104.00001
+offset_top = 24.0
+offset_right = 284.0
+offset_bottom = 33.0
+scale = Vector2(3, 3)
 metadata/_edit_group_ = true
 
 [node name="Panel" type="Panel" parent="Healthbar" unique_id=2079252027]
@@ -37,40 +52,75 @@ offset_bottom = 17.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_ig88g")
 
 [node name="Hungerbar" parent="." unique_id=134333140 instance=ExtResource("1_1jg6f")]
-offset_left = 72.0
-offset_top = 54.0
-offset_right = 251.99998
-offset_bottom = 63.0
-scale = Vector2(2, 2)
+offset_left = 104.0
+offset_top = 106.0
+offset_right = 284.0
+offset_bottom = 115.0
+scale = Vector2(3, 3)
 theme_override_styles/fill = SubResource("StyleBoxFlat_hunger_fill")
 metadata/_edit_group_ = true
 
+[node name="Panel2" type="Panel" parent="Hungerbar" unique_id=1355755009]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -7.0
+offset_right = -5.0
+offset_bottom = 18.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_tkmt1")
+
 [node name="Staminabar" parent="." unique_id=1317018654 instance=ExtResource("1_1jg6f")]
-offset_left = 72.0
-offset_top = 96.0
-offset_right = 251.99998
-offset_bottom = 105.0
-scale = Vector2(2, 2)
+offset_left = 104.0
+offset_top = 184.0
+offset_right = 284.0
+offset_bottom = 193.0
+scale = Vector2(3, 3)
 theme_override_styles/fill = SubResource("StyleBoxFlat_stamina_fill")
 metadata/_edit_group_ = true
 
+[node name="Panel3" type="Panel" parent="Staminabar" unique_id=570433841]
+layout_mode = 0
+offset_left = -38.0
+offset_top = -14.0
+offset_right = -9.0
+offset_bottom = 11.0
+scale = Vector2(1.3, 1.3)
+theme_override_styles/panel = SubResource("StyleBoxTexture_up6qx")
+
 [node name="XPBar" parent="." unique_id=1186852988 instance=ExtResource("1_1jg6f")]
-offset_left = 72.0
-offset_top = 140.0
-offset_right = 251.99998
-offset_bottom = 149.0
-scale = Vector2(2, 2)
+offset_left = 104.0
+offset_top = 252.0
+offset_right = 284.0
+offset_bottom = 261.0
+scale = Vector2(3, 3)
 theme_override_styles/fill = SubResource("StyleBoxFlat_xp_fill")
 metadata/_edit_group_ = true
 
-[node name="LevelLabel" type="Label" parent="." unique_id=1990279800]
-offset_left = 8.0
-offset_top = 135.0
-offset_right = 67.0
-offset_bottom = 161.0
+[node name="Panel4" type="Panel" parent="XPBar" unique_id=1043951805]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -8.0
+offset_right = -5.0
+offset_bottom = 17.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_j41y3")
+
+[node name="Label" type="Label" parent="XPBar" unique_id=889828140]
+layout_mode = 0
+offset_left = 76.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("4_kx3af")
-theme_override_font_sizes/font_size = 18
-text = "LEVEL"
+text = "LEVEL 1"
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1680091124]
+offset_left = 102.0
+offset_top = 330.0
+offset_right = 314.0
+offset_bottom = 366.0
+theme_override_fonts/font = ExtResource("4_kx3af")
+theme_override_font_sizes/font_size = 32
+text = "SCORE 0"
 
 [node name="EatPrompt" type="Label" parent="." unique_id=188102411]
 anchors_preset = 8
@@ -120,3 +170,38 @@ theme_override_fonts/font = ExtResource("4_kx3af")
 theme_override_font_sizes/font_size = 64
 text = "X"
 flat = true
+
+[node name="WinPrompt" type="TextureRect" parent="." unique_id=1400243201]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.0
+offset_top = -208.0
+offset_right = 274.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_win")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MainMenuButton" type="TextureButton" parent="WinPrompt" unique_id=1452796401]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 194.0
+offset_right = 241.0
+offset_bottom = 246.0
+texture_normal = ExtResource("9_main")
+stretch_mode = 0
+
+[node name="ExitButton" type="TextureButton" parent="WinPrompt" unique_id=1508391065]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 194.0
+offset_right = 466.0
+offset_bottom = 246.0
+texture_normal = ExtResource("10_exit")
+stretch_mode = 0

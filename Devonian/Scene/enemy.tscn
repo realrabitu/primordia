@@ -1,29 +1,29 @@
 [gd_scene format=3 uid="uid://c8htldx2dmu15"]
 
-[ext_resource type="Script" uid="uid://bdnepuckqdiah" path="res://script/enemy.gd" id="1_5op34"]
-[ext_resource type="Texture2D" uid="uid://beesl5dcrkqhs" path="res://Tiktaalik/Idle/frame0000.png" id="2_r6llc"]
-[ext_resource type="Texture2D" uid="uid://bekxt5uq7yxsw" path="res://Tiktaalik/Idle/frame0001.png" id="3_00taw"]
-[ext_resource type="Texture2D" uid="uid://dqxgp4rwxhhsg" path="res://Tiktaalik/Idle/frame0002.png" id="4_lgux2"]
-[ext_resource type="Texture2D" uid="uid://c3gwgxpgru70" path="res://Tiktaalik/Idle/frame0003.png" id="5_r3ffy"]
-[ext_resource type="Texture2D" uid="uid://bnc7o2f6tvbpf" path="res://Tiktaalik/walk/frame0000.png" id="6_5jr7y"]
-[ext_resource type="Texture2D" uid="uid://cjik78jjs1xtn" path="res://Tiktaalik/walk/frame0001.png" id="7_myw4n"]
-[ext_resource type="Texture2D" uid="uid://dabikix6utsbv" path="res://Tiktaalik/walk/frame0002.png" id="8_iepwm"]
-[ext_resource type="Texture2D" uid="uid://djtomxqaxlov8" path="res://Tiktaalik/walk/frame0003.png" id="9_c152g"]
+[ext_resource type="Script" uid="uid://bdnepuckqdiah" path="res://Devonian/script/enemy.gd" id="1_adgtb"]
+[ext_resource type="Texture2D" uid="uid://beesl5dcrkqhs" path="res://Devonian/Tiktaalik/Idle/frame0000.png" id="2_uas8k"]
+[ext_resource type="Texture2D" uid="uid://bekxt5uq7yxsw" path="res://Devonian/Tiktaalik/Idle/frame0001.png" id="3_d2nf6"]
+[ext_resource type="Texture2D" uid="uid://dqxgp4rwxhhsg" path="res://Devonian/Tiktaalik/Idle/frame0002.png" id="4_q34p1"]
+[ext_resource type="Texture2D" uid="uid://c3gwgxpgru70" path="res://Devonian/Tiktaalik/Idle/frame0003.png" id="5_4dwm2"]
+[ext_resource type="Texture2D" uid="uid://bnc7o2f6tvbpf" path="res://Devonian/Tiktaalik/walk/frame0000.png" id="6_qgsp6"]
+[ext_resource type="Texture2D" uid="uid://cjik78jjs1xtn" path="res://Devonian/Tiktaalik/walk/frame0001.png" id="7_1lwmc"]
+[ext_resource type="Texture2D" uid="uid://dabikix6utsbv" path="res://Devonian/Tiktaalik/walk/frame0002.png" id="8_geck2"]
+[ext_resource type="Texture2D" uid="uid://djtomxqaxlov8" path="res://Devonian/Tiktaalik/walk/frame0003.png" id="9_e8cwh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ksyog"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_r6llc")
+"texture": ExtResource("2_uas8k")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_00taw")
+"texture": ExtResource("3_d2nf6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_lgux2")
+"texture": ExtResource("4_q34p1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_r3ffy")
+"texture": ExtResource("5_4dwm2")
 }],
 "loop": true,
 "name": &"Idle",
@@ -31,16 +31,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_5jr7y")
+"texture": ExtResource("6_qgsp6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_myw4n")
+"texture": ExtResource("7_1lwmc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_iepwm")
+"texture": ExtResource("8_geck2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_c152g")
+"texture": ExtResource("9_e8cwh")
 }],
 "loop": true,
 "name": &"Walk",
@@ -51,14 +51,11 @@ animations = [{
 radius = 121.0
 height = 1428.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0dgtb"]
-radius = 2054.6582
-
 [node name="Enemy" type="Node2D" unique_id=1993343413]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=442496930]
 scale = Vector2(0.2, 0.2)
-script = ExtResource("1_5op34")
+script = ExtResource("1_adgtb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1064953736]
 sprite_frames = SubResource("SpriteFrames_ksyog")
@@ -70,11 +67,3 @@ frame_progress = 0.83738697
 position = Vector2(16, -133)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_cq5ds")
-
-[node name="Area2D" type="Area2D" parent="CharacterBody2D" unique_id=1120311614]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D" unique_id=1606580759]
-shape = SubResource("CircleShape2D_0dgtb")
-
-[connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
-[connection signal="body_shape_exited" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_shape_exited"]
