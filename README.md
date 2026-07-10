@@ -22,7 +22,7 @@ Users may choose from different geological eons, eras, and periods and get to pl
 * **Canva**
 
 ## Project Status
-This project is **archived**. The last revision was made on *March 9, 2026*.\
+This project is **archived**. The last revision was made on *March 9, 2026*.
 
 ## Author's Notes
 Primordia is my first ever major programming and game development project. It is our group's capstone project for the Grade 12 second semester. 
